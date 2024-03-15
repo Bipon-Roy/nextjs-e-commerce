@@ -16,11 +16,13 @@ const ProfileMenu = ({ menuItems }: Props) => {
         <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
             <MenuHandler>
                 <Button
+                    placeholder={undefined}
                     variant="text"
                     color="blue-gray"
                     className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
                 >
                     <Avatar
+                        placeholder={undefined}
                         variant="circular"
                         size="sm"
                         alt="candice wu"
@@ -34,11 +36,12 @@ const ProfileMenu = ({ menuItems }: Props) => {
                 </Button>
             </MenuHandler>
 
-            <MenuList className="p-1">
+            <MenuList className="p-1" placeholder={undefined}>
                 {menuItems.map(({ href, icon, label }) => {
                     return (
                         <Link key={href} href={href} className="outline-none">
                             <MenuItem
+                                placeholder={undefined}
                                 onClick={closeMenu}
                                 className="flex items-center gap-2 rounded"
                             >
@@ -51,14 +54,18 @@ const ProfileMenu = ({ menuItems }: Props) => {
 
                 {isAdmin ? (
                     <Link href="/dashboard" className="outline-none">
-                        <MenuItem onClick={closeMenu} className="flex items-center gap-2 rounded">
+                        <MenuItem
+                            placeholder={undefined}
+                            onClick={closeMenu}
+                            className="flex items-center gap-2 rounded"
+                        >
                             <RectangleGroupIcon className="h-4 w-4" />
                             <span>Dashboard</span>
                         </MenuItem>
                     </Link>
                 ) : null}
 
-                <MenuItem>
+                <MenuItem placeholder={undefined}>
                     <p className="flex items-center gap-2 rounded">
                         <PowerIcon className="h-4 w-4" />
                         <span>Sign Out</span>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Navbar as MaterialNav, IconButton, Spinner } from "@material-tailwind/react";
+import { Navbar, IconButton, Spinner } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import ProfileMenu from "./ProfileMenu";
 import MobileNav from "./MobileNav";
@@ -38,7 +38,7 @@ const NavUI = ({ cartItemsCount }: Props) => {
     }, []);
     return (
         <>
-            <MaterialNav className="mx-auto max-w-screen-xl px-4 py-2">
+            <Navbar placeholder={undefined} className="mx-auto max-w-screen-xl px-4 py-2">
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Link href="/" className="mr-4 cursor-pointer py-1.5 lg:ml-2 font-semibold">
                         Next Ecom
@@ -69,6 +69,7 @@ const NavUI = ({ cartItemsCount }: Props) => {
                         <CartIcon cartItems={cartItemsCount} />
 
                         <IconButton
+                            placeholder={undefined}
                             variant="text"
                             color="blue-gray"
                             className="lg:hidden"
@@ -82,7 +83,7 @@ const NavUI = ({ cartItemsCount }: Props) => {
                         </IconButton>
                     </div>
                 </div>
-            </MaterialNav>
+            </Navbar>
             <div className="lg:hidden">
                 <MobileNav menuItems={menuItems} onClose={() => setOpen(false)} open={open} />
             </div>
