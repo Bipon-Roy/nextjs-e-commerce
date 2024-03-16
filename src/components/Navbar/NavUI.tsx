@@ -38,7 +38,7 @@ const NavUI = ({ cartItemsCount }: Props) => {
     }, []);
     return (
         <>
-            <Navbar placeholder={undefined} className="mx-auto max-w-7xl px-4 py-3 rounded">
+            <Navbar placeholder={undefined} className="mx-auto max-w-7xl p-4 rounded">
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Link href="/" className="mr-4 cursor-pointer py-1.5 lg:ml-2 font-semibold">
                         Next Ecom
@@ -52,11 +52,14 @@ const NavUI = ({ cartItemsCount }: Props) => {
                             <Spinner />
                         ) : (
                             <>
-                                <Link className="px-4 py-1" href="/auth/signin">
+                                <Link
+                                    className="px-4 py-1 bg-gray-100 text-blue-500 font-medium rounded"
+                                    href="/auth/signin"
+                                >
                                     Sign in
                                 </Link>
                                 <Link
-                                    className="bg-blue-500 text-white px-4 py-1 rounded"
+                                    className="bg-blue-500 text-white px-4 py-1 rounded font-medium"
                                     href="/auth/signup"
                                 >
                                     Sign up
