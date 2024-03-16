@@ -37,28 +37,37 @@ const SignUp = () => {
                 label="Name"
                 crossOrigin={undefined}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 value={name}
             />
-            <span className="pt-4 text-red-500">{errors.name}</span>
+            <span className="pt-4 text-red-500"> {errors.name && touched.name && errors.name}</span>
             <Input
                 color="blue"
                 name="email"
                 label="Email"
                 crossOrigin={undefined}
+                onBlur={handleBlur}
                 onChange={handleChange}
                 value={email}
             />
-            <span className="pt-4 text-red-500">{errors.email}</span>
+            <span className="pt-4 text-red-500">
+                {errors.email && touched.email && errors.email}
+            </span>
             <Input
                 color="blue"
                 name="password"
                 label="Password"
                 type="password"
                 crossOrigin={undefined}
+                onBlur={handleBlur}
                 onChange={handleChange}
                 value={password}
             />
-            <span className="pt-4 text-red-500">{errors.password}</span>
+            <span className="pt-4 text-red-500">
+                <span className="pt-4 text-red-500">
+                    {errors.password && touched.password && errors.password}
+                </span>
+            </span>
             <Button type="submit" className="w-full" placeholder={undefined}>
                 Sign up
             </Button>
