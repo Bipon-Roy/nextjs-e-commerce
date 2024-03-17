@@ -20,8 +20,23 @@ const SignUp = () => {
         useFormik({
             initialValues: { name: "", email: "", password: "" },
             validationSchema,
-            //todo: make post req to store userinfo into database
-            onSubmit: (values) => {},
+            onSubmit: async (values) => {
+                try {
+                    const res = await fetch("http://localhost:3000/api/users", {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json",
+                        },
+                        body: JSON.stringify(values),
+                    });
+                    console.log(res);
+                    if (res.ok) {
+                        alert("User Created Successfully");
+                    }
+                } catch (error) {
+                    alert(error);
+                }
+            },
         });
     const formErrors: string[] = [];
 
