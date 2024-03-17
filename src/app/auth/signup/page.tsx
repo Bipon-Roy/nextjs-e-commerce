@@ -80,7 +80,12 @@ const SignUp = () => {
                     {errors.password && touched.password && errors.password}
                 </span>
             </span>
-            <Button type="submit" className="w-full" placeholder={undefined}>
+            <Button
+                disabled={isSubmitting}
+                type="submit"
+                className="w-full"
+                placeholder={undefined}
+            >
                 Sign up
             </Button>
             <div className="">
