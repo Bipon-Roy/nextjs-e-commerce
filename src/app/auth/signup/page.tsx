@@ -20,13 +20,10 @@ const SignUp = () => {
         useFormik({
             initialValues: { name: "", email: "", password: "" },
             validationSchema,
-            onSubmit: (values) => {
-                console.log(values);
-            },
+            //todo: make post req to store userinfo into database
+            onSubmit: (values) => {},
         });
     const formErrors: string[] = [];
-
-    console.log(errors);
 
     const { email, name, password } = values;
     return (
