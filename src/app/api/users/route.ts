@@ -6,6 +6,9 @@ import userModel from "@models/userModel";
 export const POST = async (req: Request) => {
     const body = (await req.json()) as NewUserRequest;
     await startDb();
-    await userModel.create({ ...body });
-    return NextResponse.json({ message: "User Created Successfully", status: 200 });
+    const newUser = await userModel.create({ ...body });
+
+    // console.log(await newUser.comparePassword("12345678"));
+
+    return NextResponse.json(newUser);
 };

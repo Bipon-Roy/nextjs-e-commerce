@@ -29,6 +29,7 @@ const SignUp = () => {
                         },
                         body: JSON.stringify(values),
                     });
+                    console.log(res);
 
                     if (res.ok) {
                         alert("User Created Successfully");
