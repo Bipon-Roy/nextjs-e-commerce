@@ -7,7 +7,10 @@ import UserModel from "@models/userModel";
 export const POST = async (req: Request) => {
     try {
         const { token, userId } = (await req.json()) as EmailVerifyRequest;
-        if (isValidObjectId(userId) || !token) {
+
+        console.log(token, userId);
+
+        if (!isValidObjectId(userId) || !token) {
             return NextResponse.json(
                 { error: "Invalid Request, userId and token is required" },
                 { status: 401 }
@@ -15,6 +18,7 @@ export const POST = async (req: Request) => {
         }
 
         const verifyToken = await EmailVerificationToken.findOne({ user: userId });
+        console.log(verifyToken);
 
         if (!verifyToken) {
             return NextResponse.json({ error: "Invalid Request" }, { status: 401 });
@@ -34,8 +38,11 @@ export const POST = async (req: Request) => {
         });
 
         await EmailVerificationToken.findByIdAndDelete(verifyToken._id);
-        return NextResponse.json({ error: "Your email is verified" }, { status: 200 });
+        return NextResponse.json({ message: "Your email is verified" }, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ error: "Something Wrong!!, Email can not be verified " });
+        return NextResponse.json(
+            { error: "Something Wrong!!, Email can not be verified" },
+            { status: 500 }
+        );
     }
 };
