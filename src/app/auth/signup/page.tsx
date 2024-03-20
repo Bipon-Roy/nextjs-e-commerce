@@ -5,6 +5,7 @@ import { Button, Input } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { toast } from "react-toastify";
 
 const validationSchema = yup.object().shape({
     name: yup.string().required("Name is required"),
@@ -29,8 +30,11 @@ const SignUp = () => {
                         },
                         body: JSON.stringify(values),
                     });
+                    console.log(res);
 
                     if (res.ok) {
+                        const { message } = (await res.json()) as { message: string };
+                        toast.success(message);
                         alert("User Created Successfully");
                     }
                 } catch (error) {
