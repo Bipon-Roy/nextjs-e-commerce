@@ -35,7 +35,6 @@ const SignUp = () => {
                     if (res.ok) {
                         const { message } = (await res.json()) as { message: string };
                         toast.success(message);
-                        alert("User Created Successfully");
                     }
                 } catch (error) {
                     alert(error);
