@@ -2,10 +2,10 @@
 
 import AuthFormContainer from "@components/AuthFormContainer";
 import { Button, Input } from "@material-tailwind/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 const validationSchema = yup.object().shape({
     name: yup.string().required("Name is required"),
@@ -41,9 +41,13 @@ const SignUp = () => {
                 }
             },
         });
-    const formErrors: string[] = [];
 
     const { email, name, password } = values;
+
+    type valueKeys = keyof typeof values;
+    const error = (name: valueKeys) => {
+        return errors[name] && touched[name] ? true : false;
+    };
     return (
         <AuthFormContainer title="Create New Account" onSubmit={handleSubmit}>
             <Input
@@ -54,8 +58,9 @@ const SignUp = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={name}
+                error={error("name")}
             />
-            <span className="pt-4 text-red-500"> {errors.name && touched.name && errors.name}</span>
+            <span className=" text-red-500"> {errors.name && touched.name && errors.name}</span>
             <Input
                 color="blue"
                 name="email"
@@ -64,10 +69,9 @@ const SignUp = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={email}
+                error={error("email")}
             />
-            <span className="pt-4 text-red-500">
-                {errors.email && touched.email && errors.email}
-            </span>
+            <span className=" text-red-500">{errors.email && touched.email && errors.email}</span>
             <Input
                 color="blue"
                 name="password"
@@ -77,12 +81,13 @@ const SignUp = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={password}
+                error={error("password")}
             />
-            <span className="pt-4 text-red-500">
-                <span className="pt-4 text-red-500">
-                    {errors.password && touched.password && errors.password}
-                </span>
+
+            <span className=" text-red-500">
+                {errors.password && touched.password && errors.password}
             </span>
+
             <Button
                 disabled={isSubmitting}
                 type="submit"
@@ -91,15 +96,9 @@ const SignUp = () => {
             >
                 Sign up
             </Button>
-            <div className="">
-                {formErrors.map((err) => {
-                    return (
-                        <div key={err} className="space-x-1 flex items-center text-red-500">
-                            <XMarkIcon className="w-4 h-4" />
-                            <p className="text-xs">{err}</p>
-                        </div>
-                    );
-                })}
+            <div className="flex items-center justify-between">
+                <Link href="/auth/signin">Sign in</Link>
+                <Link href="/auth/forget-password">Forget password</Link>
             </div>
         </AuthFormContainer>
     );

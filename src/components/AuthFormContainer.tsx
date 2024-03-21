@@ -8,7 +8,7 @@ interface Props {
 
 const AuthFormContainer = ({ title, children, onSubmit }: Props) => {
     return (
-        <form onSubmit={onSubmit} className="w-96 p-6 space-y-6 bg-white shadow-md rounded-md">
+        <form onSubmit={onSubmit} className="w-96 p-6 space-y-5 bg-white shadow-md rounded-md">
             <h3 className="text-center font-semibold">{title}</h3>
             {children}
         </form>

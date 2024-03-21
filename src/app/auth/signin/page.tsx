@@ -28,7 +28,7 @@ const SignIn = () => {
         return errors[name] && touched[name] ? true : false;
     };
     return (
-        <AuthFormContainer title="Login in your account" onSubmit={handleSubmit}>
+        <AuthFormContainer title="SIGN IN" onSubmit={handleSubmit}>
             <Input
                 crossOrigin={undefined}
                 name="email"
@@ -38,6 +38,8 @@ const SignIn = () => {
                 onBlur={handleBlur}
                 error={error("email")}
             />
+            <span className=" text-red-500"> {errors.email && touched.email && errors.email}</span>
+
             <Input
                 crossOrigin={undefined}
                 name="password"
@@ -48,6 +50,10 @@ const SignIn = () => {
                 error={error("password")}
                 type="password"
             />
+            <span className="text-red-500">
+                {errors.password && touched.password && errors.password}
+            </span>
+
             <Button
                 type="submit"
                 className="w-full"
