@@ -1,8 +1,8 @@
 import { SignInCredentials } from "@/types";
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthConfig } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const authOptions = {
+const authOptions: NextAuthConfig = {
     providers: [
         CredentialsProvider({
             type: "credentials",

@@ -4,6 +4,7 @@ import AuthFormContainer from "@components/AuthFormContainer";
 import { useFormik } from "formik";
 import Link from "next/link";
 import * as yup from "yup";
+import { signIn } from "next-auth/react";
 
 const validationSchema = yup.object().shape({
     email: yup.string().email("Invalid email").required("Email is required"),
@@ -18,7 +19,11 @@ const SignIn = () => {
         useFormik({
             initialValues: { email: "", password: "" },
             validationSchema,
-            onSubmit: async (values, actions) => {},
+            onSubmit: async (values) => {
+                await signIn("credentials", {
+                    ...values,
+                });
+            },
         });
 
     type valueKeys = keyof typeof values;
