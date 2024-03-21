@@ -1,7 +1,7 @@
 import NavUI from "./NavUI";
 const Navbar = () => {
     return (
-        <div>
+        <div className="shadow-md">
             <NavUI cartItemsCount={0} />
         </div>
     );
