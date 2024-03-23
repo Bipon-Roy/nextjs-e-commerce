@@ -57,7 +57,7 @@ const NavUI = ({ cartItemsCount }: Props) => {
                         ) : (
                             <>
                                 <Link
-                                    className="px-4 py-1 bg-gray-100 text-blue-500 font-medium rounded"
+                                    className="px-4 py-1 bg-gray-200 font-medium rounded"
                                     href="/auth/signin"
                                 >
                                     Sign in

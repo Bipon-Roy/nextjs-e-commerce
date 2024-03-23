@@ -12,6 +12,7 @@ import { PowerIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import useAuth from "@hooks/useAuth";
 import { MenuItems } from "@/types/index";
+import SignOutBtn from "../SignOutBtn";
 
 interface Props {
     open: boolean;
@@ -61,19 +62,24 @@ const MobileNav = ({ open, onClose, menuItems }: Props) => {
                     ) : null}
 
                     {loggedIn ? (
-                        <ListItem placeholder={undefined}>
-                            <ListItemPrefix placeholder={undefined}>
-                                <PowerIcon className="h-5 w-5" />
-                            </ListItemPrefix>
-                            Sign Out
-                        </ListItem>
+                        <SignOutBtn>
+                            <ListItem placeholder={undefined}>
+                                <ListItemPrefix placeholder={undefined}>
+                                    <PowerIcon className="h-5 w-5" />
+                                </ListItemPrefix>
+                                Sign Out
+                            </ListItem>
+                        </SignOutBtn>
                     ) : (
-                        <div className="flex items-center">
-                            <Link className="px-4 py-1 flex-1 text-center" href="/auth/signin">
+                        <div className="mx-2 flex gap-2 items-center">
+                            <Link
+                                className="px-4 py-1 flex-1 bg-gray-200 font-medium rounded text-center"
+                                href="/auth/signin"
+                            >
                                 Sign in
                             </Link>
                             <Link
-                                className="bg-blue-500 text-white px-4 py-1 rounded flex-1 text-center"
+                                className="bg-blue-500 flex-1 text-white px-4 py-1 rounded text-center"
                                 href="/auth/signup"
                             >
                                 Sign up

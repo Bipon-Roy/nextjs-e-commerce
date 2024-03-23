@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import useAuth from "@hooks/useAuth";
 import { MenuItems } from "@/types/index";
+import SignOutBtn from "../SignOutBtn";
 
 interface Props {
     menuItems: MenuItems[];
@@ -66,10 +67,12 @@ const ProfileMenu = ({ menuItems }: Props) => {
                 ) : null}
 
                 <MenuItem placeholder={undefined}>
-                    <p className="flex items-center gap-2 rounded">
-                        <PowerIcon className="h-4 w-4" />
-                        <span>Sign Out</span>
-                    </p>
+                    <SignOutBtn>
+                        <p className="flex items-center gap-2 rounded">
+                            <PowerIcon className="h-4 w-4" />
+                            <span>Sign Out</span>
+                        </p>
+                    </SignOutBtn>
                 </MenuItem>
             </MenuList>
         </Menu>
