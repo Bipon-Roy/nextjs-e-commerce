@@ -16,7 +16,7 @@ const authOptions: NextAuthConfig = {
                 }).then(async (res) => await res.json());
 
                 if (error) {
-                    throw new Error(error);
+                    return null;
                 }
                 return { id: user.id };
             },
