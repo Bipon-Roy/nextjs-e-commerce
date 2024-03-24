@@ -18,10 +18,30 @@ const authOptions: NextAuthConfig = {
                 if (error) {
                     return null;
                 }
-                return { id: user.id };
+                return { id: user.id, ...user };
             },
         }),
     ],
+    //fire callbacks after getting a sign in request
+    callbacks: {
+        //if user exist inside params then update the token.user
+        async jwt(params) {
+            if (params.user) {
+                params.token.user = params.user;
+            }
+            return params.token;
+        },
+
+        //updating session user with the user from the jwt token
+
+        async session(params) {
+            const user = params.token.user;
+            if (user) {
+                params.session.user = { ...params.session.user, ...user };
+            }
+            return params.session;
+        },
+    },
 };
 
 export const {
