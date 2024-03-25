@@ -1,4 +1,4 @@
-import PasswordResetTokenModel from "@models/emailVerification";
+import EmailVerificationToken from "@models/emailVerification";
 import { EmailVerifyRequest } from "@/types";
 import { isValidObjectId } from "mongoose";
 import { NextResponse } from "next/server";
@@ -17,7 +17,7 @@ export const POST = async (req: Request) => {
             );
         }
 
-        const verifyToken = await PasswordResetTokenModel.findOne({ user: userId });
+        const verifyToken = await EmailVerificationToken.findOne({ user: userId });
         console.log(verifyToken);
 
         if (!verifyToken) {
@@ -37,7 +37,7 @@ export const POST = async (req: Request) => {
             verified: true,
         });
 
-        await PasswordResetTokenModel.findByIdAndDelete(verifyToken._id);
+        await EmailVerificationToken.findByIdAndDelete(verifyToken._id);
         return NextResponse.json({ message: "Your email is verified" }, { status: 200 });
     } catch (error) {
         return NextResponse.json(
