@@ -82,7 +82,7 @@ const SignIn = () => {
             </Button>
             <div className="flex items-center justify-between">
                 <Link href="/auth/signup">Sign up</Link>
-                <Link href="/auth/forget-password">Forget password</Link>
+                <Link href="/auth/forget_password">Forget password</Link>
             </div>
         </AuthFormContainer>
     );

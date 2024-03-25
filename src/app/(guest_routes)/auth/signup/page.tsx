@@ -30,7 +30,6 @@ const SignUp = () => {
                         },
                         body: JSON.stringify(values),
                     });
-                    console.log(res);
 
                     if (res.ok) {
                         const { message } = (await res.json()) as { message: string };
