@@ -4,7 +4,6 @@ import FormContainer from "@components/AuthFormContainer";
 import { Button, Input } from "@material-tailwind/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { XMarkIcon } from "@heroicons/react/24/outline";
 
 import Link from "next/link";
 
