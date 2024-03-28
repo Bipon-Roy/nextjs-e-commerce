@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 const validationSchema = yup.object().shape({
     email: yup.string().email("Invalid email").required("Email is required"),
@@ -16,7 +17,29 @@ const ForgetPassword = () => {
         useFormik({
             initialValues: { email: "" },
             validationSchema,
-            onSubmit: async (values, actions) => {},
+            onSubmit: async (values) => {
+                try {
+                    const res = await fetch("http://localhost:3000/api/users/forget_password", {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json",
+                        },
+                        body: JSON.stringify(values),
+                    });
+
+                    const { message, error } = await res.json();
+
+                    if (res.ok) {
+                        toast.success(message);
+                    }
+
+                    if (!res.ok && error) {
+                        toast.error(error);
+                    }
+                } catch (error) {
+                    alert(error);
+                }
+            },
         });
 
     type valueKeys = keyof typeof values;

@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import PasswordResetTokenModel from "@models/passwordReset";
 import crypto from "crypto";
 import nodemailer from "nodemailer";
+import startDb from "@/app/lib/db";
 
 export const POST = async (req: Request) => {
     try {
@@ -12,6 +13,8 @@ export const POST = async (req: Request) => {
         if (!email) {
             return NextResponse.json({ error: "Email Not Found!" }, { status: 401 });
         }
+
+        await startDb();
 
         const user = await UserModel.findOne({ email });
         console.log(user);
