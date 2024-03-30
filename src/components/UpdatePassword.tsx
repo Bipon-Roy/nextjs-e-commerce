@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
 import FormContainer from "@components/AuthFormContainer";
 import { Button, Input } from "@material-tailwind/react";
 import { useFormik } from "formik";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import * as yup from "yup";
 
 const validationSchema = yup.object().shape({
@@ -22,11 +23,27 @@ interface Props {
 }
 
 const UpdatePassword = ({ token, userId }: Props) => {
+    const router = useRouter();
     const { values, isSubmitting, touched, errors, handleSubmit, handleBlur, handleChange } =
         useFormik({
             initialValues: { password1: "", password2: "" },
             validationSchema,
-            onSubmit: async (values, actions) => {},
+            onSubmit: async (values) => {
+                const res = await fetch("http://localhost:3000/api/users/update_password", {
+                    method: "POST",
+                    body: JSON.stringify({ password: values.password1, token, userId }),
+                });
+                const { message, error } = await res.json();
+
+                if (res.ok) {
+                    toast.success(message);
+                    router.replace("/auth/signin");
+                }
+
+                if (!res.ok && error) {
+                    toast.error(error);
+                }
+            },
         });
 
     const { password1, password2 } = values;
