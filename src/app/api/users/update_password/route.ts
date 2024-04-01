@@ -1,7 +1,7 @@
 import { UpdatePasswordRequest } from "@/types";
 import { isValidObjectId } from "mongoose";
 import { NextResponse } from "next/server";
-
+import nodemailer from "nodemailer";
 import UserModel from "@models/userModel";
 import startDb from "@lib/db";
 import PasswordResetTokenModel from "@models/passwordReset";
@@ -22,9 +22,13 @@ export const POST = async (req: Request) => {
 
         const matched = await resetToken.compareToken(token);
 
-        if (!matched) return NextResponse.json({ error: "Unauthorized request!" }, { status: 401 });
+        if (!matched) {
+            return NextResponse.json({ error: "Unauthorized request!" }, { status: 401 });
+        }
         const user = await UserModel.findById(userId);
-        if (!user) return NextResponse.json({ error: "User not found!" }, { status: 404 });
+        if (!user) {
+            return NextResponse.json({ error: "User not found!" }, { status: 404 });
+        }
 
         const isMatched = await user.comparePassword(password);
         if (isMatched) {
@@ -34,6 +38,23 @@ export const POST = async (req: Request) => {
         user.password = password;
         await user.save();
 
+        await PasswordResetTokenModel.findByIdAndDelete(resetToken._id);
+
+        //sending mail when successfully password is changed
+        const transport = nodemailer.createTransport({
+            host: "sandbox.smtp.mailtrap.io",
+            port: 2525,
+            auth: {
+                user: "d5684974437f37",
+                pass: "281ab103473c82",
+            },
+        });
+
+        await transport.sendMail({
+            from: "verification@nextjsecom.com",
+            to: user.email,
+            html: `<h1>Your password is now changed. </h1>`,
+        });
         await PasswordResetTokenModel.findByIdAndDelete(resetToken._id);
 
         return NextResponse.json({ message: "Your password is now changed." });
