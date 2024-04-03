@@ -24,7 +24,7 @@ const EmailVerificationRequest = () => {
         return null;
     }
     return (
-        <div className="p-2 text-center bg-blue-50">
+        <div className="p-2 text-center bg-gray-100 mt-5">
             <span>{`It looks like you haven't verified your email.`}</span>
             <button
                 // onClick={sendReverificationRequest}
