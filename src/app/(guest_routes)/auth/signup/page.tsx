@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 const validationSchema = yup.object().shape({
     name: yup.string().required("Name is required"),
@@ -22,21 +23,25 @@ const SignUp = () => {
             initialValues: { name: "", email: "", password: "" },
             validationSchema,
             onSubmit: async (values) => {
-                try {
-                    const res = await fetch("http://localhost:3000/api/users", {
-                        method: "POST",
-                        headers: {
-                            "Content-type": "application/json",
-                        },
-                        body: JSON.stringify(values),
-                    });
+                const res = await fetch("http://localhost:3000/api/users", {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json",
+                    },
+                    body: JSON.stringify(values),
+                });
+                const { message, error } = (await res.json()) as {
+                    message: string;
+                    error: string;
+                };
 
-                    if (res.ok) {
-                        const { message } = (await res.json()) as { message: string };
-                        toast.success(message);
-                    }
-                } catch (error) {
-                    alert(error);
+                if (res.ok) {
+                    toast.success(message);
+                    await signIn("credentials", { email, password });
+                }
+
+                if (!res.ok && error) {
+                    toast.error(error);
                 }
             },
         });

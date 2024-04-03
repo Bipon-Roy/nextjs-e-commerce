@@ -7,28 +7,24 @@ import crypto from "crypto";
 import { sendEmail } from "@lib/email";
 
 export const POST = async (req: Request) => {
-    try {
-        const body = (await req.json()) as NewUserRequest;
-        await startDb();
-        const newUser = await userModel.create({ ...body });
+    const body = (await req.json()) as NewUserRequest;
+    await startDb();
+    const newUser = await userModel.create({ ...body });
 
-        // console.log(await newUser.comparePassword("12345678"));
+    const token = crypto.randomBytes(36).toString("hex");
 
-        const token = crypto.randomBytes(36).toString("hex");
+    await EmailVerificationToken.create({
+        user: newUser._id,
+        token,
+    });
 
-        await EmailVerificationToken.create({
-            user: newUser._id,
-            token,
-        });
+    const verificationUrl = `${process.env.VERIFICATION_URL}?token=${token}&userId=${newUser._id}`;
 
-        const verificationUrl = `${process.env.VERIFICATION_URL}?token=${token}&userId=${newUser._id}`;
+    sendEmail({
+        profile: { name: newUser.name, email: newUser.email },
+        subject: "verification",
+        linkUrl: verificationUrl,
+    });
 
-        await sendEmail({
-            profile: { name: newUser.name, email: newUser.email },
-            subject: "verification",
-            linkUrl: verificationUrl,
-        });
-
-        return NextResponse.json({ message: "Please Check Your Email" });
-    } catch (error) {}
+    return NextResponse.json({ message: "Please Check Your Email" });
 };
