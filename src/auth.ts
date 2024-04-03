@@ -1,7 +1,12 @@
-import { SignInCredentials } from "@/types";
+import { SessionUserProfile, SignInCredentials } from "@/types";
 import NextAuth, { NextAuthConfig } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+declare module "next-auth" {
+    interface Session {
+        user: SessionUserProfile;
+    }
+}
 const authOptions: NextAuthConfig = {
     providers: [
         CredentialsProvider({
@@ -27,7 +32,7 @@ const authOptions: NextAuthConfig = {
         //if user exist inside params then update the token.user
         async jwt(params) {
             if (params.user) {
-                params.token.user = params.user;
+                params.token = { ...params.token, ...params.user };
             }
             return params.token;
         },
@@ -35,9 +40,17 @@ const authOptions: NextAuthConfig = {
         //updating session user with the user from the jwt token
 
         async session(params) {
-            const user = params.token.user;
+            const user = params.token as typeof params.token & SessionUserProfile;
             if (user) {
-                params.session.user = { ...params.session.user, ...user };
+                params.session.user = {
+                    ...params.session.user,
+                    id: user.id,
+                    email: user.email,
+                    name: user.name,
+                    avatar: user.avatar,
+                    role: user.role,
+                    verified: user.verified,
+                };
             }
             return params.session;
         },
