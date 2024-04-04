@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
-import EmailVerification from "@/components/EmailVerification";
+import EmailVerificationRequest from "@/components/EmailVerificationRequest";
+
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
@@ -15,7 +16,7 @@ const PrivateLayout = async ({ children }: Props) => {
 
     return (
         <div className="max-w-7xl mx-auto">
-            <EmailVerification />
+            <EmailVerificationRequest />
             {children}
         </div>
     );

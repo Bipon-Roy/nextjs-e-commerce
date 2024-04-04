@@ -9,10 +9,14 @@ interface Auth {
 }
 const useAuth = (): Auth => {
     const session = useSession();
+
+    const user = session.data?.user;
+
     return {
         loading: session.status === "loading",
         loggedIn: session.status === "authenticated",
         isAdmin: false,
+        profile: user,
     };
 };
 

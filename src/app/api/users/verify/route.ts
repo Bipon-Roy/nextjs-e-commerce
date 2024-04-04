@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import UserModel from "@models/userModel";
 import crypto from "crypto";
 import { sendEmail } from "@/app/lib/email";
+import startDb from "@lib/db";
 
 export const POST = async (req: Request) => {
     try {
@@ -51,13 +52,12 @@ export const POST = async (req: Request) => {
 
 export const GET = async (req: Request) => {
     try {
-        console.log(req.url.split("?userId="));
         const userId = req.url.split("?userId=")[1];
 
         if (!isValidObjectId(userId)) {
             return NextResponse.json({ error: "Invalid Request Missing User ID" }, { status: 401 });
         }
-
+        await startDb();
         const user = await UserModel.findById(userId);
 
         if (!user) {
@@ -70,6 +70,8 @@ export const GET = async (req: Request) => {
             return NextResponse.json({ error: "User Already Verified" }, { status: 401 });
         }
         const token = crypto.randomBytes(36).toString("hex");
+
+        await EmailVerificationToken.findOneAndDelete({ user: userId });
 
         await EmailVerificationToken.create({
             user: user._id,
