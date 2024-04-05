@@ -25,6 +25,10 @@ const EmailVerificationRequest = () => {
         setSubmitting(false);
     };
 
+    if (profile?.verified) {
+        return null;
+    }
+
     return (
         <div className="p-2 text-center bg-gray-100 mt-5">
             <span>{`It looks like you haven't verified your email.`}</span>

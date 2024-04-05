@@ -45,11 +45,11 @@ const authOptions: NextAuthConfig = {
                 params.session.user = {
                     ...params.session.user,
                     id: user.id,
-                    email: user.email,
                     name: user.name,
+                    email: user.email,
                     avatar: user.avatar,
-                    role: user.role,
                     verified: user.verified,
+                    role: user.role,
                 };
             }
             return params.session;
