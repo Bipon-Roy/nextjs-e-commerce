@@ -15,7 +15,7 @@ const useAuth = (): Auth => {
     return {
         loading: session.status === "loading",
         loggedIn: session.status === "authenticated",
-        isAdmin: false,
+        isAdmin: user?.role === "admin",
         profile: user,
     };
 };

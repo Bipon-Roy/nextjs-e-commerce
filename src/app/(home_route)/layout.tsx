@@ -7,19 +7,13 @@ import { ReactNode } from "react";
 interface Props {
     children: ReactNode;
 }
-const GuestLayout = async ({ children }: Props) => {
-    const session = await auth();
-
-    if (session) {
-        return redirect("/");
-    }
-
+const HomeLayout = async ({ children }: Props) => {
     return (
-        <div>
+        <>
             <Navbar />
-            {children}
-        </div>
+            <div className="max-w-7xl mx-auto px-4 xl:px-0">{children}</div>
+        </>
     );
 };
 
-export default GuestLayout;
+export default HomeLayout;

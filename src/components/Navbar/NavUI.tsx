@@ -40,11 +40,11 @@ const NavUI = ({ cartItemsCount }: Props) => {
         <>
             <Navbar
                 placeholder={undefined}
-                className="mx-auto max-w-7xl p-4 rounded"
+                className="mx-auto max-w-7xl p-4 xl:px-0 rounded"
                 shadow={false}
             >
                 <div className="flex items-center justify-between text-blue-gray-900">
-                    <Link href="/" className="mr-4 cursor-pointer py-1.5 lg:ml-2 font-semibold">
+                    <Link href="/" className="mr-4 cursor-pointer py-1.5  font-semibold">
                         Next Ecom
                     </Link>
 

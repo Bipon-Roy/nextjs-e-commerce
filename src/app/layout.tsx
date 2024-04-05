@@ -21,7 +21,6 @@ export default function RootLayout({
         <AuthSession>
             <html lang="en">
                 <body className={inter.className} suppressHydrationWarning={true}>
-                    <Navbar />
                     {children}
                     <Notification />
                 </body>

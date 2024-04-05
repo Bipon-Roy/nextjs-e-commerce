@@ -1,7 +1,6 @@
 "use client";
-
 import Link from "next/link";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import {
     Squares2X2Icon,
     CurrencyDollarIcon,
@@ -19,7 +18,7 @@ interface Props {
 const AdminSidebar = ({ children }: Props) => {
     return (
         <div className="flex">
-            <div className="flex flex-col justify-between bg-light-blue-600 h-screen sticky top-0 w-64 p-10">
+            <div className="flex flex-col justify-between bg-light-blue-500 h-screen sticky top-0 w-64 p-10 font-medium">
                 <ul className="space-y-4 text-white">
                     <li>
                         <Link className="font-semibold text-lg text-white" href="/dashboard">
