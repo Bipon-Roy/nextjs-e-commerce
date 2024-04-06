@@ -1,5 +1,11 @@
-const AddProducts = () => {
-    return <div>Add Product</div>;
+import AddProductForm from "@/components/AddProductForm";
+
+const AddProduct = () => {
+    return (
+        <>
+            <AddProductForm />
+        </>
+    );
 };
 
-export default AddProducts;
+export default AddProduct;

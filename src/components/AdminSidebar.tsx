@@ -68,7 +68,7 @@ const AdminSidebar = ({ children }: Props) => {
                     </SignOutBtn>
                 </div>
             </div>
-            <div className="max-w-screen-xl mx-auto flex-1 p-4 overflow-y-auto">{children}</div>
+            <div className="container mx-auto flex-1 p-4 overflow-y-auto">{children}</div>
         </div>
     );
 };

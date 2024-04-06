@@ -1,5 +1,11 @@
+import ProductTable from "@/components/ProductTable";
+
 const Products = () => {
-    return <div>Products</div>;
+    return (
+        <div>
+            <ProductTable />
+        </div>
+    );
 };
 
 export default Products;
