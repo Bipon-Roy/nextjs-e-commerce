@@ -4,10 +4,11 @@ import { useEffect, useState, useTransition, ChangeEventHandler } from "react";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import categories from "@/utils/ProductCategories";
 import ImageSelector from "@components/ImageSelector";
+import { NewProductInfo } from "@/types";
 
 interface Props {
     initialValue?: InitialValue;
-    onSubmit(values: any): void;
+    onSubmit(values: NewProductInfo): void;
 }
 
 export interface InitialValue {
@@ -116,7 +117,7 @@ const AddProductForm = (props: Props) => {
             <form
                 action={() =>
                     startTransition(async () => {
-                        await onSubmit({ ...productInfo, images, thumbnail });
+                        onSubmit({ ...productInfo, images, thumbnail });
                     })
                 }
                 className="space-y-6"

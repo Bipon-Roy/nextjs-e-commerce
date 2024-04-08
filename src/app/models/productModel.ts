@@ -1,4 +1,4 @@
-import { Model, model, models, Schema, Types } from "mongoose";
+import { Model, model, models, Schema } from "mongoose";
 import categories from "@/utils/ProductCategories";
 
 export interface NewProduct {
