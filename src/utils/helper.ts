@@ -10,12 +10,11 @@ export const uploadImage = async (file: File) => {
     formData.append("signature", signature);
     formData.append("timestamp", timestamp.toString());
 
-    const endPoint = `https://api.cloudinary.com/v1_1/${cloudConfig.name}"/image/upload`;
+    const endpoint = `https://api.cloudinary.com/v1_1/${cloudConfig.name}/image/upload`;
 
-    const res = fetch(endPoint, {
-        method: "POST",
-        body: formData,
-    });
+    const res = await fetch(endpoint, { method: "POST", body: formData });
 
-    const data = (await res).json();
+    const data = await res.json();
+
+    return { url: data.secure_url, id: data.public_id };
 };
