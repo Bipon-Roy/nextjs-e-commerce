@@ -9,8 +9,16 @@ cloudinary.config({
     secure: true,
 });
 
-//generate cloud signature
+//export cloud config information
 
+export const getCloudConfig = async () => {
+    return {
+        name: process.env.CLOUD_NAME!,
+        api_key: process.env.CLOUD_API_KEY!,
+    };
+};
+
+//generate cloud signature
 export const getCloudSignature = async () => {
     const secret = cloudinary.config().api_secret!;
     const timestamp = Math.round(new Date().getTime() / 1000);
