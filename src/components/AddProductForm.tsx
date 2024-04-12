@@ -117,7 +117,7 @@ const AddProductForm = (props: Props) => {
             <form
                 action={() =>
                     startTransition(async () => {
-                        onSubmit({ ...productInfo, images, thumbnail });
+                        await onSubmit({ ...productInfo, images, thumbnail });
                     })
                 }
                 className="space-y-6"
