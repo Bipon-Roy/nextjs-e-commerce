@@ -1,6 +1,6 @@
 "use client";
 
-import AddProductForm from "@/components/AddProductForm";
+import AddProductForm from "@/components/ProductForm";
 import { NewProductInfo } from "@/types";
 import { uploadImage } from "@/utils/helper";
 import { newProductInfoSchema } from "@/utils/validationSchema";

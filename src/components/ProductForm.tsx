@@ -34,7 +34,7 @@ const defaultValue = {
     quantity: 0,
 };
 
-const AddProductForm = (props: Props) => {
+const ProductForm = (props: Props) => {
     const { onSubmit, initialValue } = props;
     const [isPending, startTransition] = useTransition();
     const [images, setImages] = useState<File[]>([]);
@@ -260,4 +260,4 @@ const AddProductForm = (props: Props) => {
     );
 };
 
-export default AddProductForm;
+export default ProductForm;
