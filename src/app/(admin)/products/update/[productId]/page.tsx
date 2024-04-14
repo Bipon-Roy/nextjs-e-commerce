@@ -2,7 +2,6 @@ import ProductModel from "@models/productModel";
 import startDb from "@lib/db";
 import { isValidObjectId } from "mongoose";
 import { redirect } from "next/navigation";
-import { title } from "process";
 import UpdateProduct from "@/components/UpdateProduct";
 import { ProductResponse } from "@/types";
 
@@ -12,7 +11,7 @@ interface Props {
     };
 }
 
-const fetchProductInfo = async (productId: string): Promise<ProductResponse> => {
+const fetchProductInfo = async (productId: string): Promise<string> => {
     if (!isValidObjectId(productId)) {
         return redirect("/404");
     }
@@ -24,7 +23,7 @@ const fetchProductInfo = async (productId: string): Promise<ProductResponse> => 
         return redirect("/404");
     }
 
-    return {
+    const productData: ProductResponse = {
         id: product._id.toString(),
         title: product.title,
         description: product.description,
@@ -35,13 +34,14 @@ const fetchProductInfo = async (productId: string): Promise<ProductResponse> => 
         thumbnail: product.thumbnail,
         category: product.category,
     };
+    return JSON.stringify(productData);
 };
 
 const page = async (props: Props) => {
     const { productId } = props.params;
     const product = await fetchProductInfo(productId);
 
-    return <UpdateProduct product={product} />;
+    return <UpdateProduct product={JSON.parse(product)} />;
 };
 
 export default page;
