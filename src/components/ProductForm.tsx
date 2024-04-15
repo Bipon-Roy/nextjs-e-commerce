@@ -9,6 +9,7 @@ import { NewProductInfo } from "@/types";
 interface Props {
     initialValue?: InitialValue;
     onSubmit(values: NewProductInfo): void;
+    onImageRemove?(source: string): void;
 }
 
 export interface InitialValue {
@@ -35,7 +36,7 @@ const defaultValue = {
 };
 
 const ProductForm = (props: Props) => {
-    const { onSubmit, initialValue } = props;
+    const { onSubmit, onImageRemove, initialValue } = props;
     const [isPending, startTransition] = useTransition();
     const [images, setImages] = useState<File[]>([]);
     const [thumbnail, setThumbnail] = useState<File>();
@@ -70,8 +71,33 @@ const ProductForm = (props: Props) => {
     };
 
     const removeImage = async (index: number) => {
-        const newImages = images.filter((_, idx) => idx !== index);
-        setImages([...newImages]);
+        if (!productImagesSource) {
+            return;
+        }
+
+        // if image is from cloud we want to remove it from cloud.
+        const imageToRemove = productImagesSource[index];
+        const cloudSourceUrl = "https://res.cloudinary.com";
+
+        if (imageToRemove.startsWith(cloudSourceUrl)) {
+            onImageRemove && onImageRemove(imageToRemove);
+        } else {
+            // if this image is from local state we want to update local state
+            const fileIndexDifference = productImagesSource.length - images.length;
+            const indexToRemove = index - fileIndexDifference;
+            const newImageFiles = images.filter((_, i) => {
+                if (i !== indexToRemove) return true;
+            });
+
+            setImages([...newImageFiles]);
+        }
+
+        // also we want to update UI
+        const newImagesSource = productImagesSource.filter((_, i) => {
+            if (i !== index) return true;
+        });
+
+        setProductImagesSource([...newImagesSource]);
     };
 
     const getBtnTitle = () => {

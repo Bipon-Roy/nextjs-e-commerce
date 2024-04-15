@@ -15,6 +15,7 @@ const UpdateProduct = ({ product }: Props) => {
         salePrice: product.price.discounted,
         bulletPoints: product.bulletPoints || [],
     };
+
     return <ProductForm initialValue={initialValue} />;
 };
 
