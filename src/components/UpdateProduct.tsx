@@ -1,8 +1,12 @@
 "use client";
 
-import { ProductResponse } from "@/types";
+import { NewProductInfo, ProductResponse, ProductToUpdate } from "@/types";
 import ProductForm, { InitialValue } from "./ProductForm";
-import { removeAndUpdateProductImage } from "@/app/(admin)/products/action";
+import { removeAndUpdateProductImage, removeImageFromCloud } from "@/app/(admin)/products/action";
+import { updateProductInfoSchema } from "@/utils/validationSchema";
+import { ValidationError } from "yup";
+import { toast } from "react-toastify";
+import { uploadImage } from "@/utils/helper";
 
 interface Props {
     product: ProductResponse;
@@ -17,7 +21,48 @@ const UpdateProduct = ({ product }: Props) => {
         bulletPoints: product.bulletPoints || [],
     };
 
-    const handleUpdateProduct = () => {};
+    const handleUpdateProduct = async (values: NewProductInfo) => {
+        try {
+            const { thumbnail, images } = values;
+            await updateProductInfoSchema.validate(values, { abortEarly: false });
+
+            const dataToUpdate: ProductToUpdate = {
+                title: values.title,
+                description: values.description,
+                bulletPoints: values.bulletPoints,
+                category: values.category,
+                quantity: values.quantity,
+                price: {
+                    base: values.mrp,
+                    discounted: values.salePrice,
+                },
+            };
+            //update product thumbnail
+            if (thumbnail) {
+                await removeImageFromCloud(product.thumbnail.id);
+                const { id, url } = await uploadImage(thumbnail);
+                dataToUpdate.thumbnail = { id, url };
+            }
+            //update product images
+            if (images.length) {
+                const uploadPromise = images.map(async (imgFile) => {
+                    return await uploadImage(imgFile);
+                });
+
+                dataToUpdate.images = await Promise.all(uploadPromise);
+            }
+
+            //update product
+            updateProduct(product.id, dataToUpdate);
+        } catch (error) {
+            if (error instanceof ValidationError) {
+                // console.log(error.inner);
+                error.inner.map((err) => {
+                    toast.error(err.message);
+                });
+            }
+        }
+    };
 
     const handleImageRemove = (source: string) => {
         const spiltData = source.split("/");

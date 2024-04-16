@@ -1,6 +1,7 @@
 "use server";
 
 import startDb from "@/app/lib/db";
+import { ProductToUpdate } from "@/types";
 import ProductModel, { NewProduct } from "@models/productModel";
 import { v2 as cloudinary } from "cloudinary";
 
@@ -62,6 +63,25 @@ export const removeAndUpdateProductImage = async (id: string, publicId: string) 
             });
         }
     } catch (error) {
+        throw error;
+    }
+};
+
+export const updateProduct = async (id: string, productInfo: ProductToUpdate) => {
+    try {
+        await startDb();
+        let images: typeof productInfo.images = [];
+        if (productInfo.images) {
+            images = productInfo.images;
+        }
+
+        delete productInfo.images;
+        await ProductModel.findByIdAndUpdate(id, {
+            ...productInfo,
+            $push: { images },
+        });
+    } catch (error) {
+        console.log("Error while updating product, ", (error as any).message);
         throw error;
     }
 };
