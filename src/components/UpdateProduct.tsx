@@ -2,7 +2,11 @@
 
 import { NewProductInfo, ProductResponse, ProductToUpdate } from "@/types";
 import ProductForm, { InitialValue } from "./ProductForm";
-import { removeAndUpdateProductImage, removeImageFromCloud } from "@/app/(admin)/products/action";
+import {
+    removeAndUpdateProductImage,
+    removeImageFromCloud,
+    updateProduct,
+} from "@/app/(admin)/products/action";
 import { updateProductInfoSchema } from "@/utils/validationSchema";
 import { ValidationError } from "yup";
 import { toast } from "react-toastify";
