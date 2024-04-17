@@ -58,6 +58,8 @@ const UpdateProduct = ({ product }: Props) => {
 
             //update product
             updateProduct(product.id, dataToUpdate);
+
+            toast.success("Product updated successfully!");
         } catch (error) {
             if (error instanceof ValidationError) {
                 // console.log(error.inner);

@@ -1,0 +1,552 @@
+[
+    {
+        "id": "1",
+        "title": "MacBook",
+        "description": "The MacBook Pro is the epitome of laptop excellence...",
+        "quantity": 0,
+        "price": {
+            "base": 900,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Retina display",
+            "powerful Intel/Apple Silicon chip",
+            "macOS",
+            "sleek design"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/P4YZTY0/apple-macbook.jpg",
+                "id": "1"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/P4YZTY0/apple-macbook.jpg",
+            "id": "1"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "2",
+        "title": "Air-Pod-Max",
+        "description": "AirPods Max redefine your audio experience with Active Noise Cancellation...",
+        "quantity": 0,
+        "price": {
+            "base": 600,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Active Noise Cancellation",
+            "Spatial Audio",
+            "seamless pairing",
+            "long battery life"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/wQgRP5q/Air-Pods-Max-White.jpg",
+                "id": "2"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/wQgRP5q/Air-Pods-Max-White.jpg",
+            "id": "2"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "3",
+        "title": "OnePlus 7 Pro",
+        "description": "The OnePlus 7 Pro offers a remarkable display with its Fluid AMOLED screen...",
+        "quantity": 0,
+        "price": {
+            "base": 700,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Snapdragon 855 processor",
+            "Triple-camera system with a pop-up front camera",
+            "OxygenOS for a clean and fast user experience"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/0VpcpRt/oneplus-1.jpg",
+                "id": "3"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/0VpcpRt/oneplus-1.jpg",
+            "id": "3"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "4",
+        "title": "Apple Watch",
+        "description": "The Apple Watch Series 7 is the perfect blend of style and functionality...",
+        "quantity": 0,
+        "price": {
+            "base": 400,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Always-On Retina display",
+            "fitness tracking",
+            "ECG",
+            "watchOS",
+            "stylish bands"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/cTTb5mc/apple-watch.png",
+                "id": "4"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/cTTb5mc/apple-watch.png",
+            "id": "4"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "5",
+        "title": "Iphone 14 Pro Max",
+        "description": "The Apple iPhone 13 is a masterpiece of mobile technology...",
+        "quantity": 0,
+        "price": {
+            "base": 700,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "A15 Bionic chip",
+            "Super Retina XDR display",
+            "dual-camera system",
+            "iOS 15",
+            "5G capable"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/Lz54tM2/i-Phone-14-Pro-Max-9907.jpg",
+                "id": "5"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/Lz54tM2/i-Phone-14-Pro-Max-9907.jpg",
+            "id": "5"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "6",
+        "title": "Samsung Galaxy Fold",
+        "description": "Samsung Galaxy Fold is a masterpiece of mobile technology...",
+        "quantity": 0,
+        "price": {
+            "base": 1200,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Snapdragon chip",
+            "Super Retina XDR display",
+            "dual-camera system",
+            "iOS 15",
+            "5G capable"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/4pTGQ0Z/samsung-2.jpg",
+                "id": "6"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/4pTGQ0Z/samsung-2.jpg",
+            "id": "6"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "7",
+        "title": "Redmi Note Pro",
+        "description": "The Redmi Note is a masterpiece of mobile technology...",
+        "quantity": 0,
+        "price": {
+            "base": 680,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Snapdragon chip",
+            "Super Retina XDR display",
+            "dual-camera system",
+            "AndroidOS 12",
+            "5G capable"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/M6wY2Ss/mi-1.png",
+                "id": "7"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/M6wY2Ss/mi-1.png",
+            "id": "7"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "8",
+        "title": "Google Watch",
+        "description": "The Google Watch Watch is the perfect blend of style and functionality...",
+        "quantity": 0,
+        "price": {
+            "base": 300,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Always-On Retina display",
+            "fitness tracking",
+            "ECG",
+            "watchOS",
+            "stylish bands"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/XVb4n59/google-2.jpg",
+                "id": "8"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/XVb4n59/google-2.jpg",
+            "id": "8"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "9",
+        "title": "Redmi Note",
+        "description": "The Redmi Note is a masterpiece of mobile technology...",
+        "quantity": 0,
+        "price": {
+            "base": 600,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Snapdragon chip",
+            "Super Retina XDR display",
+            "dual-camera system",
+            "AndroidOS 12",
+            "5G capable"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/zb8HNsT/mi-1.jpg",
+                "id": "9"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/zb8HNsT/mi-1.jpg",
+            "id": "9"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "10",
+        "title": "OnePlus Smart Watch",
+        "description": "The OnePlus Watch is a stylish and feature-rich smartwatch...",
+        "quantity": 0,
+        "price": {
+            "base": 450,
+            "discounted": 20
+        },
+        "bulletPoints": [
+            "Always-On Retina display",
+            "fitness tracking",
+            "ECG",
+            "watchOS",
+            "stylish bands"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/fxdZz1s/oneplus-3.jpg",
+                "id": "10"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/fxdZz1s/oneplus-3.jpg",
+            "id": "10"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "11",
+        "title": "Samsung Galaxy Watch",
+        "description": "The Samsung Galaxy Watch is the perfect blend of style and functionality...",
+        "quantity": 0,
+        "price": {
+            "base": 400,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Always-On Retina display",
+            "fitness tracking",
+            "ECG",
+            "watchOS",
+            "stylish bands"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/YpXQxhB/samsung-3.jpg",
+                "id": "11"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/YpXQxhB/samsung-3.jpg",
+            "id": "11"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "12",
+        "title": "Google Pixel Pro",
+        "description": "The Google Pixel Pro is a masterpiece of mobile techno Snapdragon chip for lightning-fast performance...",
+        "quantity": 0,
+        "price": {
+            "base": 1200,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Snapdragon chip",
+            "Super Retina XDR display",
+            "dual-camera system",
+            "Android 12",
+            "5G capable"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/vjGRYLY/google-1.jpg",
+                "id": "12"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/vjGRYLY/google-1.jpg",
+            "id": "12"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "13",
+        "title": "Samsung Notebook",
+        "description": "The Samsung Notebook is the epitome of laptop excellence...",
+        "quantity": 0,
+        "price": {
+            "base": 750,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Retina display",
+            "powerful Intel/Apple Silicon chip",
+            "macOS",
+            "sleek design"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/k0ZBmcX/samsung-1.webp",
+                "id": "13"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/k0ZBmcX/samsung-1.webp",
+            "id": "13"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "14",
+        "title": "OnePlus 10 Pro",
+        "description": "The OnePlus 8 Pro impresses with its Fluid AMOLED display featuring a 120Hz refresh rate...",
+        "quantity": 20,
+        "price": {
+            "base": 1100,
+            "discounted": 110
+        },
+        "bulletPoints": [
+            "Snapdragon 865 processor",
+            "Triple-camera system with a pop-up front camera",
+            "OxygenOS for a clean and fast user experience"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/b26SrxJ/oneplus-2.jpg",
+                "id": "14"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/b26SrxJ/oneplus-2.jpg",
+            "id": "14"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "15",
+        "title": "Xiaomi Watch",
+        "description": "The Xiaomi Watch Series is the perfect blend of style and functionality...",
+        "quantity": 0,
+        "price": {
+            "base": 200,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Always-On Retina display",
+            "fitness tracking",
+            "ECG",
+            "watchOS",
+            "stylish bands"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/1m0YVmb/mi-2.jpg",
+                "id": "15"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/1m0YVmb/mi-2.jpg",
+            "id": "15"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "16",
+        "title": "Xiaomi Watch II",
+        "description": "The Xiaomi Watch Series is the perfect blend of style and functionality...",
+        "quantity": 0,
+        "price": {
+            "base": 300,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Always-On Retina display",
+            "fitness tracking",
+            "ECG",
+            "watchOS",
+            "stylish bands"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/fXC8shB/mi-3.jpg",
+                "id": "16"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/fXC8shB/mi-3.jpg",
+            "id": "16"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "17",
+        "title": "Google Headphones",
+        "description": "Google Headphones redefine your audio experience with Active Noise Cancellation...",
+        "quantity": 0,
+        "price": {
+            "base": 500,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Active Noise Cancellation",
+            "Spatial Audio",
+            "seamless pairing",
+            "long battery life"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/d2XmZvN/google-2.webp",
+                "id": "17"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/d2XmZvN/google-2.webp",
+            "id": "17"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "18",
+        "title": "OnePlus 8 Pro",
+        "description": "The OnePlus 8 Pro impresses with its Fluid AMOLED display featuring a 120Hz refresh rate...",
+        "quantity": 0,
+        "price": {
+            "base": 900,
+            "discounted": 110
+        },
+        "bulletPoints": [
+            "Snapdragon 865 processor",
+            "Triple-camera system with a pop-up front camera",
+            "OxygenOS for a clean and fast user experience"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/WpRN1KW/oneplus-1.webp",
+                "id": "18"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/WpRN1KW/oneplus-1.webp",
+            "id": "18"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "19",
+        "title": "Samsung Galaxy",
+        "description": "Samsung Galaxy is a masterpiece of mobile technology...",
+        "quantity": 0,
+        "price": {
+            "base": 800,
+            "discounted": 0
+        },
+        "bulletPoints": [
+            "Snapdragon chip",
+            "Super Retina XDR display",
+            "dual-camera system",
+            "iOS 15",
+            "5G capable"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/9gT3T07/samsung-1.jpg",
+                "id": "19"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/9gT3T07/samsung-1.jpg",
+            "id": "19"
+        },
+        "category": "Electronics"
+    },
+    {
+        "id": "20",
+        "title": "Google Pixel",
+        "description": "The Google Pixel is a masterpiece of mobile techno Snapdragon chip for lightning-fast performance...",
+        "quantity": 10,
+        "price": {
+            "base": 800,
+            "discounted": 100
+        },
+        "bulletPoints": [
+            "Snapdragon  chip",
+            "Super Retina XDR display",
+            "dual-camera system",
+            "Android 12",
+            "5G capable"
+        ],
+        "images": [
+            {
+                "url": "https://i.ibb.co/q5s8BWT/google-1.webp",
+                "id": "20"
+            }
+        ],
+        "thumbnail": {
+            "url": "https://i.ibb.co/q5s8BWT/google-1.webp",
+            "id": "20"
+        },
+        "category": "Electronics"
+    }
+]
