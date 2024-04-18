@@ -34,13 +34,13 @@ const ProductCard = ({ product }: Props) => {
                 placeholder={undefined}
                 shadow={false}
                 floated={false}
-                className="relative w-full aspect-square m-0 rounded-none"
+                className="relative w-full m-0 rounded-none"
             >
-                <div>
-                    <Image src={product.thumbnail} alt={product.title} fill />
-                </div>
-                <div className="absolute right-0 p-2">
+                <div className="absolute right-0 p-2 z-10">
                     <Chip color="red" value={`${product.sale}% off`} />
+                </div>
+                <div className="relative w-56 h-52 bg-transparent mx-auto">
+                    <Image src={product.thumbnail} alt={product.title} fill className="" />
                 </div>
             </CardHeader>
             <CardBody placeholder={undefined}>
@@ -64,8 +64,9 @@ const ProductCard = ({ product }: Props) => {
                 <p className="font-normal text-sm opacity-75 line-clamp-3">{product.description}</p>
             </CardBody>
 
-            <CardFooter placeholder={undefined} className="pt-0 space-y-4">
+            <CardFooter placeholder={undefined} className="pt-0 flex gap-4">
                 <Button
+                    size="sm"
                     placeholder={undefined}
                     ripple={false}
                     fullWidth={true}
@@ -74,6 +75,7 @@ const ProductCard = ({ product }: Props) => {
                     Add to Cart
                 </Button>
                 <Button
+                    size="sm"
                     placeholder={undefined}
                     ripple={false}
                     fullWidth={true}
@@ -85,5 +87,4 @@ const ProductCard = ({ product }: Props) => {
         </Card>
     );
 };
-
 export default ProductCard;
