@@ -23,7 +23,7 @@ const userSchema = new Schema<UserDocument, {}, Method>(
         avatar: { type: Object, url: String, id: String },
         verified: { type: Boolean, default: false },
     },
-    { timestamps: true }
+    { timestamps: true, versionKey: false }
 );
 
 userSchema.pre("save", async function (next) {

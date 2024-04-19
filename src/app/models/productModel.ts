@@ -48,7 +48,7 @@ const productSchema = new Schema<ProductDocument>(
         quantity: { type: Number, required: true },
         rating: Number,
     },
-    { timestamps: true }
+    { timestamps: true, versionKey: false }
 );
 
 // Step 3: Define the virtual property for "sale"
