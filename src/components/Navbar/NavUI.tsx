@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { Navbar, IconButton, Spinner } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";

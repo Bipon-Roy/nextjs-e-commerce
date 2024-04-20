@@ -7,11 +7,12 @@ import {
     Button,
     CardFooter,
     Chip,
+    IconButton,
 } from "@material-tailwind/react";
 import Image from "next/image";
 import Link from "next/link";
 import truncate from "truncate";
-
+import { EyeIcon } from "@heroicons/react/24/outline";
 interface Props {
     product: {
         id: string;
@@ -44,10 +45,20 @@ const ProductCard = ({ product }: Props) => {
                 </div>
             </CardHeader>
             <CardBody placeholder={undefined}>
-                <div className="mb-2">
+                <div className=" flex justify-between items-center mb-2">
                     <h3 className="line-clamp-1 font-medium text-blue-gray-800">
                         {truncate(product.title, 50)}
                     </h3>
+                    <Link href={`/${product.title}/${product.id}`}>
+                        <IconButton
+                            variant="gradient"
+                            placeholder={undefined}
+                            size="sm"
+                            className="rounded-full"
+                        >
+                            <EyeIcon className="h-5 w-5 white" />
+                        </IconButton>
+                    </Link>
                 </div>
                 <div className="flex justify-end items-center space-x-2 mb-2">
                     <Typography
