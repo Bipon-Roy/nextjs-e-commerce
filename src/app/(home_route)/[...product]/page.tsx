@@ -25,6 +25,7 @@ const fetchProductDetails = async (id: string) => {
         images: productInfo.images?.map(({ url }) => url),
         bulletPoints: productInfo.bulletPoints,
         price: productInfo.price,
+        sale: productInfo.sale,
     });
 };
 
@@ -32,6 +33,11 @@ const ProductDetails = async ({ params }: Props) => {
     const { product } = params;
     const productId = product[1];
     const productInfo = JSON.parse(await fetchProductDetails(productId));
+    let productImages = [productInfo.thumbnail];
+
+    if (productInfo.images) {
+        productImages = productImages.concat(productInfo.images);
+    }
 
     return (
         <div>
@@ -41,6 +47,7 @@ const ProductDetails = async ({ params }: Props) => {
                 description={productInfo.description}
                 sale={productInfo.sale}
                 points={productInfo.bulletPoints}
+                images={productImages}
             />
         </div>
     );

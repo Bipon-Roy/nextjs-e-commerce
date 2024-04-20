@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import truncate from "truncate";
 import { EyeIcon } from "@heroicons/react/24/outline";
+import { formatPrice } from "@/utils/helper";
 interface Props {
     product: {
         id: string;
@@ -66,10 +67,10 @@ const ProductCard = ({ product }: Props) => {
                         color="blue-gray"
                         className="font-medium line-through"
                     >
-                        ${product.price.base}
+                        ${formatPrice(product.price.base)}
                     </Typography>
                     <Typography placeholder={undefined} color="blue-gray" className="font-medium">
-                        ${product.price.discounted}
+                        ${formatPrice(product.price.discounted)}
                     </Typography>
                 </div>
                 <p className="font-normal text-sm opacity-75 line-clamp-3">{product.description}</p>

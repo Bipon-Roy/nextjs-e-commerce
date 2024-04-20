@@ -1,5 +1,7 @@
 import React from "react";
 import BuyProduct from "./BuyProduct";
+import { formatPrice } from "@/utils/helper";
+import ProductImageSlider from "./ProductImageSlider";
 
 interface Props {
     title: string;
@@ -10,19 +12,14 @@ interface Props {
     sale: number;
 }
 
-const formatPrice = (amount: number) => {
-    const formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-    });
-
-    return formatter.format(amount);
-};
-
 const SingleProductDetails = ({ description, images, title, points, price, sale }: Props) => {
+    console.log(sale);
+
     return (
         <div className="flex lg:flex-row flex-col md:gap-4 gap-2 mt-6">
-            <div className="flex-1 lg:self-start self-center">{/*todo Product Image Slider */}</div>
+            <div className="flex-1 lg:self-start self-center">
+                <ProductImageSlider images={images} />
+            </div>
 
             <div className="flex-1 md:space-y-4 space-y-2">
                 <h1 className="md:text-3xl text-xl font-semibold">{title}</h1>

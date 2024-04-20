@@ -1,7 +1,7 @@
 "use client";
 
 import { IconButton } from "@material-tailwind/react";
-import { PlusSmallIcon, MinusSmallIcon } from "@heroicons/react/24/outline";
+import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
 
 interface Props {
     value: number;
@@ -19,7 +19,7 @@ const CartCounter = ({ onDecrement, onIncrement, disabled, value }: Props) => {
                 onClick={onDecrement}
                 variant="text"
             >
-                <MinusSmallIcon className="w-4 h-4" />
+                <MinusIcon className="w-4 h-4" />
             </IconButton>
 
             <span className="text-lg font-medium">{value}</span>
@@ -29,7 +29,7 @@ const CartCounter = ({ onDecrement, onIncrement, disabled, value }: Props) => {
                 onClick={onIncrement}
                 variant="text"
             >
-                <PlusSmallIcon className="w-4 h-4" />
+                <PlusIcon className="w-4 h-4" />
             </IconButton>
         </div>
     );
