@@ -1,5 +1,6 @@
 import startDb from "@/app/lib/db";
 import ProductModel from "@/app/models/productModel";
+import SingleProductDetails from "@/components/SingleProductDetails";
 import { isValidObjectId } from "mongoose";
 import { redirect } from "next/navigation";
 
@@ -30,9 +31,19 @@ const fetchProductDetails = async (id: string) => {
 const ProductDetails = async ({ params }: Props) => {
     const { product } = params;
     const productId = product[1];
-    const productInfo = await fetchProductDetails(productId);
+    const productInfo = JSON.parse(await fetchProductDetails(productId));
 
-    return <div>{productInfo}</div>;
+    return (
+        <div>
+            <SingleProductDetails
+                title={productInfo.title}
+                price={productInfo.price}
+                description={productInfo.description}
+                sale={productInfo.sale}
+                points={productInfo.bulletPoints}
+            />
+        </div>
+    );
 };
 
 export default ProductDetails;
