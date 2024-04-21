@@ -28,7 +28,27 @@ export const POST = async (req: Request) => {
                 userId: user.id,
                 items: [{ productId, quantity }],
             });
+            return NextResponse.json({ success: true });
         }
+
+        const existingItem = cart.items.find((item) => item.productId.toString() === productId);
+
+        if (existingItem) {
+            //update quantity if product already exist in database
+            existingItem.quantity += quantity;
+            // remove product id when quantity becomes zero
+            if (existingItem.quantity <= 0) {
+                cart.items = cart.items.filter((item) => item.productId.toString() !== productId);
+            }
+        } else {
+            //add new item if it doesn't exists
+            cart.items.push({ productId: productId as any, quantity });
+        }
+
+        await cart.save();
+
         return NextResponse.json({ success: true });
-    } catch (error) {}
+    } catch (error) {
+        return NextResponse.json({ error: (error as any).message }, { status: 500 });
+    }
 };
