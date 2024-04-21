@@ -67,10 +67,10 @@ const ProductCard = ({ product }: Props) => {
                         color="blue-gray"
                         className="font-medium line-through"
                     >
-                        ${formatPrice(product.price.base)}
+                        {formatPrice(product.price.base)}
                     </Typography>
                     <Typography placeholder={undefined} color="blue-gray" className="font-medium">
-                        ${formatPrice(product.price.discounted)}
+                        {formatPrice(product.price.discounted)}
                     </Typography>
                 </div>
                 <p className="font-normal text-sm opacity-75 line-clamp-3">{product.description}</p>
