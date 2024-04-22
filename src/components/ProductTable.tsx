@@ -59,6 +59,7 @@ const ProductTable = (props: Props) => {
         const nextPage = currentPageNo + 1;
         router.push(`/products?page=${nextPage}`);
     };
+    console.log(hasMore);
 
     return (
         <div className="py-5">

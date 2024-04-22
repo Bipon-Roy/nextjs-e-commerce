@@ -1,3 +1,3 @@
-const categories = ["Electronics", "Fashion", "Jewelry and Watches", "Travel and Luggage"];
+const categories = ["Phone", "Watch", "Laptop", "Headphones"];
 
 export default categories;
