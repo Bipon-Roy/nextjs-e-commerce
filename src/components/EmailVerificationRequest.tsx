@@ -14,7 +14,7 @@ const EmailVerificationRequest = () => {
             return;
         }
         setSubmitting(true);
-        const res = await fetch("http://localhost:3000/api/users/verify?userId=" + profile.id, {
+        const res = await fetch("/api/users/verify?userId=" + profile.id, {
             method: "GET",
         });
         const { message, error } = await res.json();

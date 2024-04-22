@@ -19,7 +19,7 @@ const ForgetPassword = () => {
             validationSchema,
             onSubmit: async (values) => {
                 try {
-                    const res = await fetch("http://localhost:3000/api/users/forget_password", {
+                    const res = await fetch("/api/users/forget_password", {
                         method: "POST",
                         headers: {
                             "Content-type": "application/json",

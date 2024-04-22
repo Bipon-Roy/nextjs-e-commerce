@@ -16,7 +16,7 @@ const Verify = (props: Props) => {
     const router = useRouter();
     //verify token and userId
     useEffect(() => {
-        fetch("http://localhost:3000/api/users/verify", {
+        fetch("/api/users/verify", {
             method: "POST",
             body: JSON.stringify({ token, userId }),
         }).then(async (res) => {

@@ -29,7 +29,7 @@ const UpdatePassword = ({ token, userId }: Props) => {
             initialValues: { password1: "", password2: "" },
             validationSchema,
             onSubmit: async (values) => {
-                const res = await fetch("http://localhost:3000/api/users/update_password", {
+                const res = await fetch("/api/users/update_password", {
                     method: "POST",
                     body: JSON.stringify({ password: values.password1, token, userId }),
                 });

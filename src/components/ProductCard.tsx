@@ -14,6 +14,10 @@ import Link from "next/link";
 import truncate from "truncate";
 import { EyeIcon } from "@heroicons/react/24/outline";
 import { formatPrice } from "@/utils/helper";
+import useAuth from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { useTransition } from "react";
 interface Props {
     product: {
         id: string;
@@ -30,6 +34,25 @@ interface Props {
 }
 
 const ProductCard = ({ product }: Props) => {
+    const [isPending, startTransition] = useTransition();
+    const { loggedIn } = useAuth();
+    const router = useRouter();
+
+    const addToCart = async () => {
+        if (!loggedIn) return router.push("/auth/signin");
+
+        const res = await fetch("/api/product/cart", {
+            method: "POST",
+            body: JSON.stringify({ productId: product.id, quantity: 1 }),
+        });
+
+        const { error } = await res.json();
+        if (!res.ok && error) {
+            toast.error(error);
+        } else {
+            toast.success("Item added to cart.");
+        }
+    };
     return (
         <Card placeholder={undefined} className="w-full rounded-md">
             <CardHeader
@@ -80,13 +103,16 @@ const ProductCard = ({ product }: Props) => {
                 <Button
                     size="sm"
                     placeholder={undefined}
+                    onClick={() => startTransition(async () => await addToCart())}
                     ripple={false}
                     fullWidth={true}
+                    disabled={isPending}
                     className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:shadow-none hover:scale-105 focus:shadow-none focus:scale-105 active:scale-100"
                 >
                     Add to Cart
                 </Button>
                 <Button
+                    disabled={isPending}
                     size="sm"
                     placeholder={undefined}
                     ripple={false}

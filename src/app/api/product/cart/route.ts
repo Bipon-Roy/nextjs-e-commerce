@@ -15,7 +15,7 @@ export const POST = async (req: Request) => {
         const { productId, quantity } = (await req.json()) as NewCartRequest;
 
         //throw error while there is no product on the id
-        if (!isValidObjectId(productId) || !isNaN(quantity)) {
+        if (!isValidObjectId(productId) || isNaN(quantity)) {
             NextResponse.json({ error: "Invalid request" }, { status: 401 });
         }
 
