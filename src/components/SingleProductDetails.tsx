@@ -21,10 +21,11 @@ const SingleProductDetails = ({ description, images, title, points, price, sale 
                 <ProductImageSlider images={images} />
             </div>
 
-            <div className="flex-1 md:space-y-4 space-y-2">
+            <div className="flex-1 space-y-2 md:space-y-4 ">
                 <h1 className="md:text-3xl text-xl font-semibold">{title}</h1>
                 <p>{description}</p>
 
+                <p className="font-semibold md:text-lg">Key Features</p>
                 <div className="pl-4 space-y-2">
                     {points?.map((point, index) => {
                         return <li key={index}>{point}</li>;

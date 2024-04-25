@@ -41,7 +41,7 @@ const BuyProduct = () => {
         }
     };
     return (
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-4">
             <CartCounter
                 onDecrement={handleDecrement}
                 onIncrement={handleIncrement}
@@ -49,14 +49,14 @@ const BuyProduct = () => {
             />
 
             <Button
+                variant="outlined"
                 onClick={() => startTransition(async () => await addToCart())}
                 placeholder={undefined}
-                variant="text"
                 disabled={isPending}
             >
                 Add to Cart
             </Button>
-            <Button placeholder={undefined} color="amber" className="rounded-full">
+            <Button placeholder={undefined} color="amber" className="rounded-md">
                 Buy Now
             </Button>
         </div>
