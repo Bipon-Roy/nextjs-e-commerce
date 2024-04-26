@@ -1,9 +1,11 @@
 "use client";
 
+import { createFeaturedProduct } from "@/app/(admin)/products/featured/action";
+import { uploadImage } from "@/utils/helper";
 import { Button, Input } from "@material-tailwind/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import React, { ChangeEventHandler, useEffect, useState } from "react";
+import React, { ChangeEventHandler, useEffect, useState, useTransition } from "react";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 export interface FeaturedProduct {
@@ -17,6 +19,26 @@ interface Props {
     initialValue?: any;
 }
 
+// common validation schema
+const commonFeaturedProductSchema = {
+    title: Yup.string().required("Title is required"),
+    link: Yup.string().required("Link is required"),
+    linkTitle: Yup.string().required("Link title is required"),
+};
+// validation schema for add featured product image is required this time
+const newFeaturedProductSchema = Yup.object().shape({
+    file: Yup.mixed<File>()
+        .required("File is required")
+        .test("fileType", "Invalid file format. Only image files are allowed.", (value) => {
+            if (value) {
+                const supportedFormats = ["image/jpeg", "image/png", "image/gif"];
+                return supportedFormats.includes((value as File).type);
+            }
+            return true;
+        }),
+    ...commonFeaturedProductSchema,
+});
+
 const initialProduct = {
     title: "",
     link: "",
@@ -26,7 +48,7 @@ const initialProduct = {
 const FeaturedProductForm = ({ initialValue }: Props) => {
     const [isForUpdate, setIsForUpdate] = useState(false);
     const [featuredProduct, setFeaturedProduct] = useState<FeaturedProduct>(initialProduct);
-
+    const [isPending, startTransition] = useTransition();
     const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
         const { name, value, files } = target;
 
@@ -49,8 +71,38 @@ const FeaturedProductForm = ({ initialValue }: Props) => {
 
     const { link, linkTitle, title } = featuredProduct;
 
+    const handleCreate = async () => {
+        try {
+            const { file, link, linkTitle, title } = await newFeaturedProductSchema.validate(
+                { ...featuredProduct },
+                { abortEarly: false }
+            );
+
+            const banner = await uploadImage(file);
+            await createFeaturedProduct({ banner, link, linkTitle, title });
+            toast.success("Added Successfully");
+        } catch (error) {
+            if (error instanceof Yup.ValidationError) {
+                // console.log(error.inner);
+                error.inner.map((err) => {
+                    toast.error(err.message);
+                });
+            }
+        }
+    };
+
+    const handleUpdate = () => {};
+
+    const handleSubmit = async () => {
+        if (isForUpdate) await handleUpdate();
+        else await handleCreate();
+    };
+
     return (
-        <form className="py-4 space-y-4">
+        <form
+            action={() => startTransition(async () => await handleSubmit())}
+            className="py-4 space-y-4"
+        >
             <label htmlFor="banner-file">
                 <input
                     type="file"
@@ -88,14 +140,14 @@ const FeaturedProductForm = ({ initialValue }: Props) => {
                 />
                 <Input
                     crossOrigin={undefined}
-                    label="Lik Title"
+                    label="Link Title"
                     name="linkTitle"
                     value={linkTitle}
                     onChange={handleChange}
                 />
             </div>
             <div className="text-right">
-                <Button placeholder={undefined} type="submit">
+                <Button disabled={isPending} placeholder={undefined} type="submit">
                     {isForUpdate ? "Update" : "Submit"}
                 </Button>
             </div>
