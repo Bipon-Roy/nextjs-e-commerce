@@ -1,7 +1,9 @@
 import GridView from "@/components/GridView";
-import startDb from "../lib/db";
-import ProductModel from "../models/productModel";
+import startDb from "@lib/db";
+import ProductModel from "@models/productModel";
 import ProductCard from "@/components/ProductCard";
+import FeaturedProductModel from "@models/featuredProduct";
+import HeroSlider from "@/components/HeroSlider";
 
 interface ProductResponse {
     id: string;
@@ -33,14 +35,34 @@ const fetchProducts = async () => {
 
     return JSON.stringify(productList);
 };
+
+const fetchFeaturedProducts = async () => {
+    await startDb();
+    const products = await FeaturedProductModel.find().sort("-createdAt");
+    return products.map((prod) => {
+        return {
+            id: prod._id.toString(),
+            title: prod.title,
+            banner: prod.banner.url,
+            link: prod.link,
+            linkTitle: prod.linkTitle,
+        };
+    });
+};
+
 export default async function Home() {
     const products = await fetchProducts();
+    const featuredProducts = await fetchFeaturedProducts();
     const parseProduct = JSON.parse(products) as ProductResponse[];
+
     return (
-        <GridView>
-            {parseProduct.map((product) => {
-                return <ProductCard key={product.id} product={product} />;
-            })}
-        </GridView>
+        <div className="space-y-4">
+            <HeroSlider products={featuredProducts} />
+            <GridView>
+                {parseProduct.map((product) => {
+                    return <ProductCard key={product.id} product={product} />;
+                })}
+            </GridView>
+        </div>
     );
 }

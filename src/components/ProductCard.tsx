@@ -84,7 +84,7 @@ const ProductCard = ({ product }: Props) => {
                         </IconButton>
                     </Link>
                 </div>
-                <div className="flex justify-end items-center space-x-2 mb-2">
+                <div className="flex  items-center space-x-2 mb-2">
                     <Typography
                         placeholder={undefined}
                         color="blue-gray"
