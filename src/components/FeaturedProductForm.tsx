@@ -1,13 +1,15 @@
 "use client";
 
+import { removeImageFromCloud } from "@/app/(admin)/products/action";
 import {
     createFeaturedProduct,
     updateFeaturedProduct,
 } from "@/app/(admin)/products/featured/action";
 import { UpdateFeaturedProduct } from "@/types";
-import { uploadImage } from "@/utils/helper";
+import { extractImagePublicId, uploadImage } from "@/utils/helper";
 import { Button, Input } from "@material-tailwind/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { ChangeEventHandler, useEffect, useState, useTransition } from "react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
@@ -69,6 +71,7 @@ const FeaturedProductForm = ({ initialValue }: Props) => {
     const [isForUpdate, setIsForUpdate] = useState(false);
     const [featuredProduct, setFeaturedProduct] = useState<FeaturedProduct>(initialProduct);
     const [isPending, startTransition] = useTransition();
+    const router = useRouter();
     const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
         const { name, value, files } = target;
 
@@ -102,6 +105,8 @@ const FeaturedProductForm = ({ initialValue }: Props) => {
             const banner = await uploadImage(file);
             await createFeaturedProduct({ banner, link, linkTitle, title });
             toast.success("Added Successfully");
+            router.refresh();
+            setFeaturedProduct({ ...initialProduct });
         } catch (error) {
             if (error instanceof Yup.ValidationError) {
                 // console.log(error.inner);
@@ -126,12 +131,16 @@ const FeaturedProductForm = ({ initialValue }: Props) => {
             };
 
             if (file) {
+                const imagePublicId = extractImagePublicId(initialValue.banner);
+                await removeImageFromCloud(imagePublicId);
                 const banner = await uploadImage(file);
                 data.banner = banner;
             }
 
             await updateFeaturedProduct(initialValue.id, data);
             toast.success("Update Successfully");
+            router.push("/products/featured/add");
+            router.refresh();
         } catch (error) {
             if (error instanceof Yup.ValidationError) {
                 // console.log(error.inner);

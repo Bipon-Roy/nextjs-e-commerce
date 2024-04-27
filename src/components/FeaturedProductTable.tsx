@@ -1,7 +1,9 @@
 "use client";
+import { deleteFeaturedProduct } from "@/app/(admin)/products/featured/action";
 import { Button, CardBody, Typography } from "@material-tailwind/react";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useTransition } from "react";
 import truncate from "truncate";
 
 const TABLE_HEAD = ["Detail", "Product", ""];
@@ -19,6 +21,13 @@ interface Products {
 }
 
 const FeaturedProductTable = ({ products }: Props) => {
+    const router = useRouter();
+    const [isPending, startTransition] = useTransition();
+
+    const handleDeleteProduct = async (id: string) => {
+        await deleteFeaturedProduct(id);
+        router.refresh();
+    };
     return (
         <div className="py-5">
             <CardBody placeholder={undefined} className="px-0">
@@ -83,12 +92,18 @@ const FeaturedProductTable = ({ products }: Props) => {
                                                 Edit
                                             </Link>
                                             <Button
+                                                onClick={() => {
+                                                    startTransition(async () => {
+                                                        await handleDeleteProduct(item.id);
+                                                    });
+                                                }}
+                                                disabled={isPending}
                                                 placeholder={undefined}
                                                 color="red"
                                                 ripple={false}
                                                 variant="text"
                                             >
-                                                Delete
+                                                {isPending ? "Deleting" : "Delete"}
                                             </Button>
                                         </div>
                                     </td>

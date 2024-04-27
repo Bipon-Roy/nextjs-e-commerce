@@ -5,10 +5,13 @@ import { NewProductInfo } from "@/types";
 import { uploadImage } from "@/utils/helper";
 import { newProductInfoSchema } from "@/utils/validationSchema";
 import { toast } from "react-toastify";
-import { ValidationError, string } from "yup";
+import { ValidationError } from "yup";
 import { createProduct } from "../action";
+import { useRouter } from "next/navigation";
 
 const AddProduct = () => {
+    const router = useRouter();
+
     const handleAddProduct = async (values: NewProductInfo) => {
         try {
             const { thumbnail, images } = values;
@@ -35,6 +38,8 @@ const AddProduct = () => {
                 thumbnail: thumbnailRes,
                 images: productImages,
             });
+            router.refresh();
+            router.push("/products");
         } catch (error) {
             if (error instanceof ValidationError) {
                 // console.log(error.inner);

@@ -10,12 +10,14 @@ import {
 import { updateProductInfoSchema } from "@/utils/validationSchema";
 import { ValidationError } from "yup";
 import { toast } from "react-toastify";
-import { uploadImage } from "@/utils/helper";
+import { extractImagePublicId, uploadImage } from "@/utils/helper";
+import { useRouter } from "next/navigation";
 
 interface Props {
     product: ProductResponse;
 }
 const UpdateProduct = ({ product }: Props) => {
+    const router = useRouter();
     const initialValue: InitialValue = {
         ...product,
         thumbnail: product.thumbnail.url,
@@ -57,8 +59,8 @@ const UpdateProduct = ({ product }: Props) => {
             }
 
             //update product
-            updateProduct(product.id, dataToUpdate);
-
+            await updateProduct(product.id, dataToUpdate);
+            router.refresh();
             toast.success("Product updated successfully!");
         } catch (error) {
             if (error instanceof ValidationError) {
@@ -71,9 +73,7 @@ const UpdateProduct = ({ product }: Props) => {
     };
 
     const handleImageRemove = (source: string) => {
-        const spiltData = source.split("/");
-        const lastItem = spiltData[spiltData.length - 1];
-        const imagePublicId = lastItem.split(".")[0];
+        const imagePublicId = extractImagePublicId(source);
         removeAndUpdateProductImage(product.id, imagePublicId);
     };
 
