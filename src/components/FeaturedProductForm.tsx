@@ -1,6 +1,10 @@
 "use client";
 
-import { createFeaturedProduct } from "@/app/(admin)/products/featured/action";
+import {
+    createFeaturedProduct,
+    updateFeaturedProduct,
+} from "@/app/(admin)/products/featured/action";
+import { UpdateFeaturedProduct } from "@/types";
 import { uploadImage } from "@/utils/helper";
 import { Button, Input } from "@material-tailwind/react";
 import Image from "next/image";
@@ -39,6 +43,22 @@ const newFeaturedProductSchema = Yup.object().shape({
     ...commonFeaturedProductSchema,
 });
 
+// validation schema for update featured product image is optional this time
+const oldFeaturedProductSchema = Yup.object().shape({
+    file: Yup.mixed<File>().test(
+        "fileType",
+        "Invalid file format. Only image files are allowed.",
+        (value) => {
+            if (value) {
+                const supportedFormats = ["image/jpeg", "image/png", "image/gif"];
+                return supportedFormats.includes((value as File).type);
+            }
+            return true;
+        }
+    ),
+    ...commonFeaturedProductSchema,
+});
+
 const initialProduct = {
     title: "",
     link: "",
@@ -71,6 +91,7 @@ const FeaturedProductForm = ({ initialValue }: Props) => {
 
     const { link, linkTitle, title } = featuredProduct;
 
+    // add featured product
     const handleCreate = async () => {
         try {
             const { file, link, linkTitle, title } = await newFeaturedProductSchema.validate(
@@ -91,8 +112,37 @@ const FeaturedProductForm = ({ initialValue }: Props) => {
         }
     };
 
-    const handleUpdate = () => {};
+    const handleUpdate = async () => {
+        try {
+            const { file, link, linkTitle, title } = await oldFeaturedProductSchema.validate(
+                { ...featuredProduct },
+                { abortEarly: false }
+            );
 
+            const data: UpdateFeaturedProduct = {
+                link,
+                linkTitle,
+                title,
+            };
+
+            if (file) {
+                const banner = await uploadImage(file);
+                data.banner = banner;
+            }
+
+            await updateFeaturedProduct(initialValue.id, data);
+            toast.success("Update Successfully");
+        } catch (error) {
+            if (error instanceof Yup.ValidationError) {
+                // console.log(error.inner);
+                error.inner.map((err) => {
+                    toast.error(err.message);
+                });
+            }
+        }
+    };
+
+    // handle submit operation whether it is create featured product or update
     const handleSubmit = async () => {
         if (isForUpdate) await handleUpdate();
         else await handleCreate();
