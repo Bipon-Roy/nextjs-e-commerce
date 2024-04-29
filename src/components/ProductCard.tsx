@@ -59,7 +59,8 @@ const ProductCard = ({ product }: Props) => {
                 placeholder={undefined}
                 shadow={false}
                 floated={false}
-                className="relative w-full m-0 rounded-none"
+                color="transparent"
+                className="relative m-0 rounded-none"
             >
                 <div className="absolute right-0 p-2 z-10">
                     <Chip color="red" value={`${product.sale}% off`} />
@@ -69,30 +70,26 @@ const ProductCard = ({ product }: Props) => {
                 </div>
             </CardHeader>
             <CardBody placeholder={undefined}>
-                <div className=" flex justify-between items-center mb-2">
-                    <h3 className="line-clamp-1 font-medium text-blue-gray-800">
+                <div className="flex justify-between items-center mb-2">
+                    <h3 className="font-medium text-blue-gray-800">
                         {truncate(product.title, 50)}
                     </h3>
-                    <Link href={`/${product.title}/${product.id}`}>
-                        <IconButton
-                            variant="gradient"
-                            placeholder={undefined}
-                            size="sm"
-                            className="rounded-full"
-                        >
-                            <EyeIcon className="h-5 w-5 white" />
-                        </IconButton>
+                    <Link
+                        className="mt-[2px] text-blue-500"
+                        href={`/${product.title}/${product.id}`}
+                    >
+                        <EyeIcon className="w-5 h-5" />
                     </Link>
                 </div>
                 <div className="flex  items-center space-x-2 mb-2">
                     <Typography
                         placeholder={undefined}
                         color="blue-gray"
-                        className="font-medium line-through"
+                        className="font-medium line-through text-red-400"
                     >
                         {formatPrice(product.price.base)}
                     </Typography>
-                    <Typography placeholder={undefined} color="blue-gray" className="font-medium">
+                    <Typography placeholder={undefined} color="blue" className="font-medium">
                         {formatPrice(product.price.discounted)}
                     </Typography>
                 </div>
