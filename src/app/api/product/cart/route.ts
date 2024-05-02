@@ -1,5 +1,5 @@
 import startDb from "@/app/lib/db";
-import cartModel from "@/app/models/cartModel";
+import CartModel from "@/app/models/CartModel";
 import { auth } from "@/auth";
 import { NewCartRequest } from "@/types";
 import { isValidObjectId } from "mongoose";
@@ -21,10 +21,10 @@ export const POST = async (req: Request) => {
 
         await startDb();
         //check if there is already cart item or not
-        const cart = await cartModel.findOne({ userId: user.id });
+        const cart = await CartModel.findOne({ userId: user.id });
 
         if (!cart) {
-            await cartModel.create({
+            await CartModel.create({
                 userId: user.id,
                 items: [{ productId, quantity }],
             });

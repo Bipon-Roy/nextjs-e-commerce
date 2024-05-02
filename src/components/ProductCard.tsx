@@ -52,6 +52,7 @@ const ProductCard = ({ product }: Props) => {
         } else {
             toast.success("Item added to cart.");
         }
+        router.refresh();
     };
     return (
         <Card placeholder={undefined} className="w-full rounded-md">

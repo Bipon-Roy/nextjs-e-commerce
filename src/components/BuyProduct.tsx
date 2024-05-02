@@ -39,6 +39,7 @@ const BuyProduct = () => {
         if (!res.ok && error) {
             toast.error(error);
         }
+        router.refresh();
     };
     return (
         <div className="flex items-center space-x-4">
