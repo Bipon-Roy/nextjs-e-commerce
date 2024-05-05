@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import EmailVerificationRequest from "@/components/EmailVerificationRequest";
+
 import Navbar from "@/components/Navbar/Navbar";
 
 import { redirect } from "next/navigation";
@@ -18,10 +18,7 @@ const PrivateLayout = async ({ children }: Props) => {
     return (
         <>
             <Navbar />
-            <div className="max-w-7xl mx-auto px-4 xl:px-0">
-                <EmailVerificationRequest />
-                {children}
-            </div>
+            <div className="max-w-7xl mx-auto px-4 xl:px-0">{children}</div>
         </>
     );
 };

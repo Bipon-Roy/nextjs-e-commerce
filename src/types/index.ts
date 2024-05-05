@@ -99,3 +99,9 @@ export interface UpdateFeaturedProduct {
     linkTitle: string;
     title: string;
 }
+
+export interface UserInfoUpdate {
+    avatar?: { url: string; id: string };
+    name: string;
+    id: string;
+}

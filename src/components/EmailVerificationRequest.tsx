@@ -1,20 +1,22 @@
 "use client";
 
-import useAuth from "@/hooks/useAuth";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-const EmailVerificationRequest = () => {
-    const { profile } = useAuth();
+interface Props {
+    id?: string;
+    verified?: boolean;
+}
+
+const EmailVerificationRequest = ({ id, verified }: Props) => {
     const [submitting, setSubmitting] = useState(false);
-    console.log(profile);
 
     const sendReverificationRequest = async () => {
-        if (!profile) {
+        if (!id) {
             return;
         }
         setSubmitting(true);
-        const res = await fetch("/api/users/verify?userId=" + profile.id, {
+        const res = await fetch("/api/users/verify?userId=" + id, {
             method: "GET",
         });
         const { message, error } = await res.json();
@@ -25,7 +27,7 @@ const EmailVerificationRequest = () => {
         setSubmitting(false);
     };
 
-    if (profile?.verified) {
+    if (verified) {
         return null;
     }
 

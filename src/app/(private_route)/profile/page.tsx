@@ -1,6 +1,7 @@
 import startDb from "@/app/lib/db";
 import UserModel from "@/app/models/userModel";
 import { auth } from "@/auth";
+import EmailVerificationRequest from "@/components/EmailVerificationRequest";
 import ProfileForm from "@/components/ProfileForm";
 import { redirect } from "next/navigation";
 
@@ -20,18 +21,21 @@ const fetchUserProfile = async () => {
     };
 };
 
-const page = async () => {
+const UpdateUserInfo = async () => {
     const profile = await fetchUserProfile();
     return (
         <div>
-            <ProfileForm
-                id={profile.id}
-                avatar={profile.avatar}
-                email={profile.email}
-                name={profile.name}
-            />
+            <EmailVerificationRequest id={profile.id} verified={profile.verified} />
+            <div className="mt-8">
+                <ProfileForm
+                    id={profile.id}
+                    avatar={profile.avatar}
+                    email={profile.email}
+                    name={profile.name}
+                />
+            </div>
         </div>
     );
 };
 
-export default page;
+export default UpdateUserInfo;
