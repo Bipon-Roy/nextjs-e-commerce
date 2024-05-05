@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 
 interface Props {
     cartItemsCount: number;
+    avatar?: string;
 }
 
 export const menuItems = [
@@ -26,7 +27,7 @@ export const menuItems = [
     },
 ];
 
-const NavUI = ({ cartItemsCount }: Props) => {
+const NavUI = ({ cartItemsCount, avatar }: Props) => {
     const [open, setOpen] = useState(false);
     const { loading, loggedIn } = useAuth();
 
@@ -50,7 +51,7 @@ const NavUI = ({ cartItemsCount }: Props) => {
                     <div className="hidden lg:flex gap-2 items-center">
                         <CartIcon cartItems={cartItemsCount} />
                         {loggedIn ? (
-                            <ProfileMenu menuItems={menuItems} />
+                            <ProfileMenu menuItems={menuItems} avatar={avatar} />
                         ) : loading ? (
                             <Spinner />
                         ) : (
