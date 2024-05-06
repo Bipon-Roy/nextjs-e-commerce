@@ -7,13 +7,14 @@ import {
     ListItem,
     ListItemPrefix,
 } from "@material-tailwind/react";
-import { XMarkIcon, RectangleGroupIcon } from "@heroicons/react/24/outline";
-import { PowerIcon } from "@heroicons/react/24/solid";
+
+import { IoMdPower } from "react-icons/io";
 import Link from "next/link";
 import useAuth from "@hooks/useAuth";
 import { MenuItems } from "@/types/index";
 import SignOutBtn from "../SignOutBtn";
-
+import { FaRegCircleXmark } from "react-icons/fa6";
+import { MdDashboardCustomize } from "react-icons/md";
 interface Props {
     open: boolean;
     onClose(): void;
@@ -35,7 +36,7 @@ const MobileNav = ({ open, onClose, menuItems }: Props) => {
                         onClick={onClose}
                         placeholder={undefined}
                     >
-                        <XMarkIcon strokeWidth={2} className="h-5 w-5" />
+                        <FaRegCircleXmark className="h-5 w-5" />
                     </IconButton>
                 </div>
                 <List placeholder={undefined}>
@@ -54,7 +55,7 @@ const MobileNav = ({ open, onClose, menuItems }: Props) => {
                         <Link href="/dashboard">
                             <ListItem onClick={onClose} placeholder={undefined}>
                                 <ListItemPrefix placeholder={undefined}>
-                                    <RectangleGroupIcon className="h-4 w-4" />
+                                    <MdDashboardCustomize className="h-4 w-4" />
                                 </ListItemPrefix>
                                 Dashboard
                             </ListItem>
@@ -65,7 +66,7 @@ const MobileNav = ({ open, onClose, menuItems }: Props) => {
                         <SignOutBtn>
                             <ListItem placeholder={undefined}>
                                 <ListItemPrefix placeholder={undefined}>
-                                    <PowerIcon className="h-5 w-5" />
+                                    <IoMdPower className="h-5 w-5" />
                                 </ListItemPrefix>
                                 Sign Out
                             </ListItem>

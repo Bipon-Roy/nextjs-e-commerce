@@ -1,5 +1,6 @@
 import { Avatar, Button, Menu, MenuHandler, MenuItem, MenuList } from "@material-tailwind/react";
-import { ChevronDownIcon, PowerIcon, RectangleGroupIcon } from "@heroicons/react/24/outline";
+import { IoIosArrowDown, IoMdPower } from "react-icons/io";
+import { MdDashboardCustomize } from "react-icons/md";
 import { useState } from "react";
 import Link from "next/link";
 import useAuth from "@hooks/useAuth";
@@ -31,7 +32,7 @@ const ProfileMenu = ({ menuItems, avatar }: Props) => {
                         className="border border-blue-500 p-0.5"
                         src={avatar || "/avatar.png"}
                     />
-                    <ChevronDownIcon
+                    <IoIosArrowDown
                         strokeWidth={2.5}
                         className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""}`}
                     />
@@ -61,7 +62,7 @@ const ProfileMenu = ({ menuItems, avatar }: Props) => {
                             onClick={closeMenu}
                             className="flex items-center gap-2 rounded"
                         >
-                            <RectangleGroupIcon className="h-4 w-4" />
+                            <MdDashboardCustomize className="h-4 w-4" />
                             <span>Dashboard</span>
                         </MenuItem>
                     </Link>
@@ -70,7 +71,7 @@ const ProfileMenu = ({ menuItems, avatar }: Props) => {
                 <MenuItem placeholder={undefined}>
                     <SignOutBtn>
                         <p className="flex items-center gap-2 rounded">
-                            <PowerIcon className="h-4 w-4" />
+                            <IoMdPower className="h-4 w-4" />
                             <span>Sign Out</span>
                         </p>
                     </SignOutBtn>

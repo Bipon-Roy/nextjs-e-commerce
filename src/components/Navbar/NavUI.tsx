@@ -1,14 +1,14 @@
 "use client";
 import Link from "next/link";
 import { Navbar, IconButton, Spinner } from "@material-tailwind/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { FaCircleXmark } from "react-icons/fa6";
 import ProfileMenu from "./ProfileMenu";
 import MobileNav from "./MobileNav";
 import CartIcon from "./CartIcon";
-import { UserCircleIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
+import { FaRegUserCircle, FaShoppingBag } from "react-icons/fa";
 import useAuth from "@hooks/useAuth";
 import { useEffect, useState } from "react";
-
+import { AiOutlineBars } from "react-icons/ai";
 interface Props {
     cartItemsCount: number;
     avatar?: string;
@@ -17,12 +17,12 @@ interface Props {
 export const menuItems = [
     {
         href: "/profile",
-        icon: <UserCircleIcon className="h-4 w-4" />,
+        icon: <FaRegUserCircle className="h-4 w-4" />,
         label: "My Profile",
     },
     {
         href: "/profile/orders",
-        icon: <ShoppingBagIcon className="h-4 w-4" />,
+        icon: <FaShoppingBag className="h-4 w-4" />,
         label: "Orders",
     },
 ];
@@ -83,9 +83,9 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                             onClick={() => setOpen(!open)}
                         >
                             {open ? (
-                                <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+                                <FaCircleXmark className="h-6 w-6" />
                             ) : (
-                                <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+                                <AiOutlineBars className="h-6 w-6" />
                             )}
                         </IconButton>
                     </div>

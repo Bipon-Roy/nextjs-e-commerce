@@ -1,6 +1,6 @@
 import { Input } from "@material-tailwind/react";
 import React, { useState } from "react";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { IoMdSearch } from "react-icons/io";
 import { useRouter } from "next/navigation";
 
 export default function SearchForm() {
@@ -21,7 +21,7 @@ export default function SearchForm() {
                 label="Search"
                 icon={
                     <button>
-                        <MagnifyingGlassIcon className="h-5 w-5" />
+                        <IoMdSearch className="h-5 w-5" />
                     </button>
                 }
                 value={query}

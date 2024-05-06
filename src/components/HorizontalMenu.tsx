@@ -1,54 +1,58 @@
 "use client";
-import { Chip } from "@material-tailwind/react";
-import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
-import React, { useContext } from "react";
-import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
-
+import { IoPhonePortraitOutline } from "react-icons/io5";
+import { TbDeviceWatch } from "react-icons/tb";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { Card, CardBody, Typography } from "@material-tailwind/react";
 import Link from "next/link";
-import "react-horizontal-scrolling-menu/dist/styles.css";
+
 import categories from "@/utils/ProductCategories";
-
-const LeftArrow = () => {
-    const { isFirstItemVisible, scrollPrev } = useContext(VisibilityContext);
-
-    return (
-        <button
-            className="px-2 transition"
-            disabled={isFirstItemVisible}
-            style={{ opacity: isFirstItemVisible ? "0" : "1" }}
-            onClick={() => scrollPrev()}
-        >
-            <ChevronLeftIcon className="w-4 h-4" />
-        </button>
-    );
-};
-
-const RightArrow = () => {
-    const { isLastItemVisible, scrollNext } = useContext(VisibilityContext);
-
-    return (
-        <button
-            className="px-2 transition"
-            style={{ opacity: isLastItemVisible ? "0" : "1" }}
-            disabled={isLastItemVisible}
-            onClick={() => scrollNext()}
-        >
-            <ChevronRightIcon className="w-4 h-4" />
-        </button>
-    );
-};
 
 const HorizontalMenu = () => {
     return (
-        <div className="flex justify-center">
-            <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+        <>
+            <Typography
+                placeholder={undefined}
+                variant="h4"
+                color="blue-gray"
+                className="text-center"
+            >
+                Product <span className="text-orange-400">Categories</span>
+            </Typography>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {categories.map((c) => (
-                    <Link key={c} href={`/browse-products/${c}`}>
-                        <Chip color="blue" className="mr-2" variant="outlined" value={c} />
-                    </Link>
+                    <Card key={c} placeholder={undefined} className="border shadow-sm ">
+                        <CardBody
+                            placeholder={undefined}
+                            className="space-y-2 flex flex-col justify-center items-center"
+                        >
+                            {c === "Phone" && (
+                                <IoPhonePortraitOutline className="w-16 h-16 text-orange-400" />
+                            )}
+                            {c === "Watch" && (
+                                <TbDeviceWatch className="w-16 h-16 text-orange-400" />
+                            )}
+                            <Typography
+                                placeholder={undefined}
+                                variant="h5"
+                                color="blue-gray"
+                                className="text-center"
+                            >
+                                {c}
+                            </Typography>
+                            <Link
+                                className="bg-gray-200 px-4 py-1 rounded-md"
+                                href={`/browse-products/${c}`}
+                            >
+                                <div className="flex items-center gap-2 text-blue-500">
+                                    View Products
+                                    <FaLongArrowAltRight className="h-6 w-6 " />
+                                </div>
+                            </Link>
+                        </CardBody>
+                    </Card>
                 ))}
-            </ScrollMenu>
-        </div>
+            </div>
+        </>
     );
 };
 

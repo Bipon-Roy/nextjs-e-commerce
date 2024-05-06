@@ -1,7 +1,7 @@
 "use client";
 import React, { ChangeEventHandler } from "react";
-import { TrashIcon, PhotoIcon } from "@heroicons/react/24/outline";
-
+import { MdAddPhotoAlternate } from "react-icons/md";
+import { BiSolidTrashAlt } from "react-icons/bi";
 import ImageInput from "@components/Ui/ImageInput";
 import SelectedImageThumb from "@components/Ui/SelectedImage";
 
@@ -16,11 +16,11 @@ interface Props {
 const ImageSelector = ({ id, images, onChange, onRemove, multiple }: Props) => {
     const icon = multiple ? (
         <div className="relative">
-            <PhotoIcon className="w-8 h-8 bg-white" />
-            <PhotoIcon className="w-8 h-8 absolute -top-2 -right-2 -z-10" />
+            <MdAddPhotoAlternate className="w-8 h-8 bg-white" />
+            <MdAddPhotoAlternate className="w-8 h-8 absolute -top-2 -right-2 -z-10" />
         </div>
     ) : (
-        <PhotoIcon className="w-8 h-8" />
+        <MdAddPhotoAlternate className="w-8 h-8" />
     );
 
     return (
@@ -34,7 +34,7 @@ const ImageSelector = ({ id, images, onChange, onRemove, multiple }: Props) => {
                                 onClick={() => onRemove && onRemove(index)}
                                 className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white rounded cursor-pointer"
                             >
-                                <TrashIcon className="w-4 h-4" />
+                                <BiSolidTrashAlt className="w-4 h-4" />
                             </div>
                         ) : null}
                     </div>

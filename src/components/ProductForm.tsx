@@ -1,11 +1,11 @@
 "use client";
 import { Button, Input, Option, Select, Textarea } from "@material-tailwind/react";
 import { useEffect, useState, useTransition, ChangeEventHandler } from "react";
-import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import categories from "@/utils/ProductCategories";
 import ImageSelector from "@components/ImageSelector";
 import { NewProductInfo } from "@/types";
-
+import { BiSolidTrashAlt } from "react-icons/bi";
+import { FaPlus } from "react-icons/fa";
 interface Props {
     initialValue?: InitialValue;
     onSubmit(values: NewProductInfo): void;
@@ -261,7 +261,7 @@ const ProductForm = (props: Props) => {
                                     type="button"
                                     className="ml-2"
                                 >
-                                    <TrashIcon className="w-5 h-5" />
+                                    <BiSolidTrashAlt className="w-5 h-5" />
                                 </button>
                             ) : null}
                         </div>
@@ -273,7 +273,7 @@ const ProductForm = (props: Props) => {
                         onClick={addMoreBulletPoints}
                         className="flex items-center space-x-1 text-gray-800 ml-auto"
                     >
-                        <PlusIcon className="w-4 h-4" />
+                        <FaPlus className="w-4 h-4" />
                         <span>Add more</span>
                     </button>
                 </div>

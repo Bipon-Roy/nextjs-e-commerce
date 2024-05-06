@@ -1,5 +1,5 @@
 import { Avatar } from "@material-tailwind/react";
-import { PencilIcon } from "@heroicons/react/24/solid";
+import { HiPencil } from "react-icons/hi";
 
 interface ProfileAvatarProps {
     avatar?: string;
@@ -29,7 +29,7 @@ const ProfileAvatar = ({ avatar, nameInitial, onChange }: ProfileAvatarProps) =>
                         hidden
                         accept="image/*"
                     />
-                    <PencilIcon className="h-6 w-6 p-1 cursor-pointer" />
+                    <HiPencil className="h-6 w-6 p-1 cursor-pointer" />
                 </label>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { ShoppingCartIcon } from "@heroicons/react/24/outline";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import Link from "next/link";
 
 interface Props {
@@ -10,7 +10,7 @@ const CartIcon = ({ cartItems }: Props) => {
             className="bg-yellow-400 w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center p-2 rounded-full relative"
             href="/cart"
         >
-            <ShoppingCartIcon className="w-5 h-5" />
+            <AiOutlineShoppingCart className="w-5 h-5" />
             <div className="absolute bg-red-500 text-white lg:text-xs text-[9px] -top-2 -right-1 w-4 h-4 lg:w-5 lg:h-5 flex items-center justify-center rounded-full">
                 {cartItems}
             </div>

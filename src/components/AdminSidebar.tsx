@@ -1,17 +1,11 @@
 "use client";
 import Link from "next/link";
 import { ReactNode } from "react";
-import {
-    Squares2X2Icon,
-    CurrencyDollarIcon,
-    ShoppingCartIcon,
-    SparklesIcon,
-    ShoppingBagIcon,
-    HomeIcon,
-} from "@heroicons/react/24/outline";
-
+import { MdDashboardCustomize } from "react-icons/md";
+import { FaShoppingCart, FaShoppingBag, FaHome } from "react-icons/fa";
 import SignOutBtn from "./SignOutBtn";
-
+import { HiSparkles } from "react-icons/hi2";
+import { HiCurrencyDollar } from "react-icons/hi";
 interface Props {
     children: ReactNode;
 }
@@ -28,42 +22,42 @@ const AdminSidebar = ({ children }: Props) => {
                     </li>
                     <li>
                         <Link className="flex items-center space-x-1" href="/dashboard">
-                            <Squares2X2Icon className="w-4 h-4" />
+                            <MdDashboardCustomize className="w-4 h-4" />
                             <span>Dashboard</span>
                         </Link>
                         <hr className="w-full " />
                     </li>
                     <li>
                         <Link className="flex items-center space-x-1" href="/products">
-                            <ShoppingCartIcon className="w-4 h-4" />
+                            <FaShoppingCart className="w-4 h-4" />
                             <span>Products</span>
                         </Link>
                         <hr className="w-full " />
                     </li>
                     <li>
                         <Link className="flex items-center space-x-1" href="/products/featured/add">
-                            <SparklesIcon className="w-4 h-4" />
+                            <HiSparkles className="w-4 h-4" />
                             <span>Featured</span>
                         </Link>
                         <hr className="w-full " />
                     </li>
                     <li>
                         <Link className="flex items-center space-x-1" href="/sales">
-                            <CurrencyDollarIcon className="w-4 h-4" />
+                            <HiCurrencyDollar className="w-4 h-4" />
                             <span>Sales</span>
                         </Link>
                         <hr className="w-full " />
                     </li>
                     <li>
                         <Link className="flex items-center space-x-1" href="/orders">
-                            <ShoppingBagIcon className="h-4 w-4" />
+                            <FaShoppingBag className="h-4 w-4" />
                             <span>Orders</span>
                         </Link>
                         <hr className="w-full " />
                     </li>
                     <li>
                         <Link className="flex items-center space-x-1" href="/">
-                            <HomeIcon className="h-4 w-4" />
+                            <FaHome className="h-4 w-4" />
                             <span>Home</span>
                         </Link>
                         <hr className="w-full " />

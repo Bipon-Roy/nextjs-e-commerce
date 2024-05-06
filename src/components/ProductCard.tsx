@@ -7,17 +7,17 @@ import {
     Button,
     CardFooter,
     Chip,
-    IconButton,
 } from "@material-tailwind/react";
 import Image from "next/image";
 import Link from "next/link";
 import truncate from "truncate";
-import { EyeIcon } from "@heroicons/react/24/outline";
+
 import { formatPrice } from "@/utils/helper";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useTransition } from "react";
+import { FaEye } from "react-icons/fa";
 interface Props {
     product: {
         id: string;
@@ -70,7 +70,7 @@ const ProductCard = ({ product }: Props) => {
                     <Image src={product.thumbnail} alt={product.title} fill className="" />
                 </div>
             </CardHeader>
-            <CardBody placeholder={undefined}>
+            <CardBody placeholder={undefined} className="flex-1">
                 <div className="flex justify-between items-center mb-2">
                     <h3 className="font-medium text-blue-gray-800">
                         {truncate(product.title, 50)}
@@ -79,10 +79,10 @@ const ProductCard = ({ product }: Props) => {
                         className="mt-[2px] text-blue-500"
                         href={`/${product.title}/${product.id}`}
                     >
-                        <EyeIcon className="w-5 h-5" />
+                        <FaEye className="w-5 h-5" />
                     </Link>
                 </div>
-                <div className="flex  items-center space-x-2 mb-2">
+                <div className="flex items-center space-x-2 mb-2">
                     <Typography
                         placeholder={undefined}
                         color="blue-gray"
