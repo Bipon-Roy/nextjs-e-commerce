@@ -1,4 +1,4 @@
-import GridView from "@/components/GridView";
+import GridView from "@/components/GridContainer";
 import startDb from "@lib/db";
 import ProductModel from "@models/productModel";
 import ProductCard from "@/components/ProductCard";

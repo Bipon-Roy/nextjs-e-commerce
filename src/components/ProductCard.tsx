@@ -63,16 +63,18 @@ const ProductCard = ({ product }: Props) => {
                 color="transparent"
                 className="relative m-0 rounded-none"
             >
-                <div className="absolute right-0 p-2 z-10">
-                    <Chip color="red" value={`${product.sale}% off`} />
+                <div className="absolute right-0 p-1 z-10">
+                    <p className="px-2 py-[2px] text-xs bg-red-400 text-white rounded-md">
+                        ${product.sale}% off
+                    </p>
                 </div>
-                <div className="relative w-56 h-52 bg-transparent mx-auto">
+                <div className="relative h-36 w-36 md:w-52 md:h-48 bg-transparent mx-auto mt-2">
                     <Image src={product.thumbnail} alt={product.title} fill className="" />
                 </div>
             </CardHeader>
-            <CardBody placeholder={undefined} className="flex-1">
-                <div className="flex justify-between items-center mb-2">
-                    <h3 className="font-medium text-blue-gray-800">
+            <CardBody placeholder={undefined} className="flex-1 px-3 md:px-6 py-2">
+                <div className="flex gap-2 items-center mb-2">
+                    <h3 className="font-medium text-blue-gray-800 text-sm">
                         {truncate(product.title, 50)}
                     </h3>
                     <Link
@@ -85,24 +87,21 @@ const ProductCard = ({ product }: Props) => {
                 <div className="flex items-center space-x-2 mb-2">
                     <Typography
                         placeholder={undefined}
-                        color="blue-gray"
-                        className="font-medium line-through text-red-400"
+                        className="font-semibold line-through text-sm"
                     >
                         {formatPrice(product.price.base)}
                     </Typography>
-                    <Typography placeholder={undefined} color="blue" className="font-medium">
+                    <Typography placeholder={undefined} className="font-semibold">
                         {formatPrice(product.price.discounted)}
                     </Typography>
                 </div>
-                <p className="font-normal text-sm opacity-75 line-clamp-3">{product.description}</p>
             </CardBody>
 
-            <CardFooter placeholder={undefined} className="pt-0 flex gap-4">
+            <CardFooter placeholder={undefined} className="space-y-3 px-3 md:px-6 pt-1">
                 <Button
                     size="sm"
                     placeholder={undefined}
                     onClick={() => startTransition(async () => await addToCart())}
-                    ripple={false}
                     fullWidth={true}
                     disabled={isPending}
                     className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:shadow-none hover:scale-105 focus:shadow-none focus:scale-105 active:scale-100"
@@ -113,7 +112,6 @@ const ProductCard = ({ product }: Props) => {
                     disabled={isPending}
                     size="sm"
                     placeholder={undefined}
-                    ripple={false}
                     fullWidth={true}
                     className="bg-blue-400 text-white shadow-none hover:shadow-none hover:scale-105 focus:shadow-none focus:scale-105 active:scale-100"
                 >

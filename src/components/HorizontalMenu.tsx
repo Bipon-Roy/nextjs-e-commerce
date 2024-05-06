@@ -1,10 +1,10 @@
 "use client";
 import { IoPhonePortraitOutline } from "react-icons/io5";
 import { TbDeviceWatch } from "react-icons/tb";
-import { FaLongArrowAltRight } from "react-icons/fa";
+import { FaLongArrowAltRight, FaHeadphones } from "react-icons/fa";
 import { Card, CardBody, Typography } from "@material-tailwind/react";
 import Link from "next/link";
-
+import { FaLaptop } from "react-icons/fa";
 import categories from "@/utils/ProductCategories";
 
 const HorizontalMenu = () => {
@@ -26,16 +26,20 @@ const HorizontalMenu = () => {
                             className="space-y-2 flex flex-col justify-center items-center"
                         >
                             {c === "Phone" && (
-                                <IoPhonePortraitOutline className="w-16 h-16 text-orange-400" />
+                                <IoPhonePortraitOutline className="w-14 h-14 text-orange-400" />
                             )}
                             {c === "Watch" && (
-                                <TbDeviceWatch className="w-16 h-16 text-orange-400" />
+                                <TbDeviceWatch className="w-14 h-14 text-orange-400" />
+                            )}
+                            {c === "Laptop" && <FaLaptop className="w-14 h-14 text-orange-400" />}
+                            {c === "Headphones" && (
+                                <FaHeadphones className="w-14 h-14 text-orange-400" />
                             )}
                             <Typography
                                 placeholder={undefined}
                                 variant="h5"
                                 color="blue-gray"
-                                className="text-center"
+                                className="text-center text-base md:text-lg"
                             >
                                 {c}
                             </Typography>
@@ -43,7 +47,7 @@ const HorizontalMenu = () => {
                                 className="bg-gray-200 px-4 py-1 rounded-md"
                                 href={`/browse-products/${c}`}
                             >
-                                <div className="flex items-center gap-2 text-blue-500">
+                                <div className="flex items-center gap-2 text-blue-500 font-medium text-sm">
                                     View Products
                                     <FaLongArrowAltRight className="h-6 w-6 " />
                                 </div>
