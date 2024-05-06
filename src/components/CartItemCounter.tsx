@@ -11,7 +11,7 @@ interface Props {
     disabled?: boolean;
 }
 
-const CartCounter = ({ onDecrement, onIncrement, disabled, value }: Props) => {
+const CartItemCounter = ({ onDecrement, onIncrement, disabled, value }: Props) => {
     return (
         <div style={{ opacity: disabled ? "0.5" : "1" }} className="flex items-center space-x-2">
             <IconButton
@@ -36,4 +36,4 @@ const CartCounter = ({ onDecrement, onIncrement, disabled, value }: Props) => {
     );
 };
 
-export default CartCounter;
+export default CartItemCounter;
