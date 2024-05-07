@@ -68,6 +68,7 @@ const CartItems = ({ products = [], totalQty, cartTotal }: CartItemsProps) => {
                             </td>
                             <td className="py-4 text-right">
                                 <button
+                                    onClick={() => updateCart(product.id, -product.qty)}
                                     disabled={loading}
                                     className="text-red-500"
                                     style={{ opacity: loading ? "0.5" : "1" }}
