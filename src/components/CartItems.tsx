@@ -6,6 +6,7 @@ import { FaRegCircleXmark } from "react-icons/fa6";
 import { Button } from "@material-tailwind/react";
 import { formatPrice } from "@/utils/helper";
 import CartItemCounter from "./CartItemCounter";
+import { useRouter } from "next/navigation";
 
 export interface Product {
     id: string;
@@ -23,7 +24,21 @@ interface CartItemsProps {
 }
 
 const CartItems = ({ products = [], totalQty, cartTotal }: CartItemsProps) => {
-    const [busy, setBusy] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
+
+    const updateCart = async (productId: string, quantity: number) => {
+        setLoading(true);
+        await fetch("/api/product/cart", {
+            method: "POST",
+            body: JSON.stringify({
+                productId,
+                quantity,
+            }),
+        });
+        setLoading(false);
+        router.refresh();
+    };
 
     return (
         <div className="mt-10">
@@ -44,13 +59,18 @@ const CartItems = ({ products = [], totalQty, cartTotal }: CartItemsProps) => {
                                 {formatPrice(product.totalPrice)}
                             </td>
                             <td className="py-4">
-                                <CartItemCounter value={product.qty} disabled={busy} />
+                                <CartItemCounter
+                                    onIncrement={() => updateCart(product.id, 1)}
+                                    onDecrement={() => updateCart(product.id, -1)}
+                                    value={product.qty}
+                                    disabled={loading}
+                                />
                             </td>
                             <td className="py-4 text-right">
                                 <button
-                                    disabled={busy}
+                                    disabled={loading}
                                     className="text-red-500"
-                                    style={{ opacity: busy ? "0.5" : "1" }}
+                                    style={{ opacity: loading ? "0.5" : "1" }}
                                 >
                                     <FaRegCircleXmark className="w-5 h-5" />
                                 </button>
@@ -72,7 +92,7 @@ const CartItems = ({ products = [], totalQty, cartTotal }: CartItemsProps) => {
                     placeholder={undefined}
                     className="shadow-none hover:shadow-none  focus:shadow-none focus:scale-105 active:scale-100"
                     color="green"
-                    disabled={busy}
+                    disabled={loading}
                 >
                     Checkout
                 </Button>

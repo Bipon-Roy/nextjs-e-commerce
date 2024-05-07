@@ -17,7 +17,7 @@ const CartItemCounter = ({ onDecrement, onIncrement, disabled, value }: Props) =
             <IconButton
                 placeholder={undefined}
                 disabled={disabled}
-                onClick={onDecrement}
+                onClick={onIncrement}
                 variant="text"
             >
                 <FaPlus className="w-4 h-4" />
@@ -27,7 +27,7 @@ const CartItemCounter = ({ onDecrement, onIncrement, disabled, value }: Props) =
             <IconButton
                 placeholder={undefined}
                 disabled={disabled}
-                onClick={onIncrement}
+                onClick={onDecrement}
                 variant="text"
             >
                 <FaMinus className="w-4 h-4" />
