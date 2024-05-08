@@ -1,8 +1,9 @@
+import { CartItems } from "@/types";
 import startDb from "./db";
 import cartModel from "@models/CartModel";
 import { Types } from "mongoose";
 
-export const getCartItems = async (userId: string, cartId: string) => {
+export const getCartItems = async (userId: string, cartId: string): Promise<CartItems> => {
     await startDb();
     const [cartItems] = await cartModel.aggregate([
         {

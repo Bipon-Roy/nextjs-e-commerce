@@ -1,3 +1,4 @@
+import { getCartItems } from "@/app/lib/cartHelper";
 import { auth } from "@/auth";
 import { isValidObjectId } from "mongoose";
 import { NextResponse } from "next/server";
@@ -30,7 +31,45 @@ export const POST = async (req: Request) => {
             );
         }
 
-        //TODO:fetching cart details
+        //fetching cart details
+        const cartItems = await getCartItems(session.user.id, cartId);
+        if (!cartItems) {
+            return NextResponse.json(
+                {
+                    error: "Cart not found!",
+                },
+                { status: 404 }
+            );
+        }
+
+        const line_items = cartItems.products.map((product) => {
+            return {
+                price_data: {
+                    currency: "USD",
+                    unit_amount: product.price * 100,
+                    product_data: {
+                        name: product.title,
+                        images: [product.thumbnail],
+                    },
+                },
+                quantity: product.qty,
+            };
+        });
+
+        //generate payment link and send to frontend
+        const params: Stripe.Checkout.SessionCreateParams = {
+            mode: "payment",
+            payment_method_types: ["card"],
+            line_items,
+            success_url: process.env.Payment_Success_Url!,
+            cancel_url: process.env.Payment_Cancel_Url!,
+            shipping_address_collection: { allowed_countries: ["US"] },
+        };
+
+        const checkoutSession = await stripe.checkout.sessions.create(params);
+        return NextResponse.json({
+            url: checkoutSession.url,
+        });
     } catch (error) {
         console.log(error);
     }
