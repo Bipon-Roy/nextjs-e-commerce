@@ -70,7 +70,12 @@ const Cart = async () => {
             </div>
         );
     return (
-        <CartItems products={cart.products} cartTotal={cart.totalPrice} totalQty={cart.quantity} />
+        <CartItems
+            cartId={cart.id}
+            products={cart.products}
+            cartTotal={cart.totalPrice}
+            totalQty={cart.quantity}
+        />
     );
 };
 

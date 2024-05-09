@@ -7,6 +7,7 @@ import { Button } from "@material-tailwind/react";
 import { formatPrice } from "@/utils/helper";
 import CartItemCounter from "./CartItemCounter";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export interface Product {
     id: string;
@@ -21,9 +22,10 @@ interface CartItemsProps {
     products: Product[];
     cartTotal: number;
     totalQty: number;
+    cartId: string;
 }
 
-const CartItems = ({ products = [], totalQty, cartTotal }: CartItemsProps) => {
+const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProps) => {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
@@ -38,6 +40,23 @@ const CartItems = ({ products = [], totalQty, cartTotal }: CartItemsProps) => {
         });
         setLoading(false);
         router.refresh();
+    };
+
+    const handleCheckout = async () => {
+        setLoading(true);
+        const res = await fetch("/api/checkout", {
+            method: "POST",
+            body: JSON.stringify({ cartId }),
+        });
+
+        const { error, url } = await res.json();
+        if (!res.ok) {
+            toast.error(error);
+        } else {
+            // redirect to checkout url
+            window.location.href = url;
+        }
+        setLoading(false);
     };
 
     return (
@@ -90,6 +109,7 @@ const CartItems = ({ products = [], totalQty, cartTotal }: CartItemsProps) => {
                     </div>
                 </div>
                 <Button
+                    onClick={handleCheckout}
                     placeholder={undefined}
                     className="shadow-none hover:shadow-none  focus:shadow-none focus:scale-105 active:scale-100"
                     color="green"
