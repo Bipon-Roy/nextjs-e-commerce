@@ -63,6 +63,7 @@ export const POST = async (req: Request) => {
             line_items,
             success_url: process.env.Payment_Success_Url!,
             cancel_url: process.env.Payment_Cancel_Url!,
+            shipping_address_collection: { allowed_countries: ["US"] },
         };
 
         const checkoutSession = await stripe.checkout.sessions.create(params);
