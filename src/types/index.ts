@@ -120,3 +120,10 @@ export interface CartItems {
     totalQty: number;
     totalPrice: number;
 }
+export interface StripeCustomerInfo {
+    metadata: {
+        userId: string;
+        cartId: string;
+        type: "checkout";
+    };
+}
