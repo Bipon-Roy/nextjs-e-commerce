@@ -29,10 +29,13 @@ const OrderList = ({ orders }: { orders: Orders[] }) => {
             {orders.map((order) => {
                 return (
                     <div key={order.id} className="py-4 space-y-4">
-                        <div className="flex justify-between items-center bg-blue-gray-400 text-white p-2">
+                        <div className="flex justify-between items-center bg-brown-100 rounded px-3 md:px-5 py-2 font-medium">
                             <p>ORDERED ON {dateFormat(order.date, "ddd mmm dd yyyy")}</p>
                             <p>TOTAL {formatPrice(order.total)}</p>
-                            <Chip value={order.paymentStatus} color="amber" />
+
+                            <p className="capitalize px-4 py-1 bg-amber-300 rounded-md">
+                                {order.paymentStatus}
+                            </p>
                         </div>
 
                         {order.products.map((p) => {
@@ -44,7 +47,12 @@ const OrderList = ({ orders }: { orders: Orders[] }) => {
                                         <div className="flex space-x-2 text-sm">
                                             <p>Qty. {p.qty}</p>
                                             <p>X</p>
-                                            <p>Price. {formatPrice(p.price)}</p>
+                                            <p>
+                                                Price:{" "}
+                                                <span className="font-medium">
+                                                    {formatPrice(p.price)}
+                                                </span>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +60,7 @@ const OrderList = ({ orders }: { orders: Orders[] }) => {
                         })}
                         <div className="text-right p-2 border-t border-b">
                             <p>
-                                Order Status:
+                                Order Status:{" "}
                                 <span className="font-semibold uppercase">
                                     {order.deliveryStatus}
                                 </span>
