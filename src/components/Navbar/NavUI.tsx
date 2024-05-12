@@ -45,7 +45,7 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
             >
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Link href="/" className="mr-4 cursor-pointer py-1.5  font-semibold">
-                        Next Ecom
+                        Next eShop
                     </Link>
 
                     <div className="hidden lg:flex gap-2 items-center">

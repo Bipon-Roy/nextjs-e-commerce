@@ -6,7 +6,6 @@ import {
     Typography,
     Button,
     CardFooter,
-    Chip,
 } from "@material-tailwind/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -65,11 +64,11 @@ const ProductCard = ({ product }: Props) => {
             >
                 <div className="absolute right-0 p-1 z-10">
                     <p className="px-2 py-[2px] text-xs bg-red-400 text-white rounded-md">
-                        ${product.sale}% off
+                        {product.sale}% off
                     </p>
                 </div>
                 <div className="relative h-36 w-36 md:w-52 md:h-48 bg-transparent mx-auto mt-2">
-                    <Image src={product.thumbnail} alt={product.title} fill className="" />
+                    <Image src={product.thumbnail} alt={product.title} fill />
                 </div>
             </CardHeader>
             <CardBody placeholder={undefined} className="flex-1 px-3 md:px-6 py-2">
