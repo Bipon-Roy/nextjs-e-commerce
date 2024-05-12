@@ -80,6 +80,9 @@ export const POST = async (req: Request) => {
             url: checkoutSession.url,
         });
     } catch (error) {
-        console.log(error);
+        return NextResponse.json(
+            { error: "Something wrong can not create order" },
+            { status: 500 }
+        );
     }
 };
