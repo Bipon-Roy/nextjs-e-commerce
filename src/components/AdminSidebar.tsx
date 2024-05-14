@@ -6,67 +6,98 @@ import { FaShoppingCart, FaShoppingBag, FaHome } from "react-icons/fa";
 import SignOutBtn from "./SignOutBtn";
 import { HiSparkles } from "react-icons/hi2";
 import { HiCurrencyDollar } from "react-icons/hi";
+import { IoMdPower } from "react-icons/io";
+import { usePathname } from "next/navigation";
 interface Props {
     children: ReactNode;
 }
 
 const AdminSidebar = ({ children }: Props) => {
+    const pathname = usePathname();
+    console.log(pathname);
+
     return (
         <div className="flex">
-            <div className="flex flex-col justify-between bg-teal-500 h-screen sticky top-0 w-64 p-10 font-medium">
-                <ul className="space-y-4 text-white">
+            <div className="flex flex-col justify-between bg-gray-100 h-screen sticky top-0 w-64 p-10 font-medium">
+                <ul className="space-y-5">
                     <li>
-                        <Link className="font-semibold text-lg text-white" href="/dashboard">
-                            Ecommerce
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className="flex items-center space-x-1" href="/dashboard">
+                        <Link
+                            className={`flex items-center gap-1 ${
+                                pathname === "/dashboard"
+                                    ? "pr-4 pl-2 py-1 bg-blue-500 text-white rounded"
+                                    : ""
+                            }`}
+                            href="/dashboard"
+                        >
                             <MdDashboardCustomize className="w-4 h-4" />
                             <span>Dashboard</span>
                         </Link>
-                        <hr className="w-full " />
                     </li>
                     <li>
-                        <Link className="flex items-center space-x-1" href="/products">
+                        <Link
+                            className={`flex items-center gap-1 ${
+                                pathname === "/products"
+                                    ? "pr-4 pl-2 py-1 bg-blue-500 text-white rounded"
+                                    : ""
+                            }`}
+                            href="/products"
+                        >
                             <FaShoppingCart className="w-4 h-4" />
                             <span>Products</span>
                         </Link>
-                        <hr className="w-full " />
                     </li>
                     <li>
-                        <Link className="flex items-center space-x-1" href="/products/featured/add">
+                        <Link
+                            className={`flex items-center gap-1 ${
+                                pathname === "/products/featured/add"
+                                    ? "pr-4 pl-2 py-1 bg-blue-500 text-white rounded"
+                                    : ""
+                            }`}
+                            href="/products/featured/add"
+                        >
                             <HiSparkles className="w-4 h-4" />
                             <span>Featured</span>
                         </Link>
-                        <hr className="w-full " />
                     </li>
                     <li>
-                        <Link className="flex items-center space-x-1" href="/sales">
+                        <Link
+                            className={`flex items-center gap-1 ${
+                                pathname === "/sales"
+                                    ? "pr-4 pl-2 py-1 bg-blue-500 text-white rounded"
+                                    : ""
+                            }`}
+                            href="/sales"
+                        >
                             <HiCurrencyDollar className="w-4 h-4" />
                             <span>Sales</span>
                         </Link>
-                        <hr className="w-full " />
                     </li>
                     <li>
-                        <Link className="flex items-center space-x-1" href="/orders">
+                        <Link
+                            className={`flex items-center gap-1 ${
+                                pathname === "/orders"
+                                    ? "pr-4 pl-2 py-1 bg-blue-500 text-white rounded"
+                                    : ""
+                            }`}
+                            href="/orders"
+                        >
                             <FaShoppingBag className="h-4 w-4" />
                             <span>Orders</span>
                         </Link>
-                        <hr className="w-full " />
                     </li>
                     <li>
-                        <Link className="flex items-center space-x-1" href="/">
+                        <Link className="flex items-center gap-1" href="/">
                             <FaHome className="h-4 w-4" />
                             <span>Home</span>
                         </Link>
-                        <hr className="w-full " />
                     </li>
                 </ul>
 
                 <div>
                     <SignOutBtn>
-                        <div className="cursor-pointer text-white">Logout</div>
+                        <div className="cursor-pointer  flex items-center gap-2 font-medium">
+                            <IoMdPower className="h-4 w-4" /> Logout
+                        </div>
                     </SignOutBtn>
                 </div>
             </div>
