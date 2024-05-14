@@ -3,7 +3,7 @@
 import { formatPrice } from "@/utils/helper";
 import { Avatar, Option, Select } from "@material-tailwind/react";
 import Image from "next/image";
-import React from "react";
+import React, { useTransition } from "react";
 
 type product = {
     id: string;
@@ -72,6 +72,7 @@ const formatAddress = ({ line1, line2, city, country, state, postal_code }: addr
 };
 
 const OrderedItemsCard = ({ order, disableUpdate = true }: Props) => {
+    const [isPending, startTransition] = useTransition();
     return (
         <div className="space-y-4 rounded border-gray-300 border-2 p-2">
             <div className="flex justify-between">
@@ -97,10 +98,19 @@ const OrderedItemsCard = ({ order, disableUpdate = true }: Props) => {
                 <div>
                     <Select
                         placeholder={undefined}
-                        disabled={disableUpdate}
+                        disabled={disableUpdate || isPending}
                         value={order.deliveryStatus}
                         className="uppercase"
                         label="Delivery Status"
+                        onChange={(deliveryStatus) => {
+                            startTransition(async () => {
+                                console.log(deliveryStatus);
+                                await fetch("/api/order/update-status", {
+                                    method: "POST",
+                                    body: JSON.stringify({ orderId: order.id, deliveryStatus }),
+                                });
+                            });
+                        }}
                     >
                         {ORDER_STATUS.map((order) => (
                             <Option value={order} className="uppercase" key={order}>

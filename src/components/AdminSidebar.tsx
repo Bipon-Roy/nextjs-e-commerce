@@ -14,8 +14,6 @@ interface Props {
 
 const AdminSidebar = ({ children }: Props) => {
     const pathname = usePathname();
-    console.log(pathname);
-
     return (
         <div className="flex">
             <div className="flex flex-col justify-between bg-gray-100 h-screen sticky top-0 w-64 p-10 font-medium">

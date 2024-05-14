@@ -14,6 +14,7 @@ export const POST = async (req: Request) => {
     }
 
     const { orderId, deliveryStatus } = await req.json();
+    console.log(orderId, deliveryStatus);
 
     if (!isValidObjectId(orderId) || !validStatus.includes(deliveryStatus)) {
         return NextResponse.json({ error: "Invalid Data" }, { status: 401 });
