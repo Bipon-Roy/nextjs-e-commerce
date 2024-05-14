@@ -1,8 +1,11 @@
 import startDb from "@/app/lib/db";
+import OrderModel from "@/app/models/orderModel";
 import UserModel from "@/app/models/userModel";
 import { auth } from "@/auth";
 import EmailVerificationRequest from "@/components/EmailVerificationRequest";
 import ProfileForm from "@/components/ProfileForm";
+import RecentOrderedItems from "@/components/RecentOrderedItems";
+
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -21,9 +24,31 @@ const fetchUserProfile = async () => {
         verified: user.verified,
     };
 };
+const fetchOrderInfo = async () => {
+    const session = await auth();
 
+    if (!session?.user) {
+        return redirect("/auth/signin");
+    }
+
+    await startDb();
+    const orders = await OrderModel.find({ userId: session.user.id }).sort("-createdAt").limit(1);
+    const result = orders.map((order) => {
+        return {
+            id: order._id.toString(),
+            paymentStatus: order.paymentStatus,
+            date: order.createdAt.toString(),
+            total: order.totalAmount,
+            deliveryStatus: order.deliveryStatus,
+            products: order.orderItems,
+        };
+    });
+
+    return JSON.stringify(result);
+};
 const UpdateUserInfo = async () => {
     const profile = await fetchUserProfile();
+    const orders = JSON.parse(await fetchOrderInfo());
     return (
         <div>
             <EmailVerificationRequest id={profile.id} verified={profile.verified} />
@@ -39,13 +64,17 @@ const UpdateUserInfo = async () => {
 
                 <div className="p-4 flex-1">
                     <div className="flex items-center justify-between">
-                        <h1 className="text-2xl font-semibold uppercase opacity-70 mb-4">
+                        <h1 className="text-2xl font-semibold uppercase opacity-70 ">
                             Your recent orders
                         </h1>
-                        <Link href="/profile/orders" className="uppercase hover:underline">
+                        <Link
+                            href="/profile/orders"
+                            className="uppercase hover:underline bg-orange-400 text-white px-4 py-1 rounded"
+                        >
                             See all orders
                         </Link>
                     </div>
+                    <RecentOrderedItems orders={orders} />
                 </div>
             </div>
         </div>

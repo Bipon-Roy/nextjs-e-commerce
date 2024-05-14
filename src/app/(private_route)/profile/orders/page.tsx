@@ -11,7 +11,7 @@ const fetchOrdersInfo = async () => {
         return null;
     }
     await startDb();
-    const ordersInfo = await OrderModel.find({ userId: session.user.id });
+    const ordersInfo = await OrderModel.find({ userId: session.user.id }).sort("-createdAt");
     const data = ordersInfo.map((order) => {
         return {
             id: order._id.toString(),
