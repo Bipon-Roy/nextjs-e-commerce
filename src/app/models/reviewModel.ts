@@ -4,7 +4,7 @@ interface ReviewDocument extends Document {
     userId: ObjectId;
     product: ObjectId;
     rating: number;
-    comment: string;
+    comment?: string;
     createdAt: Date;
 }
 
@@ -27,7 +27,6 @@ const ReviewSchema = new Schema<ReviewDocument>(
         },
         comment: {
             type: String,
-            required: true,
         },
     },
     { timestamps: true }

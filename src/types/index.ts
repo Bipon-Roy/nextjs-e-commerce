@@ -127,3 +127,9 @@ export interface StripeCustomerInfo {
         type: "checkout";
     };
 }
+
+export interface ReviewRequestType {
+    productId: string;
+    rating: number;
+    comment?: string;
+}
