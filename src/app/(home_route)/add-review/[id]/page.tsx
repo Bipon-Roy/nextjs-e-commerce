@@ -1,9 +1,14 @@
 import ReviewForm from "@/components/ReviewForm";
 
-const Review = () => {
+interface Props {
+    params: { id: string };
+}
+
+const Review = ({ params }: Props) => {
+    const productId = params.id;
     return (
         <div className="mt-4">
-            <ReviewForm productId="" />
+            <ReviewForm productId={productId} />
         </div>
     );
 };

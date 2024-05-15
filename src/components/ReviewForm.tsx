@@ -3,6 +3,7 @@
 import { Button, Rating } from "@material-tailwind/react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import React, { useState, FormEventHandler, useEffect } from "react";
+import { toast } from "react-toastify";
 
 interface Props {
     productId: string;
@@ -18,6 +19,26 @@ const ReviewForm = ({ productId, initialValue }: Props) => {
 
     const submitReview: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
+        const { comment, rating } = review;
+        if (!rating) {
+            return toast.error("Rating is missing!");
+        }
+
+        setIsPending(true);
+        const res = await fetch("/api/product/review", {
+            method: "POST",
+            body: JSON.stringify({ comment, rating, productId }),
+        });
+
+        const { error, message } = await res.json();
+
+        setIsPending(false);
+
+        if (!res.ok) {
+            return toast.error(error);
+        }
+
+        toast.success(message);
     };
 
     useEffect(() => {
