@@ -11,7 +11,7 @@ const fetchProducts = async (
 
     await startDb();
     const [products, totalCount] = await Promise.all([
-        ProductModel.find().sort("-createdAt").skip(skipCount).limit(perPage),
+        ProductModel.find().skip(skipCount).limit(perPage),
         ProductModel.countDocuments(),
     ]);
 

@@ -34,7 +34,7 @@ const AdminSidebar = ({ children }: Props) => {
                     <li>
                         <Link
                             className={`flex items-center gap-1 ${
-                                pathname === "/products"
+                                pathname === "/products" || pathname === "/products/create"
                                     ? "pr-4 pl-2 py-1 bg-blue-500 text-white rounded"
                                     : ""
                             }`}

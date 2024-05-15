@@ -2,6 +2,7 @@ import startDb from "@/app/lib/db";
 import ProductModel from "@/app/models/productModel";
 import SingleProductDetails from "@/components/SingleProductDetails";
 import { isValidObjectId } from "mongoose";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 interface Props {
@@ -49,6 +50,18 @@ const ProductDetails = async ({ params }: Props) => {
                 points={productInfo.bulletPoints}
                 images={productImages}
             />
+
+            <div className="py-4 space-y-4">
+                <div className="flex justify-between items-center">
+                    <h1 className="text-2xl font-semibold mb-2">Reviews</h1>
+                    <Link
+                        className="bg-gray-100 border-2  font-medium px-4 py-2 rounded"
+                        href={`/add-review/${productInfo.id}`}
+                    >
+                        Add Review
+                    </Link>
+                </div>
+            </div>
         </div>
     );
 };

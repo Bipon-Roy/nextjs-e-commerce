@@ -278,7 +278,7 @@ const ProductForm = (props: Props) => {
                     </button>
                 </div>
 
-                <Button placeholder={undefined} disabled={isPending} type="submit">
+                <Button placeholder={undefined} color="blue" disabled={isPending} type="submit">
                     {getBtnTitle()}
                 </Button>
             </form>
