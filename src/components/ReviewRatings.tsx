@@ -1,21 +1,30 @@
 "use client";
 
-import { Rating } from "@material-tailwind/react";
-import { FaStar, FaRegStar } from "react-icons/fa";
+import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 
 interface Props {
-    rating: number;
+    value: number;
 }
 
-const ReviewRatings = ({ rating }: Props) => {
+const ReviewRatings = ({ value }: Props) => {
+    const data = Array(5).fill("");
+    const fullStarts = Math.floor(value);
+    const halfStar = value - fullStarts >= 0.1;
     return (
-        <Rating
-            placeholder={undefined}
-            ratedIcon={<FaStar className="h-8 w-8" />}
-            unratedIcon={<FaRegStar className="h-8 w-8" />}
-            value={rating}
-            readonly
-        />
+        <div className="flex items-center gap-2">
+            <div className="flex items-center space-x-0.5">
+                {data.map((_, index) => {
+                    return index + 1 <= fullStarts ? (
+                        <FaStar className="h-5 w-5 text-amber-500" key={index} />
+                    ) : halfStar && index === fullStarts ? (
+                        <FaStarHalfAlt className="h-5 w-5 text-amber-500" key={index} />
+                    ) : (
+                        <FaRegStar className="h-5 w-5 text-amber-500" key={index} />
+                    );
+                })}
+            </div>
+            <p className="font-semibold ">{value}</p>
+        </div>
     );
 };
 

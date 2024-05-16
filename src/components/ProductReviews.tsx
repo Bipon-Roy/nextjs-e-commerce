@@ -38,7 +38,7 @@ const ProductReviews = ({ reviews }: Props) => {
                             </div>
                         </div>
                         <div>
-                            <ReviewRatings rating={review.rating} />
+                            <ReviewRatings value={review.rating} />
                             <p>{review.comment}</p>
                         </div>
                     </div>

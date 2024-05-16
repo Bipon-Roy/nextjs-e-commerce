@@ -57,7 +57,7 @@ const BuyProduct = () => {
             >
                 Add to Cart
             </Button>
-            <Button placeholder={undefined} color="amber" className="rounded-md">
+            <Button placeholder={undefined} className="rounded-md bg-orange-600">
                 Buy Now
             </Button>
         </div>
