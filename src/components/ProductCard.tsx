@@ -63,7 +63,7 @@ const ProductCard = ({ product }: Props) => {
                 className="relative m-0 rounded-none"
             >
                 <div className="absolute right-0 p-1 z-10">
-                    <p className="px-2 py-[2px] text-xs bg-red-400 text-white rounded-md">
+                    <p className="px-3 py-[2px] text-xs bg-red-500 text-white rounded">
                         {product.sale}% off
                     </p>
                 </div>
@@ -71,7 +71,7 @@ const ProductCard = ({ product }: Props) => {
                     <Image src={product.thumbnail} alt={product.title} fill />
                 </div>
             </CardHeader>
-            <CardBody placeholder={undefined} className="flex-1 px-3 md:px-6 py-2">
+            <CardBody placeholder={undefined} className="flex-1 px-3 md:px-4 py-2">
                 <div className="flex gap-2 items-center mb-2">
                     <h3 className="font-medium text-blue-gray-800 text-sm">
                         {truncate(product.title, 50)}
@@ -96,14 +96,14 @@ const ProductCard = ({ product }: Props) => {
                 </div>
             </CardBody>
 
-            <CardFooter placeholder={undefined} className="space-y-3 px-3 md:px-6 pt-1">
+            <CardFooter placeholder={undefined} className="px-3 md:px-4 pt-1 md:flex md:gap-3">
                 <Button
                     size="sm"
                     placeholder={undefined}
                     onClick={() => startTransition(async () => await addToCart())}
                     fullWidth={true}
                     disabled={isPending}
-                    className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:shadow-none hover:scale-105 focus:shadow-none focus:scale-105 active:scale-100"
+                    className="bg-blue-800/10 text-blue-700 shadow-none p-2 rounded font-semibold capitalize hover:shadow"
                 >
                     Add to Cart
                 </Button>
@@ -112,7 +112,7 @@ const ProductCard = ({ product }: Props) => {
                     size="sm"
                     placeholder={undefined}
                     fullWidth={true}
-                    className="bg-blue-400 text-white shadow-none hover:shadow-none hover:scale-105 focus:shadow-none focus:scale-105 active:scale-100"
+                    className="bg-orange-500/20 text-orange-700 shadow-none p-2 rounded font-semibold capitalize hover:shadow"
                 >
                     Buy Now
                 </Button>
