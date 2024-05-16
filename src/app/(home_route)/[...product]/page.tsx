@@ -1,9 +1,12 @@
 import startDb from "@/app/lib/db";
 import ProductModel from "@/app/models/productModel";
+import ReviewModel from "@/app/models/reviewModel";
+import ProductReviews from "@/components/ProductReviews";
 import SingleProductDetails from "@/components/SingleProductDetails";
-import { isValidObjectId } from "mongoose";
+import { ObjectId, isValidObjectId } from "mongoose";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { FaArrowCircleRight } from "react-icons/fa";
 
 interface Props {
     params: {
@@ -30,6 +33,30 @@ const fetchProductDetails = async (id: string) => {
     });
 };
 
+const fetchProductReviews = async (productId: string) => {
+    await startDb();
+    const reviews = await ReviewModel.find({ product: productId }).populate<{
+        userId: { _id: ObjectId; name: string; avatar?: { url: string } };
+    }>({
+        path: "userId",
+        select: "name avatar.url",
+    });
+
+    const result = reviews.map((data) => ({
+        id: data._id.toString(),
+        rating: data.rating,
+        comment: data.comment,
+        date: data.createdAt,
+        userInfo: {
+            id: data.userId._id.toString(),
+            name: data.userId.name,
+            avatar: data.userId.avatar?.url,
+        },
+    }));
+
+    return JSON.stringify(result);
+};
+
 const ProductDetails = async ({ params }: Props) => {
     const { product } = params;
     const productId = product[1];
@@ -40,6 +67,7 @@ const ProductDetails = async ({ params }: Props) => {
         productImages = productImages.concat(productInfo.images);
     }
 
+    const reviews = await fetchProductReviews(productId);
     return (
         <div>
             <SingleProductDetails
@@ -51,17 +79,18 @@ const ProductDetails = async ({ params }: Props) => {
                 images={productImages}
             />
 
-            <div className="py-4 space-y-4">
-                <div className="flex justify-between items-center">
+            <div className="py-4 space-y-4 mt-3">
+                <div className="flex justify-between items-center border-b-2 p-2">
                     <h1 className="text-2xl font-semibold mb-2">Reviews</h1>
                     <Link
-                        className="bg-gray-100 border-2  font-medium px-4 py-2 rounded"
+                        className=" text-blue-500 rounded-md font-medium px-3 text-sm md:text-base flex items-center gap-1"
                         href={`/add-review/${productInfo.id}`}
                     >
-                        Add Review
+                        ADD REVIEW <FaArrowCircleRight />
                     </Link>
                 </div>
             </div>
+            <ProductReviews reviews={JSON.parse(reviews)} />
         </div>
     );
 };

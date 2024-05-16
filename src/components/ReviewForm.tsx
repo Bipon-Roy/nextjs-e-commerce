@@ -48,7 +48,7 @@ const ReviewForm = ({ productId, initialValue }: Props) => {
     return (
         <form onSubmit={submitReview} className="space-y-2">
             <div>
-                <h3 className="font-semibold text-lg mb-1">Overall Rating</h3>
+                <h3 className="font-semibold text-lg mb-1">Your Rating</h3>
                 <Rating
                     placeholder={undefined}
                     ratedIcon={<FaStar className="h-8 w-8" />}
