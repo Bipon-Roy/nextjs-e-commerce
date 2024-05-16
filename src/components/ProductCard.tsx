@@ -54,7 +54,7 @@ const ProductCard = ({ product }: Props) => {
         router.refresh();
     };
     return (
-        <Card placeholder={undefined} className="w-full rounded-md">
+        <Card placeholder={undefined} className="w-full rounded-md shadow">
             <CardHeader
                 placeholder={undefined}
                 shadow={false}

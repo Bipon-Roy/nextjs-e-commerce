@@ -37,22 +37,22 @@ const HeroSlider = ({ products }: Props) => {
     if (!products.length) return null;
 
     return (
-        <div className="h-[450px] mt-4 rounded-md">
+        <div className="h-[320px] md:h-[450px] mt-4 rounded-md">
             <Slider {...settings}>
                 {products.map(({ banner, title, link, linkTitle }, index) => {
                     return (
                         <div className="select-none relative" key={index}>
-                            <div className="w-full h-[450px]">
+                            <div className="w-full h-[320px] md:h-[450px]">
                                 <Image className="rounded-md" fill src={banner} alt={title} />
                             </div>
                             <div className="absolute inset-0 p-5">
-                                <div className="w-1/2 h-full flex flex-col items-start justify-center space-y-2">
-                                    <h1 className="text-3xl font-semibold text-left mb-2">
+                                <div className="w-[65%] md:w-1/2 h-full flex flex-col items-start justify-center space-y-2">
+                                    <h1 className="text-base md:text-3xl font-semibold text-left mb-2">
                                         {title}
                                     </h1>
                                     <Button
+                                        size="sm"
                                         placeholder={undefined}
-                                        color="blue-gray"
                                         onClick={() => router.push(link)}
                                     >
                                         {linkTitle}

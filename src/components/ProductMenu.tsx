@@ -7,7 +7,7 @@ import Link from "next/link";
 import { FaLaptop } from "react-icons/fa";
 import categories from "@/utils/ProductCategories";
 
-const HorizontalMenu = () => {
+const ProductMenu = () => {
     return (
         <>
             <Typography
@@ -20,7 +20,7 @@ const HorizontalMenu = () => {
             </Typography>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {categories.map((c) => (
-                    <Card key={c} placeholder={undefined} className="border shadow-sm ">
+                    <Card key={c} placeholder={undefined} className="border shadow-none">
                         <CardBody
                             placeholder={undefined}
                             className="space-y-2 flex flex-col justify-center items-center"
@@ -47,9 +47,9 @@ const HorizontalMenu = () => {
                                 className="bg-gray-200 px-4 py-1 rounded-md"
                                 href={`/browse-products/${c}`}
                             >
-                                <div className="flex items-center gap-2 text-blue-500 font-medium text-sm">
+                                <div className="flex items-center gap-1 md:gap-2 text-blue-500 font-medium text-xs md:text-sm">
                                     View Products
-                                    <FaLongArrowAltRight className="h-6 w-6 " />
+                                    <FaLongArrowAltRight className="h-4 w-4 md:h-6 md:w-6 " />
                                 </div>
                             </Link>
                         </CardBody>
@@ -60,4 +60,4 @@ const HorizontalMenu = () => {
     );
 };
 
-export default HorizontalMenu;
+export default ProductMenu;

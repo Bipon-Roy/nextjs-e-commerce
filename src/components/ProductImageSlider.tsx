@@ -18,7 +18,7 @@ const settings: Settings = {
     slidesToScroll: 1,
     arrows: false,
     autoplay: false,
-    className: "w-[500px]",
+    className: "max-w-[360px] mx-auto md:w-[500px]",
 };
 
 const ProductImageSlider = (props: Props) => {
@@ -36,7 +36,9 @@ const ProductImageSlider = (props: Props) => {
                 ref={slider}
             >
                 {images.map((img, index) => {
-                    return <Image key={index} src={img} alt="testing" width={500} height={500} />;
+                    return (
+                        <Image key={index} src={img} alt="Banner Image" width={500} height={500} />
+                    );
                 })}
             </Slider>
             <div className="flex py-2 space-x-2">

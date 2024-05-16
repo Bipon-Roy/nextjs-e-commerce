@@ -4,7 +4,7 @@ import ProductModel from "@models/productModel";
 import ProductCard from "@/components/ProductCard";
 import FeaturedProductModel from "@models/featuredProduct";
 import HeroSlider from "@/components/HeroSlider";
-import HorizontalMenu from "@/components/HorizontalMenu";
+import ProductMenu from "@/components/ProductMenu";
 
 interface ProductResponse {
     id: string;
@@ -59,7 +59,7 @@ export default async function Home() {
     return (
         <div className="space-y-4">
             <HeroSlider products={featuredProducts} />
-            <HorizontalMenu />
+            <ProductMenu />
             <GridView>
                 {parseProduct.map((product) => {
                     return <ProductCard key={product.id} product={product} />;
