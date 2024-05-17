@@ -3,7 +3,7 @@ import startDb from "@lib/db";
 import { isValidObjectId } from "mongoose";
 import { redirect } from "next/navigation";
 import UpdateProduct from "@/components/UpdateProduct";
-import { ProductResponse } from "@/types";
+import { SingleProductResponse } from "@/types";
 
 interface Props {
     params: {
@@ -23,7 +23,7 @@ const fetchProductInfo = async (productId: string): Promise<string> => {
         return redirect("/404");
     }
 
-    const productData: ProductResponse = {
+    const productData: SingleProductResponse = {
         id: product._id.toString(),
         title: product.title,
         description: product.description,

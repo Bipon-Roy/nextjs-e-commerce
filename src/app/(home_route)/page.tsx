@@ -9,8 +9,6 @@ import ProductMenu from "@/components/ProductMenu";
 interface ProductResponse {
     id: string;
     title: string;
-    description: string;
-    category: string;
     thumbnail: string;
     price: {
         base: number;
@@ -26,8 +24,6 @@ const fetchProducts = async () => {
         return {
             id: prod._id.toString(),
             title: prod.title,
-            description: prod.description,
-            category: prod.category,
             thumbnail: prod.thumbnail.url,
             price: prod.price,
             sale: prod.sale,

@@ -21,8 +21,6 @@ interface Props {
     product: {
         id: string;
         title: string;
-        description: string;
-        category: string;
         thumbnail: string;
         sale: number;
         price: {

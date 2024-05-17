@@ -49,7 +49,7 @@ export interface NewProductInfo {
     images: File[];
 }
 
-export interface ProductResponse {
+export interface SingleProductResponse {
     id: string;
     title: string;
     description: string;

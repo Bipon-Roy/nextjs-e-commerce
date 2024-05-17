@@ -12,6 +12,7 @@ interface Props {
     points?: string[];
     sale: number;
     rating: number;
+    outOfStock: boolean;
 }
 
 const SingleProductDetails = ({
@@ -22,9 +23,8 @@ const SingleProductDetails = ({
     price,
     sale,
     rating,
+    outOfStock,
 }: Props) => {
-    console.log(sale);
-
     return (
         <div className="flex lg:flex-row flex-col md:gap-4 gap-2 mt-6">
             <div className="flex-1 lg:self-start self-center">
@@ -52,7 +52,11 @@ const SingleProductDetails = ({
                 </div>
 
                 <div className="flex py-4">
-                    <BuyProduct />
+                    {outOfStock ? (
+                        <p className="font-semibold text-red-500 md:text-lg">Out of stock</p>
+                    ) : (
+                        <BuyProduct />
+                    )}
                 </div>
             </div>
         </div>

@@ -1,8 +1,11 @@
 import startDb from "@/app/lib/db";
 import ProductModel from "@/app/models/productModel";
 import ReviewModel from "@/app/models/reviewModel";
+import GridContainer from "@/components/GridContainer";
+import ProductCard from "@/components/ProductCard";
 import ProductReviews from "@/components/ProductReviews";
 import SingleProductDetails from "@/components/SingleProductDetails";
+
 import { ObjectId, isValidObjectId } from "mongoose";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -13,7 +16,16 @@ interface Props {
         product: string[];
     };
 }
-
+interface ProductResponse {
+    id: string;
+    title: string;
+    thumbnail: string;
+    price: {
+        base: number;
+        discounted: number;
+    };
+    sale: number;
+}
 const fetchProductDetails = async (id: string) => {
     if (!isValidObjectId(id)) return redirect("404");
 
@@ -31,6 +43,7 @@ const fetchProductDetails = async (id: string) => {
         price: productInfo.price,
         sale: productInfo.sale,
         rating: productInfo.rating,
+        outOfStock: productInfo.quantity <= 0,
     });
 };
 
@@ -58,6 +71,22 @@ const fetchProductReviews = async (productId: string) => {
     return JSON.stringify(result);
 };
 
+const fetchSimilarProducts = async () => {
+    await startDb();
+    const products = await ProductModel.find().sort({ rating: -1 }).limit(5);
+    const productList = products.map((prod) => {
+        return {
+            id: prod._id.toString(),
+            title: prod.title,
+            thumbnail: prod.thumbnail.url,
+            price: prod.price,
+            sale: prod.sale,
+        };
+    });
+
+    return JSON.stringify(productList);
+};
+
 const ProductDetails = async ({ params }: Props) => {
     const { product } = params;
     const productId = product[1];
@@ -67,7 +96,8 @@ const ProductDetails = async ({ params }: Props) => {
     if (productInfo.images) {
         productImages = productImages.concat(productInfo.images);
     }
-
+    const similarProducts = await fetchSimilarProducts();
+    const parseProduct = JSON.parse(similarProducts) as ProductResponse[];
     const reviews = await fetchProductReviews(productId);
     return (
         <div>
@@ -79,11 +109,12 @@ const ProductDetails = async ({ params }: Props) => {
                 points={productInfo.bulletPoints}
                 images={productImages}
                 rating={productInfo.rating}
+                outOfStock={productInfo.outOfStock}
             />
 
             <div className="py-4 space-y-4 mt-3">
                 <div className="flex justify-between items-center border-b-2 p-2">
-                    <h1 className="text-2xl font-semibold mb-2">Reviews</h1>
+                    <h1 className="text-xl font-semibold mb-2">Reviews</h1>
                     <Link
                         className=" text-blue-500 rounded-md font-medium px-3 text-sm md:text-base flex items-center gap-1"
                         href={`/add-review/${productInfo.id}`}
@@ -93,6 +124,12 @@ const ProductDetails = async ({ params }: Props) => {
                 </div>
             </div>
             <ProductReviews reviews={JSON.parse(reviews)} />
+            <h1 className="text-2xl text-center font-semibold">Product you may like</h1>
+            <GridContainer>
+                {parseProduct.map((product) => {
+                    return <ProductCard key={product.id} product={product} />;
+                })}
+            </GridContainer>
         </div>
     );
 };
