@@ -1,4 +1,7 @@
 import OrderModel from "@/app/models/orderModel";
+import GridContainer from "@/components/GridContainer";
+import SalesReport from "@/components/SalesReport";
+import { formatPrice } from "@/utils/helper";
 import dateFormat from "dateformat";
 
 //last 7 days sales history
@@ -44,6 +47,7 @@ const salesHistory = async () => {
         };
     });
 
+    //calculating total sales amount for last 7 days
     const totalSaleAmount = result.reduce((prevValue, { totalAmount }) => {
         return (prevValue += totalAmount);
     }, 0);
@@ -53,9 +57,20 @@ const salesHistory = async () => {
 
 const Sales = async () => {
     const salesData = await salesHistory();
-    console.log(salesData);
 
-    return <div>Sales</div>;
+    return (
+        <div>
+            <div className="mt-5">
+                <h1 className="font-semibold bg-blue-500/10 text-blue-500 text-3xl text-center mb-3 py-1 rounded">
+                    Last week sales report
+                </h1>
+                <p className="md:text-xl font-semibold my-2">
+                    Total Sales : {formatPrice(salesData.totalSaleAmount)}
+                </p>
+                <SalesReport data={salesData.sales} />
+            </div>
+        </div>
+    );
 };
 
 export default Sales;
