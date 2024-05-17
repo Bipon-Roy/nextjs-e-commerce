@@ -1,4 +1,5 @@
 import startDb from "@/app/lib/db";
+import ProductModel from "@/app/models/productModel";
 import ReviewModel from "@/app/models/reviewModel";
 import { auth } from "@/auth";
 import ReviewForm from "@/components/ReviewForm";
@@ -35,10 +36,27 @@ const fetchReview = async (id: string) => {
         };
     }
 };
+const fetchProduct = async (id: string) => {
+    await startDb();
+    const product = await ProductModel.findById(id);
+
+    if (!product) {
+        return null;
+    }
+    return {
+        title: product.title,
+        thumbnail: product.thumbnail.url,
+    };
+};
 
 const Review = async ({ params }: Props) => {
     const productId = params.id;
     const review = await fetchReview(productId);
+    const product = await fetchProduct(productId);
+
+    if (!product) {
+        return redirect("/404");
+    }
     const initialValue = review
         ? {
               comment: review.comment || "",
@@ -50,13 +68,13 @@ const Review = async ({ params }: Props) => {
         <div className="mt-4">
             <div className="space-y-1 max-w-fit mb-4">
                 <Image
-                    src={review?.product.thumbnail || ""}
-                    alt={review?.product.title || "thumbnail"}
+                    src={product.thumbnail}
+                    alt={product.title}
                     width={120}
                     height={120}
                     className="rounded"
                 />
-                <h3 className="font-semibold md:text-lg text-blue-500">{review?.product.title}</h3>
+                <h3 className="font-semibold md:text-lg text-blue-500">{product.title}</h3>
             </div>
             <ReviewForm productId={productId} initialValue={initialValue} />
         </div>

@@ -1,3 +1,4 @@
+import startDb from "@/app/lib/db";
 import OrderModel from "@/app/models/orderModel";
 import GridContainer from "@/components/GridContainer";
 import SalesReport from "@/components/SalesReport";
@@ -20,6 +21,7 @@ const salesHistory = async () => {
     }
 
     //fetch sales data for last 7 days
+    await startDb();
     const result: {
         _id: string;
         totalAmount: number;
