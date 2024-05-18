@@ -82,115 +82,121 @@ const ProductTable = (props: Props) => {
                 </div>
             </div>
             <CardBody placeholder={undefined} className="px-0">
-                <table className="w-full min-w-max table-auto text-left">
-                    <thead>
-                        <tr>
-                            {TABLE_HEAD.map((head) => (
-                                <th
-                                    key={head}
-                                    className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
-                                >
-                                    <Typography
-                                        placeholder={undefined}
-                                        variant="small"
-                                        color="blue-gray"
-                                        className="font-normal leading-none opacity-70"
+                {filteredProducts.length ? (
+                    <table className="w-full min-w-max table-auto text-left">
+                        <thead>
+                            <tr>
+                                {TABLE_HEAD.map((head) => (
+                                    <th
+                                        key={head}
+                                        className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
                                     >
-                                        {head}
-                                    </Typography>
-                                </th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredProducts.map((item, index) => {
-                            const { id, thumbnail, title, price, quantity, category } = item;
-                            const isLast = index === filteredProducts.length - 1;
-                            const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
+                                        <Typography
+                                            placeholder={undefined}
+                                            variant="small"
+                                            color="blue-gray"
+                                            className="font-normal leading-none opacity-70"
+                                        >
+                                            {head}
+                                        </Typography>
+                                    </th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredProducts.map((item, index) => {
+                                const { id, thumbnail, title, price, quantity, category } = item;
+                                const isLast = index === filteredProducts.length - 1;
+                                const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
 
-                            return (
-                                <tr key={id}>
-                                    <td className={classes}>
-                                        <div className="flex items-center gap-3">
-                                            <Avatar
+                                return (
+                                    <tr key={id}>
+                                        <td className={classes}>
+                                            <div className="flex items-center gap-3">
+                                                <Avatar
+                                                    placeholder={undefined}
+                                                    src={thumbnail}
+                                                    alt={title}
+                                                    size="md"
+                                                    variant="rounded"
+                                                />
+                                                <Link href={`/${title}/${id}`}>
+                                                    <Typography
+                                                        placeholder={undefined}
+                                                        variant="small"
+                                                        color="blue-gray"
+                                                        className="font-bold"
+                                                    >
+                                                        {truncate(title, 30)}
+                                                    </Typography>
+                                                </Link>
+                                            </div>
+                                        </td>
+                                        <td className={classes}>
+                                            <Typography
                                                 placeholder={undefined}
-                                                src={thumbnail}
-                                                alt={title}
-                                                size="md"
-                                                variant="rounded"
-                                            />
-                                            <Link href={`/${title}/${id}`}>
+                                                variant="small"
+                                                color="blue-gray"
+                                                className="font-normal"
+                                            >
+                                                {formatPrice(price.mrp)}
+                                            </Typography>
+                                        </td>
+                                        <td className={classes}>
+                                            <Typography
+                                                placeholder={undefined}
+                                                variant="small"
+                                                color="blue-gray"
+                                                className="font-normal"
+                                            >
+                                                {formatPrice(price.salePrice)}
+                                            </Typography>
+                                        </td>
+                                        <td className={classes}>
+                                            <div className="w-max">
                                                 <Typography
                                                     placeholder={undefined}
                                                     variant="small"
                                                     color="blue-gray"
-                                                    className="font-bold"
                                                 >
-                                                    {truncate(title, 30)}
+                                                    {quantity}
                                                 </Typography>
+                                            </div>
+                                        </td>
+                                        <td className={classes}>
+                                            <div className="w-max">
+                                                <Typography
+                                                    placeholder={undefined}
+                                                    variant="small"
+                                                    color="blue-gray"
+                                                >
+                                                    {category}
+                                                </Typography>
+                                            </div>
+                                        </td>
+                                        <td className={classes}>
+                                            <Link href={`/products/update/${id}`}>
+                                                <IconButton
+                                                    placeholder={undefined}
+                                                    variant="text"
+                                                    color="blue-gray"
+                                                >
+                                                    <HiPencil className="h-4 w-4" />
+                                                </IconButton>
                                             </Link>
-                                        </div>
-                                    </td>
-                                    <td className={classes}>
-                                        <Typography
-                                            placeholder={undefined}
-                                            variant="small"
-                                            color="blue-gray"
-                                            className="font-normal"
-                                        >
-                                            {formatPrice(price.mrp)}
-                                        </Typography>
-                                    </td>
-                                    <td className={classes}>
-                                        <Typography
-                                            placeholder={undefined}
-                                            variant="small"
-                                            color="blue-gray"
-                                            className="font-normal"
-                                        >
-                                            {formatPrice(price.salePrice)}
-                                        </Typography>
-                                    </td>
-                                    <td className={classes}>
-                                        <div className="w-max">
-                                            <Typography
-                                                placeholder={undefined}
-                                                variant="small"
-                                                color="blue-gray"
-                                            >
-                                                {quantity}
-                                            </Typography>
-                                        </div>
-                                    </td>
-                                    <td className={classes}>
-                                        <div className="w-max">
-                                            <Typography
-                                                placeholder={undefined}
-                                                variant="small"
-                                                color="blue-gray"
-                                            >
-                                                {category}
-                                            </Typography>
-                                        </div>
-                                    </td>
-                                    <td className={classes}>
-                                        <Link href={`/products/update/${id}`}>
-                                            <IconButton
-                                                placeholder={undefined}
-                                                variant="text"
-                                                color="blue-gray"
-                                            >
-                                                <HiPencil className="h-4 w-4" />
-                                            </IconButton>
-                                        </Link>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                ) : (
+                    <p className="my-3 text-red-500 font-semibold md:text-lg text-center">
+                        No products available!
+                    </p>
+                )}
             </CardBody>
-            {showPageNavigator ? (
+            {showPageNavigator && filteredProducts.length ? (
                 <CardFooter
                     placeholder={undefined}
                     className="flex items-center justify-center border-t border-blue-gray-50 p-4"
