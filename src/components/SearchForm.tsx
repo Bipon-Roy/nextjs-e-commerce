@@ -1,26 +1,26 @@
 import { Input } from "@material-tailwind/react";
-import React, { useState } from "react";
+import { FormEvent, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
-import { useRouter } from "next/navigation";
 
-export default function SearchForm() {
+interface SearchFormProps {
+    onSearch: (query: string) => void;
+}
+
+const SearchForm = ({ onSearch }: SearchFormProps) => {
     const [query, setQuery] = useState("");
-    const router = useRouter();
+
+    const handleSearch = (e: FormEvent) => {
+        e.preventDefault();
+        onSearch(query);
+    };
 
     return (
-        <form
-            onSubmit={(e) => {
-                e.preventDefault();
-                if (!query) return;
-                router.push(`/products/search?query=${query}`);
-            }}
-            className="w-full md:w-72"
-        >
+        <form onSubmit={handleSearch} className="w-full md:w-72">
             <Input
                 crossOrigin={undefined}
                 label="Search"
                 icon={
-                    <button>
+                    <button type="submit">
                         <IoMdSearch className="h-5 w-5" />
                     </button>
                 }
@@ -29,4 +29,6 @@ export default function SearchForm() {
             />
         </form>
     );
-}
+};
+
+export default SearchForm;

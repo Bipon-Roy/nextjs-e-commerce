@@ -9,7 +9,6 @@ const startDb = async () => {
         if (!connection) {
             connection = await mongoose.connect(uri);
         }
-        console.log("Connected to DB");
 
         return connection;
     } catch (error) {

@@ -1,6 +1,7 @@
 "use client";
-import { HiPencil } from "react-icons/hi";
 
+import { useState } from "react";
+import { HiPencil } from "react-icons/hi";
 import {
     Typography,
     CardBody,
@@ -14,6 +15,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import SearchForm from "@components/SearchForm";
 import { FaPlus } from "react-icons/fa";
+import { formatPrice } from "@/utils/helper";
 
 export interface Product {
     id: string;
@@ -29,15 +31,6 @@ export interface Product {
     quantity: number;
 }
 
-const formatPrice = (amount: number) => {
-    const formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "INR",
-    });
-
-    return formatter.format(amount);
-};
-
 const TABLE_HEAD = ["Product", "MRP", "Sale Price", "Quantity", "Category", "Edit"];
 
 interface Props {
@@ -50,6 +43,7 @@ interface Props {
 const ProductTable = (props: Props) => {
     const router = useRouter();
     const { products = [], currentPageNo, hasMore, showPageNavigator = true } = props;
+    const [filteredProducts, setFilteredProducts] = useState(products);
 
     const handleOnPrevPress = () => {
         const prevPage = currentPageNo - 1;
@@ -60,7 +54,14 @@ const ProductTable = (props: Props) => {
         const nextPage = currentPageNo + 1;
         router.push(`/products?page=${nextPage}`);
     };
-    console.log(hasMore);
+
+    const handleSearch = (query: string) => {
+        const lowercasedQuery = query.toLowerCase();
+        const filtered = products.filter((product) =>
+            product.title.toLowerCase().includes(lowercasedQuery)
+        );
+        setFilteredProducts(filtered);
+    };
 
     return (
         <div className="py-5">
@@ -71,7 +72,7 @@ const ProductTable = (props: Props) => {
                     </Typography>
                 </div>
                 <div className="flex w-full shrink-0 gap-2 md:w-max">
-                    <SearchForm />
+                    <SearchForm onSearch={handleSearch} />
                     <Link
                         href="/products/create"
                         className="select-none font-bold text-center uppercase transition-all text-xs py-2 px-4 rounded-lg bg-blue-500 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none flex items-center gap-3"
@@ -102,9 +103,9 @@ const ProductTable = (props: Props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products.map((item, index) => {
+                        {filteredProducts.map((item, index) => {
                             const { id, thumbnail, title, price, quantity, category } = item;
-                            const isLast = index === products.length - 1;
+                            const isLast = index === filteredProducts.length - 1;
                             const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
 
                             return (
