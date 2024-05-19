@@ -9,6 +9,7 @@ import { FaRegUserCircle, FaShoppingBag } from "react-icons/fa";
 import useAuth from "@hooks/useAuth";
 import { useEffect, useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
+import NavSearchForm from "../NavSearchForm";
 interface Props {
     cartItemsCount: number;
     avatar?: string;
@@ -47,6 +48,9 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                     <Link href="/" className="mr-4 cursor-pointer py-1.5  font-semibold">
                         Next eShop
                     </Link>
+                    <div className="md:w-96 w-full md:mx-0 mx-4 ">
+                        <NavSearchForm submitTo="/search?query=" />
+                    </div>
 
                     <div className="hidden lg:flex gap-2 items-center">
                         <CartIcon cartItems={cartItemsCount} />
