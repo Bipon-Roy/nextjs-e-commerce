@@ -46,9 +46,9 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
             >
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Link href="/" className="mr-4 cursor-pointer py-1.5  font-semibold">
-                        Next eShop
+                        eShop
                     </Link>
-                    <div className="md:w-96 w-full md:mx-0 mx-4 ">
+                    <div className="w-full md:w-96 mx-4 md:mx-0 ">
                         <NavSearchForm submitTo="/search?query=" />
                     </div>
 

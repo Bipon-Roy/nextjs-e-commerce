@@ -30,7 +30,7 @@ const NavSearchForm = ({ submitTo }: Props) => {
                         <IoMdSearch className="h-5 w-5" />
                     </button>
                 }
-                value={query || searchQuery}
+                value={query}
                 onChange={({ target }) => setQuery(target.value)}
             />
         </form>
