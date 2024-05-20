@@ -1,5 +1,5 @@
 import { Input } from "@material-tailwind/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -13,6 +13,11 @@ const NavSearchForm = ({ submitTo }: Props) => {
     const params = useSearchParams();
     const searchQuery = params.get("query") || "";
 
+    //keep the query text in search form
+    useEffect(() => {
+        setQuery(searchQuery);
+    }, [searchQuery]);
+
     return (
         <form
             onSubmit={(e) => {
@@ -24,7 +29,7 @@ const NavSearchForm = ({ submitTo }: Props) => {
         >
             <Input
                 crossOrigin={undefined}
-                label="Search"
+                label="Search Product"
                 icon={
                     <button>
                         <IoMdSearch className="h-5 w-5" />

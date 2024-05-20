@@ -1,35 +1,64 @@
 "use client";
 import { Radio } from "@material-tailwind/react";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+
+import { useRouter, useSearchParams } from "next/navigation";
 import { FaStar } from "react-icons/fa6";
+
 interface Props {
     children: ReactNode;
 }
+
 const SearchFilterMenu = ({ children }: Props) => {
     const [rating, setRating] = useState([0, 5]);
+    const [priceFilter, setPriceFilter] = useState("asc");
+    const [applyRatingFilter, setApplyRatingFilter] = useState(false);
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
+    const query = searchParams.get("query");
+    const priceSort = searchParams.get("priceSort");
+
+    const lowToHeight = priceSort === "asc";
+    const heightToLow = priceSort === "desc";
+
+    useEffect(() => {
+        let url = `/search?query=${query}`;
+
+        if (applyRatingFilter) {
+            url += `&minRating=${rating[0]}&maxRating=${rating[1]}`;
+        }
+
+        url += `&priceSort=${priceFilter}`;
+        router.push(url);
+    }, [rating, priceFilter, applyRatingFilter, query, router]);
+
     return (
-        <div className="md:flex gap-3 md:gap-5 py-4 space-y-4">
-            <div className="md:border-b-0 border-b p-4 md:space-y-4 md:block flex space-x-8 md:space-x-0 md:w-64 h-screen lg:sticky lg:top-0">
+        <div className="md:flex py-4 space-y-4">
+            <div className="md:border-b-0 border-b p-4 md:space-y-4 md:block flex space-x-8 md:space-x-0 lg:w-64 h-screen lg:sticky lg:top-0 z-10">
                 <div>
                     <p className="font-semibold">Price</p>
 
                     <Radio
                         crossOrigin={undefined}
                         name="type"
-                        label="Low to heigh"
-                        defaultChecked
+                        label="Low to high"
+                        defaultChecked={lowToHeight}
                         color="amber"
-                        className=" w-4 h-4"
+                        className="w-4 h-4"
+                        onChange={() => setPriceFilter("asc")}
                     />
 
                     <Radio
                         className="w-4 h-4"
                         crossOrigin={undefined}
                         name="type"
-                        label="Heigh to low"
+                        label="High to low"
                         color="amber"
+                        defaultChecked={heightToLow}
+                        onChange={() => setPriceFilter("desc")}
                     />
                 </div>
 
@@ -55,21 +84,32 @@ const SearchFilterMenu = ({ children }: Props) => {
                                 </span>
                             ),
                         }}
+                        value={rating}
                         onChange={(value) => {
+                            setApplyRatingFilter(true);
                             setRating(value as number[]);
                         }}
                     />
                 </div>
 
                 <div>
-                    <button className="text-blue-gray-600 text-center w-full p-1 border rounded mt-6">
-                        Apply Filter
+                    <button
+                        onClick={() => {
+                            setApplyRatingFilter(false);
+                            setRating([0, 5]);
+                            router.push("/search?query=" + query);
+                        }}
+                        type="button"
+                        className="text-blue-gray-600 text-center w-full p-1 border rounded mt-6"
+                    >
+                        Clear Filter
                     </button>
                 </div>
             </div>
 
-            <div className="flex-1">{children}</div>
+            <div className="p-4 flex-1">{children}</div>
         </div>
     );
 };
+
 export default SearchFilterMenu;
