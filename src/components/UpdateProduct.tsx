@@ -1,6 +1,6 @@
 "use client";
 
-import { NewProductInfo, ProductResponse, ProductToUpdate } from "@/types";
+import { NewProductInfo, ProductToUpdate, SingleProductResponse } from "@/types";
 import ProductForm, { InitialValue } from "./ProductForm";
 import {
     removeAndUpdateProductImage,
@@ -14,7 +14,7 @@ import { extractImagePublicId, uploadImage } from "@/utils/helper";
 import { useRouter } from "next/navigation";
 
 interface Props {
-    product: ProductResponse;
+    product: SingleProductResponse;
 }
 const UpdateProduct = ({ product }: Props) => {
     const router = useRouter();
