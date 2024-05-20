@@ -6,8 +6,11 @@ import CartCounter from "./CartItemCounter";
 import { useParams, useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
 import { toast } from "react-toastify";
-
-const BuyProduct = () => {
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+interface Props {
+    wishlist?: boolean;
+}
+const BuyProduct = ({ wishlist }: Props) => {
     const [quantity, setQuantity] = useState(1);
     const [isPending, startTransition] = useTransition();
     const { product } = useParams();
@@ -50,15 +53,26 @@ const BuyProduct = () => {
             />
 
             <Button
-                variant="outlined"
+                className="rounded-md bg-blue-500 "
                 onClick={() => startTransition(async () => await addToCart())}
                 placeholder={undefined}
                 disabled={isPending}
             >
                 Add to Cart
             </Button>
-            <Button placeholder={undefined} className="rounded-md bg-orange-600">
+            <Button placeholder={undefined} className=" bg-orange-500 rounded-3xl">
                 Buy Now
+            </Button>
+            <Button
+                variant="text"
+                placeholder={undefined}
+                className="rounded hover:bg-red-500/10 text-red-500 p-2"
+            >
+                {wishlist ? (
+                    <FaHeart className="w-5 h-5 text-red-600" />
+                ) : (
+                    <FaRegHeart className="w-5 h-5" />
+                )}
             </Button>
         </div>
     );
