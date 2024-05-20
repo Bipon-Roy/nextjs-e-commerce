@@ -148,13 +148,15 @@ const OrderedItemsCard = ({ order, disableUpdate = true }: Props) => {
                                     />
                                     <div>
                                         <p className="font-semibold">{product.title}</p>
-                                        <p className="text-sm">Price: {product.price}</p>
+                                        <p className="text-sm">
+                                            Price: {formatPrice(product.price)}
+                                        </p>
                                         <p className="text-sm">Qty: {product.qty}</p>
                                     </div>
                                 </div>
                             </td>
 
-                            <td className="py-2 px-4">Rs. {product.totalPrice}</td>
+                            <td className="py-2 px-4"> {formatPrice(product.totalPrice)}</td>
                         </tr>
                     ))}
                 </tbody>

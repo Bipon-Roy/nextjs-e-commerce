@@ -100,7 +100,7 @@ const ProductForm = (props: Props) => {
         setProductImagesSource([...newImagesSource]);
     };
 
-    const getBtnTitle = () => {
+    const dynamicBtnTitle = () => {
         if (isForUpdate) return isPending ? "Updating" : "Update";
         return isPending ? "Creating" : "Create";
     };
@@ -279,7 +279,7 @@ const ProductForm = (props: Props) => {
                 </div>
 
                 <Button placeholder={undefined} color="blue" disabled={isPending} type="submit">
-                    {getBtnTitle()}
+                    {dynamicBtnTitle()}
                 </Button>
             </form>
         </div>
