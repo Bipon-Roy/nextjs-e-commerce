@@ -33,7 +33,7 @@ const SingleProductDetails = ({
                 <ProductImageSlider images={images} />
             </div>
 
-            <div className="flex-1 space-y-2 md:space-y-4 ">
+            <div className="flex-1 space-y-2 md:space-y-4 relative">
                 <h1 className="md:text-3xl text-xl font-semibold">{title}</h1>
                 <p>{description}</p>
                 {rating ? <ReviewRatings value={parseFloat(rating.toFixed(1))} /> : null}

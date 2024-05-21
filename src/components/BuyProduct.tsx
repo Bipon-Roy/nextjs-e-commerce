@@ -83,19 +83,21 @@ const BuyProduct = ({ wishlist }: Props) => {
             <Button placeholder={undefined} className=" bg-orange-500 rounded-3xl">
                 Buy Now
             </Button>
-            <Button
-                onClick={() => startTransition(async () => await handleWishlist())}
-                variant="text"
-                placeholder={undefined}
-                disabled={isPending}
-                className="rounded hover:bg-red-500/10 text-red-500 p-2"
-            >
-                {wishlist ? (
-                    <FaHeart className="w-5 h-5 text-red-600" />
-                ) : (
-                    <FaRegHeart className="w-5 h-5" />
-                )}
-            </Button>
+            <div className="absolute top-0 right-0">
+                <Button
+                    onClick={() => startTransition(async () => await handleWishlist())}
+                    variant="text"
+                    placeholder={undefined}
+                    disabled={isPending}
+                    className="rounded hover:bg-red-500/10 text-red-500 p-2"
+                >
+                    {wishlist ? (
+                        <FaHeart className="w-5 h-5 text-red-600" />
+                    ) : (
+                        <FaRegHeart className="w-5 h-5" />
+                    )}
+                </Button>
+            </div>
         </div>
     );
 };

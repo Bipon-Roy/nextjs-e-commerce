@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { HiShoppingBag } from "react-icons/hi2";
 import { Navbar, IconButton, Spinner } from "@material-tailwind/react";
 import { FaCircleXmark, FaRegHeart } from "react-icons/fa6";
 import ProfileMenu from "./ProfileMenu";
@@ -10,6 +11,7 @@ import useAuth from "@hooks/useAuth";
 import { useEffect, useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
 import NavSearchForm from "../NavSearchForm";
+
 interface Props {
     cartItemsCount: number;
     avatar?: string;
@@ -50,6 +52,12 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                 shadow={false}
             >
                 <div className="flex items-center justify-between text-blue-gray-900">
+                    <Link className="flex items-center gap-1" href="/">
+                        <HiShoppingBag className="w-10 h-10 text-orange-600" />
+                        <p className="text-xs font-semibold mt-[6px]">
+                            Next.js <span className="block">E-commerce</span>
+                        </p>
+                    </Link>
                     <div className="w-full md:w-96 mx-4 md:mx-0 ">
                         <NavSearchForm submitTo="/search?query=" />
                     </div>
