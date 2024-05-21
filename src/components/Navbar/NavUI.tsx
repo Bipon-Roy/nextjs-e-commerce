@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Navbar, IconButton, Spinner } from "@material-tailwind/react";
-import { FaCircleXmark } from "react-icons/fa6";
+import { FaCircleXmark, FaRegHeart } from "react-icons/fa6";
 import ProfileMenu from "./ProfileMenu";
 import MobileNav from "./MobileNav";
 import CartIcon from "./CartIcon";
@@ -25,6 +25,11 @@ export const menuItems = [
         href: "/profile/orders",
         icon: <FaShoppingBag className="h-4 w-4" />,
         label: "Orders",
+    },
+    {
+        href: "/profile/wishlist",
+        icon: <FaRegHeart className="h-4 w-4" />,
+        label: "Wishlist",
     },
 ];
 

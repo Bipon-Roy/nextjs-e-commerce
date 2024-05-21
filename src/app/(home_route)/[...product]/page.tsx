@@ -1,6 +1,8 @@
 import startDb from "@/app/lib/db";
 import ProductModel from "@/app/models/productModel";
 import ReviewModel from "@/app/models/reviewModel";
+import WishlistModel from "@/app/models/wishlistModel";
+import { auth } from "@/auth";
 import GridContainer from "@/components/GridContainer";
 import ProductCard from "@/components/ProductCard";
 import ProductReviews from "@/components/ProductReviews";
@@ -33,6 +35,18 @@ const fetchProductDetails = async (id: string) => {
     const productInfo = await ProductModel.findById(id);
     if (!productInfo) return redirect("404");
 
+    let isWishlist = false;
+    const session = await auth();
+
+    if (session?.user) {
+        const wishlist = await WishlistModel.findOne({
+            user: session.user.id,
+            products: productInfo._id,
+        });
+
+        isWishlist = wishlist ? true : false;
+    }
+
     return JSON.stringify({
         id: productInfo._id.toString(),
         title: productInfo.title,
@@ -44,6 +58,7 @@ const fetchProductDetails = async (id: string) => {
         sale: productInfo.sale,
         rating: productInfo.rating,
         outOfStock: productInfo.quantity <= 0,
+        isWishlist,
     });
 };
 
@@ -110,6 +125,7 @@ const ProductDetails = async ({ params }: Props) => {
                 images={productImages}
                 rating={productInfo.rating}
                 outOfStock={productInfo.outOfStock}
+                isWishlist={productInfo.isWishlist}
             />
 
             <div className="py-4 space-y-4 mt-3">

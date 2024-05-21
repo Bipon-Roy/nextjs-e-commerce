@@ -47,7 +47,7 @@ const ProductCard = ({ product }: Props) => {
         if (!res.ok && error) {
             toast.error(error);
         } else {
-            toast.success("Item added to cart.");
+            toast.success("Product added to cart.");
         }
         router.refresh();
     };

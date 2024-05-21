@@ -25,6 +25,10 @@ export const POST = async (req: Request) => {
             await WishlistModel.findByIdAndUpdate(wishlist._id, {
                 $pull: { products: productId },
             });
+            return NextResponse.json(
+                { success: true, message: "Product removed from wishlist" },
+                { status: 201 }
+            );
         } else {
             await WishlistModel.findOneAndUpdate(
                 {

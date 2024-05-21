@@ -44,6 +44,26 @@ const BuyProduct = ({ wishlist }: Props) => {
         }
         router.refresh();
     };
+
+    const handleWishlist = async () => {
+        if (!productId) return;
+
+        if (!loggedIn) return router.push("/auth/signin");
+
+        const res = await fetch("/api/product/wishlist", {
+            method: "POST",
+            body: JSON.stringify({ productId }),
+        });
+
+        const { error, message } = await res.json();
+
+        if (!res.ok && error) {
+            toast.error(error);
+        } else {
+            toast.success(message);
+        }
+        router.refresh();
+    };
     return (
         <div className="flex items-center space-x-4">
             <CartCounter
@@ -64,8 +84,10 @@ const BuyProduct = ({ wishlist }: Props) => {
                 Buy Now
             </Button>
             <Button
+                onClick={() => startTransition(async () => await handleWishlist())}
                 variant="text"
                 placeholder={undefined}
+                disabled={isPending}
                 className="rounded hover:bg-red-500/10 text-red-500 p-2"
             >
                 {wishlist ? (

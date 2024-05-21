@@ -13,6 +13,7 @@ interface Props {
     sale: number;
     rating: number;
     outOfStock: boolean;
+    isWishlist: boolean;
 }
 
 const SingleProductDetails = ({
@@ -24,6 +25,7 @@ const SingleProductDetails = ({
     sale,
     rating,
     outOfStock,
+    isWishlist,
 }: Props) => {
     return (
         <div className="flex lg:flex-row flex-col md:gap-4 gap-2 mt-6">
@@ -55,7 +57,7 @@ const SingleProductDetails = ({
                     {outOfStock ? (
                         <p className="font-semibold text-red-500 md:text-lg">Out of stock</p>
                     ) : (
-                        <BuyProduct />
+                        <BuyProduct wishlist={isWishlist} />
                     )}
                 </div>
             </div>
