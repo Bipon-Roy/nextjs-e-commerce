@@ -6,18 +6,12 @@ import { Card, CardBody, Typography } from "@material-tailwind/react";
 import Link from "next/link";
 import { FaLaptop } from "react-icons/fa";
 import categories from "@/utils/ProductCategories";
+import SectionHeading from "./SectionHeading";
 
 const ProductMenu = () => {
     return (
         <>
-            <Typography
-                placeholder={undefined}
-                variant="h4"
-                color="blue-gray"
-                className="text-center"
-            >
-                Product <span className="text-orange-400">Categories</span>
-            </Typography>
+            <SectionHeading title="Product" subTitle="Categories" />
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {categories.map((c) => (
                     <Card key={c} placeholder={undefined} className="border shadow-none">

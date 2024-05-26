@@ -5,6 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import FeaturedProductModel from "@models/featuredProduct";
 import HeroSlider from "@/components/HeroSlider";
 import ProductMenu from "@/components/ProductMenu";
+import SectionHeading from "@/components/SectionHeading";
 
 interface ProductResponse {
     id: string;
@@ -53,11 +54,18 @@ export default async function Home() {
     const parseProduct = JSON.parse(products) as ProductResponse[];
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-6 pb-10">
             <HeroSlider products={featuredProducts} />
-            <ProductMenu />
+            <SectionHeading title="Featured" subTitle="Products" />
             <GridView>
-                {parseProduct.map((product) => {
+                {parseProduct.slice(0, 5).map((product) => {
+                    return <ProductCard key={product.id} product={product} />;
+                })}
+            </GridView>
+            <ProductMenu />
+            <SectionHeading title="Trending" subTitle="Now" />
+            <GridView>
+                {parseProduct.slice(5, 10).map((product) => {
                     return <ProductCard key={product.id} product={product} />;
                 })}
             </GridView>
