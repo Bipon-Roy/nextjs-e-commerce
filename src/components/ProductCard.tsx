@@ -16,7 +16,7 @@ import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useTransition } from "react";
-import { FaEye } from "react-icons/fa";
+
 interface Props {
     product: {
         id: string;
@@ -43,11 +43,11 @@ const ProductCard = ({ product }: Props) => {
             body: JSON.stringify({ productId: product.id, quantity: 1 }),
         });
 
-        const { error } = await res.json();
+        const { error, message } = await res.json();
         if (!res.ok && error) {
             toast.error(error);
         } else {
-            toast.success("Product added to cart.");
+            toast.success(message);
         }
         router.refresh();
     };
@@ -70,17 +70,10 @@ const ProductCard = ({ product }: Props) => {
                 </div>
             </CardHeader>
             <CardBody placeholder={undefined} className="flex-1 px-3 md:px-4 py-2">
-                <div className="flex gap-2 items-center mb-2">
-                    <h3 className="font-medium text-blue-gray-800 text-sm">
-                        {truncate(product.title, 50)}
-                    </h3>
-                    <Link
-                        className="mt-[2px] text-blue-500"
-                        href={`/${product.title}/${product.id}`}
-                    >
-                        <FaEye className="w-5 h-5" />
-                    </Link>
-                </div>
+                <h3 className="font-medium text-blue-gray-800 text-sm">
+                    {truncate(product.title, 50)}
+                </h3>
+
                 <div className="flex items-center space-x-2 mb-2">
                     <Typography
                         placeholder={undefined}
@@ -94,7 +87,10 @@ const ProductCard = ({ product }: Props) => {
                 </div>
             </CardBody>
 
-            <CardFooter placeholder={undefined} className="px-3 md:px-4 pt-1 md:flex md:gap-3">
+            <CardFooter
+                placeholder={undefined}
+                className="px-3 md:px-4 pt-1 md:grid md:grid-cols-2 md:gap-3"
+            >
                 <Button
                     size="sm"
                     placeholder={undefined}
@@ -105,15 +101,16 @@ const ProductCard = ({ product }: Props) => {
                 >
                     Add to Cart
                 </Button>
-                <Button
-                    disabled={isPending}
-                    size="sm"
-                    placeholder={undefined}
-                    fullWidth={true}
-                    className="bg-orange-500/20 text-orange-700 shadow-none p-2 rounded font-semibold capitalize hover:shadow"
-                >
-                    Buy Now
-                </Button>
+                <Link href={`/${product.title}/${product.id}`}>
+                    <Button
+                        size="sm"
+                        placeholder={undefined}
+                        fullWidth={true}
+                        className="bg-orange-500/20 text-orange-700 shadow-none p-2 rounded font-semibold capitalize hover:shadow"
+                    >
+                        See Details
+                    </Button>
+                </Link>
             </CardFooter>
         </Card>
     );

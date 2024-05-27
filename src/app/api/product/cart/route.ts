@@ -16,7 +16,10 @@ export const POST = async (req: Request) => {
 
         //throw error while there is no product on the id
         if (!isValidObjectId(productId) || isNaN(quantity)) {
-            NextResponse.json({ error: "Invalid request" }, { status: 401 });
+            NextResponse.json(
+                { error: "Invalid request", message: "Invalid Product Id or Quantity" },
+                { status: 401 }
+            );
         }
 
         await startDb();
@@ -28,7 +31,10 @@ export const POST = async (req: Request) => {
                 userId: user.id,
                 items: [{ productId, quantity }],
             });
-            return NextResponse.json({ success: true });
+            return NextResponse.json(
+                { success: true, message: "Product added to cart!" },
+                { status: 201 }
+            );
         }
 
         const existingItem = cart.items.find((item) => item.productId.toString() === productId);
@@ -47,7 +53,10 @@ export const POST = async (req: Request) => {
 
         await cart.save();
 
-        return NextResponse.json({ success: true });
+        return NextResponse.json(
+            { success: true, message: "Product added to cart!" },
+            { status: 201 }
+        );
     } catch (error) {
         return NextResponse.json({ error: (error as any).message }, { status: 500 });
     }
