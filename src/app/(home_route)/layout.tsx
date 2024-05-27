@@ -1,7 +1,6 @@
-import { auth } from "@/auth";
+import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 
-import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
 interface Props {
@@ -12,6 +11,7 @@ const HomeLayout = async ({ children }: Props) => {
         <>
             <Navbar />
             <div className="max-w-7xl mx-auto px-4 lg:px-0">{children}</div>
+            <Footer />
         </>
     );
 };

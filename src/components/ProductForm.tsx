@@ -138,7 +138,9 @@ const ProductForm = (props: Props) => {
 
     return (
         <div className="p-4 max-w-6xl mx-auto">
-            <h1 className="mb-2 text-xl">Add new product</h1>
+            <h1 className="mb-4 text-xl font-medium">
+                {isForUpdate ? "Update Product" : "Add new product"}
+            </h1>
 
             <form
                 action={() =>
@@ -148,24 +150,6 @@ const ProductForm = (props: Props) => {
                 }
                 className="space-y-6"
             >
-                <div className="space-y-4">
-                    <h3>Poster</h3>
-                    <ImageSelector
-                        id="thumb"
-                        images={thumbnailSource}
-                        onChange={onThumbnailChange}
-                    />
-
-                    <h3>Images</h3>
-                    <ImageSelector
-                        multiple
-                        id="images"
-                        images={productImagesSource}
-                        onRemove={removeImage}
-                        onChange={onImagesChange}
-                    />
-                </div>
-
                 <Input
                     crossOrigin={undefined}
                     label="Title"
@@ -183,6 +167,23 @@ const ProductForm = (props: Props) => {
                         setProductInfo({ ...productInfo, description: target.value })
                     }
                 />
+                <div className="space-y-4">
+                    <h3>Poster</h3>
+                    <ImageSelector
+                        id="thumb"
+                        images={thumbnailSource}
+                        onChange={onThumbnailChange}
+                    />
+
+                    <h3>Images</h3>
+                    <ImageSelector
+                        multiple
+                        id="images"
+                        images={productImagesSource}
+                        onRemove={removeImage}
+                        onChange={onImagesChange}
+                    />
+                </div>
 
                 <Select
                     placeholder={undefined}
@@ -242,7 +243,7 @@ const ProductForm = (props: Props) => {
                 </div>
 
                 <div className="space-y-4">
-                    <h3>Bullet points</h3>
+                    <h3>Specifications</h3>
                     {fields.map((field, index) => (
                         <div key={index} className="flex items-center">
                             <Input
@@ -261,7 +262,7 @@ const ProductForm = (props: Props) => {
                                     type="button"
                                     className="ml-2"
                                 >
-                                    <BiSolidTrashAlt className="w-5 h-5" />
+                                    <BiSolidTrashAlt className="w-5 h-5 text-red-600" />
                                 </button>
                             ) : null}
                         </div>
