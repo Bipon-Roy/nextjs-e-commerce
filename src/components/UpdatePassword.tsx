@@ -54,6 +54,7 @@ const UpdatePassword = ({ token, userId }: Props) => {
     return (
         <FormContainer title="Reset password" onSubmit={handleSubmit}>
             <Input
+                color="blue"
                 crossOrigin={undefined}
                 name="password1"
                 label="Password"
@@ -67,6 +68,7 @@ const UpdatePassword = ({ token, userId }: Props) => {
                 {errors.password1 && touched.password1 && errors.password1}
             </span>
             <Input
+                color="blue"
                 crossOrigin={undefined}
                 name="password2"
                 label="Confirm Password"
@@ -83,6 +85,7 @@ const UpdatePassword = ({ token, userId }: Props) => {
                 placeholder={undefined}
                 type="submit"
                 className="w-full"
+                color="light-blue"
                 disabled={isSubmitting}
             >
                 Reset Password

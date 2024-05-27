@@ -13,7 +13,7 @@ const NavSearchForm = ({ submitTo }: Props) => {
     const params = useSearchParams();
     const searchQuery = params.get("query") || "";
 
-    //keep the query text in search form
+    //keeping the query in search form
     useEffect(() => {
         setQuery(searchQuery);
     }, [searchQuery]);
@@ -29,6 +29,7 @@ const NavSearchForm = ({ submitTo }: Props) => {
         >
             <Input
                 crossOrigin={undefined}
+                color="orange"
                 label="Search Product"
                 icon={
                     <button>

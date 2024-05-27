@@ -53,6 +53,7 @@ const ForgetPassword = () => {
         <FormContainer title="Create New Account" onSubmit={handleSubmit}>
             <Input
                 crossOrigin={undefined}
+                color="blue"
                 name="email"
                 label="Email"
                 value={email}
@@ -66,12 +67,15 @@ const ForgetPassword = () => {
                 type="submit"
                 className="w-full"
                 disabled={isSubmitting}
+                color="light-blue"
             >
                 Send Link
             </Button>
             <div className="flex items-center justify-between">
-                <Link href="/auth/signin">Sign in</Link>
-                <Link href="/auth/signup">Sign up</Link>
+                <p className="text-sm">Remember Password?</p>
+                <Link className="text-sm underline text-blue-400" href="/auth/signin">
+                    Sign in
+                </Link>
             </div>
         </FormContainer>
     );

@@ -5,7 +5,6 @@ import { MdDashboardCustomize } from "react-icons/md";
 import { FaShoppingCart, FaShoppingBag, FaHome } from "react-icons/fa";
 import SignOutBtn from "./SignOutBtn";
 import { HiSparkles } from "react-icons/hi2";
-import { HiCurrencyDollar } from "react-icons/hi";
 import { IoMdPower } from "react-icons/io";
 import { usePathname } from "next/navigation";
 interface Props {
@@ -16,7 +15,7 @@ const AdminSidebar = ({ children }: Props) => {
     const pathname = usePathname();
     return (
         <div className="flex">
-            <div className="flex flex-col justify-between bg-gray-100 h-screen sticky top-0 w-64 p-10 font-medium">
+            <div className="flex flex-col justify-between bg-amber-300/80 h-screen sticky top-0 w-64 p-10 font-medium">
                 <ul className="space-y-5">
                     <li>
                         <Link
@@ -55,19 +54,6 @@ const AdminSidebar = ({ children }: Props) => {
                         >
                             <HiSparkles className="w-4 h-4" />
                             <span>Featured</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            className={`flex items-center gap-1 ${
-                                pathname === "/sales"
-                                    ? "pr-4 pl-2 py-1 bg-blue-500 text-white rounded"
-                                    : ""
-                            }`}
-                            href="/sales"
-                        >
-                            <HiCurrencyDollar className="w-4 h-4" />
-                            <span>Sales</span>
                         </Link>
                     </li>
                     <li>

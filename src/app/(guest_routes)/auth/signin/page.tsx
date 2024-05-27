@@ -51,6 +51,7 @@ const SignIn = () => {
                 crossOrigin={undefined}
                 name="email"
                 label="Email"
+                color="blue"
                 value={email}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -62,6 +63,7 @@ const SignIn = () => {
                 crossOrigin={undefined}
                 name="password"
                 label="Password"
+                color="blue"
                 value={password}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -71,9 +73,15 @@ const SignIn = () => {
             <span className="text-red-500">
                 {errors.password && touched.password && errors.password}
             </span>
-
+            <div className="flex items-center justify-between">
+                <p className="text-sm">Forget password?</p>
+                <Link className="text-sm underline text-blue-400" href="/auth/forget_password">
+                    Reset Password
+                </Link>
+            </div>
             <Button
                 type="submit"
+                color="light-blue"
                 className="w-full"
                 disabled={isSubmitting}
                 placeholder={undefined}
@@ -81,8 +89,10 @@ const SignIn = () => {
                 Sign in
             </Button>
             <div className="flex items-center justify-between">
-                <Link href="/auth/signup">Sign up</Link>
-                <Link href="/auth/forget_password">Forget password</Link>
+                <p className="text-sm">New Here?</p>
+                <Link className="text-sm underline text-blue-400" href="/auth/signup">
+                    Sign up
+                </Link>
             </div>
         </AuthFormContainer>
     );

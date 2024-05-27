@@ -55,6 +55,7 @@ const ProfileForm = ({ id, name, avatar, email }: Props) => {
                 crossOrigin={undefined}
                 onChange={({ target }) => setUserName(target.value)}
                 label="Name"
+                color="blue"
                 value={userName}
                 className="font-semibold"
             />

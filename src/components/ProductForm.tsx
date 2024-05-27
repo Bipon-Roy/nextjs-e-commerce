@@ -101,8 +101,8 @@ const ProductForm = (props: Props) => {
     };
 
     const dynamicBtnTitle = () => {
-        if (isForUpdate) return isPending ? "Updating" : "Update";
-        return isPending ? "Creating" : "Create";
+        if (isForUpdate) return isPending ? "Updating" : "Update Product";
+        return isPending ? "Creating" : "Create Product";
     };
 
     useEffect(() => {
@@ -151,6 +151,7 @@ const ProductForm = (props: Props) => {
                 className="space-y-6"
             >
                 <Input
+                    color="orange"
                     crossOrigin={undefined}
                     label="Title"
                     value={productInfo.title}
@@ -160,6 +161,7 @@ const ProductForm = (props: Props) => {
                 />
 
                 <Textarea
+                    color="orange"
                     className="h-52"
                     label="Description"
                     value={productInfo.description}
@@ -186,6 +188,7 @@ const ProductForm = (props: Props) => {
                 </div>
 
                 <Select
+                    color="orange"
                     placeholder={undefined}
                     onChange={(category) => {
                         if (category) setProductInfo({ ...productInfo, category });
@@ -205,6 +208,7 @@ const ProductForm = (props: Props) => {
                         <h3>Price</h3>
 
                         <Input
+                            color="orange"
                             crossOrigin={undefined}
                             value={productInfo.mrp}
                             label="MRP"
@@ -215,6 +219,7 @@ const ProductForm = (props: Props) => {
                             className="mb-4"
                         />
                         <Input
+                            color="orange"
                             crossOrigin={undefined}
                             value={productInfo.salePrice}
                             label="Sale Price"
@@ -230,6 +235,7 @@ const ProductForm = (props: Props) => {
                         <h3>Stock</h3>
 
                         <Input
+                            color="orange"
                             crossOrigin={undefined}
                             value={productInfo.quantity}
                             label="Qty"
@@ -247,6 +253,7 @@ const ProductForm = (props: Props) => {
                     {fields.map((field, index) => (
                         <div key={index} className="flex items-center">
                             <Input
+                                color="orange"
                                 crossOrigin={undefined}
                                 type="text"
                                 value={field}
@@ -270,16 +277,21 @@ const ProductForm = (props: Props) => {
 
                     <button
                         disabled={isPending}
-                        type="button"
                         onClick={addMoreBulletPoints}
-                        className="flex items-center space-x-1 text-gray-800 ml-auto"
+                        className="flex items-center gap-1 ml-auto px-4 py-1 bg-orange-500/10 text-orange-500 font-semibold"
                     >
                         <FaPlus className="w-4 h-4" />
                         <span>Add more</span>
                     </button>
                 </div>
 
-                <Button placeholder={undefined} color="blue" disabled={isPending} type="submit">
+                <Button
+                    placeholder={undefined}
+                    color="blue"
+                    className="w-full"
+                    disabled={isPending}
+                    type="submit"
+                >
                     {dynamicBtnTitle()}
                 </Button>
             </form>

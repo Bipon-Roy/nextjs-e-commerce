@@ -61,11 +61,11 @@ const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProp
 
     return (
         <div className="mt-10">
-            <table className="min-w-full divide-y divide-gray-200">
-                <tbody className="bg-white divide-y divide-gray-200">
+            <table className="min-w-full">
+                <tbody className="bg-white">
                     {products.map((product) => (
-                        <tr key={product.id}>
-                            <td className="py-4">
+                        <tr className="border-b" key={product.id}>
+                            <td className="p-4">
                                 <Image
                                     src={product.thumbnail}
                                     alt={product.title}
@@ -73,11 +73,9 @@ const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProp
                                     width={50}
                                 />
                             </td>
-                            <td className="py-4">{product.title}</td>
-                            <td className="py-4 font-semibold">
-                                {formatPrice(product.totalPrice)}
-                            </td>
-                            <td className="py-4">
+                            <td className="p-4">{product.title}</td>
+                            <td className="p-4 font-semibold">{formatPrice(product.totalPrice)}</td>
+                            <td className="p-4">
                                 <CartItemCounter
                                     onIncrement={() => updateCart(product.id, 1)}
                                     onDecrement={() => updateCart(product.id, -1)}
@@ -85,7 +83,7 @@ const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProp
                                     disabled={loading}
                                 />
                             </td>
-                            <td className="py-4 text-right">
+                            <td className="p-4 text-right">
                                 <button
                                     onClick={() => updateCart(product.id, -product.qty)}
                                     disabled={loading}
@@ -100,7 +98,7 @@ const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProp
                 </tbody>
             </table>
 
-            <div className="flex flex-col justify-end items-end space-y-4">
+            <div className="flex flex-col justify-end items-end space-y-4 mt-4">
                 <div className="flex justify-end space-x-4 text-blue-gray-800">
                     <p className="font-semibold text-2xl">Total</p>
                     <div>

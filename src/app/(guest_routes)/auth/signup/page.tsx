@@ -91,18 +91,26 @@ const SignUp = () => {
             <span className=" text-red-500">
                 {errors.password && touched.password && errors.password}
             </span>
-
+            <div className="flex items-center justify-between">
+                <p className="text-sm">Forget password?</p>
+                <Link className="text-sm underline text-blue-400" href="/auth/forget_password">
+                    Reset Password
+                </Link>
+            </div>
             <Button
                 disabled={isSubmitting}
                 type="submit"
                 className="w-full"
                 placeholder={undefined}
+                color="light-blue"
             >
                 Sign up
             </Button>
             <div className="flex items-center justify-between">
-                <Link href="/auth/signin">Sign in</Link>
-                <Link href="/auth/forget-password">Forget password</Link>
+                <p className="text-sm">Have an account?</p>
+                <Link className="text-sm underline text-blue-400" href="/auth/signin">
+                    Sign in
+                </Link>
             </div>
         </AuthFormContainer>
     );

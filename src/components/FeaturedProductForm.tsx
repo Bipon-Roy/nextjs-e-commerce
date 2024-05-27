@@ -171,19 +171,19 @@ const FeaturedProductForm = ({ initialValue }: Props) => {
                     onChange={handleChange}
                     hidden
                 />
-                <div className="h-[380px] w-full flex flex-col items-center justify-center border border-dashed border-blue-gray-400 rounded cursor-pointer relative">
+                <div className="h-[380px] w-full flex flex-col items-center justify-center border-2 border-dashed border-orange-400 rounded cursor-pointer relative">
                     {poster ? (
                         <Image alt="banner" src={poster || initialValue?.banner} fill />
                     ) : (
                         <>
-                            <span>Select Banner</span>
-                            <span>1140 x 380</span>
+                            <span>Select Hero Image</span>
                         </>
                     )}
                 </div>
             </label>
             <Input
                 crossOrigin={undefined}
+                color="orange"
                 label="Title"
                 name="title"
                 value={title}
@@ -191,6 +191,7 @@ const FeaturedProductForm = ({ initialValue }: Props) => {
             />
             <div className="flex space-x-4">
                 <Input
+                    color="orange"
                     crossOrigin={undefined}
                     label="Link"
                     name="link"
@@ -198,6 +199,7 @@ const FeaturedProductForm = ({ initialValue }: Props) => {
                     onChange={handleChange}
                 />
                 <Input
+                    color="orange"
                     crossOrigin={undefined}
                     label="Link Title"
                     name="linkTitle"
@@ -206,7 +208,12 @@ const FeaturedProductForm = ({ initialValue }: Props) => {
                 />
             </div>
             <div className="text-right">
-                <Button disabled={isPending} placeholder={undefined} type="submit">
+                <Button
+                    disabled={isPending}
+                    placeholder={undefined}
+                    type="submit"
+                    color="light-blue"
+                >
                     {isForUpdate ? "Update" : "Submit"}
                 </Button>
             </div>

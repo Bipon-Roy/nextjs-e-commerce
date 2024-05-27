@@ -74,7 +74,7 @@ const formatAddress = ({ line1, line2, city, country, state, postal_code }: addr
 const OrderedItemsCard = ({ order, disableUpdate = true }: Props) => {
     const [isPending, startTransition] = useTransition();
     return (
-        <div className="space-y-4 rounded border-gray-300 border-2 p-2">
+        <div className="space-y-4 rounded border-orange-100 border-2 p-2">
             <div className="flex justify-between">
                 <div className="flex space-x-2">
                     <Avatar placeholder={undefined} src={order.customer.avatar || "/avatar.png"} />
@@ -97,6 +97,7 @@ const OrderedItemsCard = ({ order, disableUpdate = true }: Props) => {
                 </div>
                 <div>
                     <Select
+                        color="orange"
                         placeholder={undefined}
                         disabled={disableUpdate || isPending}
                         value={order.deliveryStatus}
