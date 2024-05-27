@@ -1,8 +1,7 @@
 "use client";
 
-import { formatPrice } from "@/utils/helper";
 import React from "react";
-import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import { Chart } from "react-google-charts";
 
 interface Props {
     data: {
@@ -12,14 +11,29 @@ interface Props {
 }
 
 const SalesReport = ({ data }: Props) => {
+    const chartData = [["Day", "Sales"], ...data.map((item) => [item.day, item.sale])];
+
+    const options = {
+        title: "Sales Report",
+        curveType: "function",
+        legend: { position: "bottom" },
+        vAxis: { title: "Sales", format: "currency" },
+        tooltip: {
+            isHtml: true,
+            trigger: "focus",
+            ignoreBounds: true,
+            textStyle: { fontSize: 12 },
+        },
+    };
+
     return (
-        <LineChart margin={{ left: 50, top: 20 }} width={600} height={400} data={data}>
-            <Line type="monotone" dataKey="sale" stroke="#8884d8" />
-            <XAxis dataKey="day" />
-            <YAxis dataKey="sale" tickFormatter={(value) => formatPrice(value)} />
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <Tooltip formatter={(value, name) => [formatPrice(+value), name]} />
-        </LineChart>
+        <Chart
+            chartType="LineChart"
+            width="100%"
+            height="450px"
+            data={chartData}
+            options={options}
+        />
     );
 };
 

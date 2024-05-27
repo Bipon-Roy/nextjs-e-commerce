@@ -62,7 +62,7 @@ const Sales = async () => {
     return (
         <div>
             <div className="mt-5">
-                <h1 className="font-semibold bg-blue-500/10 text-blue-500 text-3xl text-center mb-3 py-1 rounded">
+                <h1 className="font-semibold bg-blue-500/10 text-blue-500 text-2xl text-center mb-3 py-1 rounded uppercase">
                     Last week sales report
                 </h1>
                 <p className="md:text-xl font-semibold my-2">
