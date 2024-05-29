@@ -6,6 +6,8 @@ import FeaturedProductModel from "@models/featuredProduct";
 import HeroSlider from "@/components/HeroSlider";
 import ProductMenu from "@/components/ProductMenu";
 import SectionHeading from "@/components/SectionHeading";
+import { auth } from "@/auth";
+import WishlistModel from "../models/wishlistModel";
 
 interface ProductResponse {
     id: string;
@@ -16,11 +18,21 @@ interface ProductResponse {
         discounted: number;
     };
     sale: number;
+    isInWishlist: boolean;
 }
 
 const fetchProducts = async () => {
     await startDb();
+    const session = await auth();
+    const userId = session?.user?.id;
+
+    const wishlist = userId ? await WishlistModel.findOne({ user: userId }) : null;
+    const wishlistProductIds = wishlist
+        ? wishlist.products.map((product: string) => product.toString())
+        : [];
+
     const products = await ProductModel.find().sort("-createdAt").limit(20);
+
     const productList = products.map((prod) => {
         return {
             id: prod._id.toString(),
@@ -28,6 +40,7 @@ const fetchProducts = async () => {
             thumbnail: prod.thumbnail.url,
             price: prod.price,
             sale: prod.sale,
+            isInWishlist: wishlistProductIds.includes(prod._id.toString()),
         };
     });
 

@@ -10,12 +10,12 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import truncate from "truncate";
-
 import { formatPrice } from "@/utils/helper";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useTransition } from "react";
+import { FaHeart, FaRegHeart } from "react-icons/fa6";
 
 interface Props {
     product: {
@@ -27,6 +27,7 @@ interface Props {
             base: number;
             discounted: number;
         };
+        isInWishlist?: boolean;
     };
 }
 
@@ -34,6 +35,8 @@ const ProductCard = ({ product }: Props) => {
     const [isPending, startTransition] = useTransition();
     const { loggedIn } = useAuth();
     const router = useRouter();
+
+    const productId = product.id;
 
     const addToCart = async () => {
         if (!loggedIn) return router.push("/auth/signin");
@@ -51,6 +54,27 @@ const ProductCard = ({ product }: Props) => {
         }
         router.refresh();
     };
+
+    const handleWishlist = async () => {
+        if (!productId) return;
+
+        if (!loggedIn) return router.push("/auth/signin");
+
+        const res = await fetch("/api/product/wishlist", {
+            method: "POST",
+            body: JSON.stringify({ productId }),
+        });
+
+        const { error, message } = await res.json();
+
+        if (!res.ok && error) {
+            toast.error(error);
+        } else {
+            toast.success(message);
+        }
+        router.refresh();
+    };
+
     return (
         <Card placeholder={undefined} className="w-full rounded-md shadow">
             <CardHeader
@@ -58,23 +82,33 @@ const ProductCard = ({ product }: Props) => {
                 shadow={false}
                 floated={false}
                 color="transparent"
-                className="relative m-0 rounded-none"
+                className=" m-0 rounded-none"
             >
-                <div className="absolute right-0 p-1 z-10">
-                    <p className="px-3 py-[2px] text-xs bg-red-500 text-white rounded">
-                        {product.sale}% off
-                    </p>
-                </div>
                 <div className="relative h-36 w-36 md:w-52 md:h-48 bg-transparent mx-auto mt-2">
                     <Image src={product.thumbnail} alt={product.title} fill />
                 </div>
+                <div className="absolute top-0 right-0">
+                    <Button
+                        onClick={() => startTransition(async () => await handleWishlist())}
+                        variant="text"
+                        placeholder={undefined}
+                        disabled={isPending}
+                        className="rounded hover:bg-red-500/10 text-red-500 p-1"
+                    >
+                        {product.isInWishlist ? (
+                            <FaHeart className="w-5 h-5 text-red-600" />
+                        ) : (
+                            <FaRegHeart className="w-5 h-5" />
+                        )}
+                    </Button>
+                </div>
             </CardHeader>
-            <CardBody placeholder={undefined} className="flex-1 px-3 md:px-4 py-2">
-                <h3 className="font-medium text-blue-gray-800 text-sm">
+            <CardBody placeholder={undefined} className="flex-1 px-3 md:px-4 py-3 space-y-2">
+                <h3 className="font-semibold text-blue-gray-800 text-sm md:text-base ">
                     {truncate(product.title, 50)}
                 </h3>
 
-                <div className="flex items-center space-x-2 mb-2">
+                <div className="flex items-center gap-2 mb-2">
                     <Typography
                         placeholder={undefined}
                         className="font-semibold line-through text-sm"
@@ -84,6 +118,9 @@ const ProductCard = ({ product }: Props) => {
                     <Typography placeholder={undefined} className="font-semibold">
                         {formatPrice(product.price.discounted)}
                     </Typography>
+                    <p className="px-1 text-xs bg-red-500 text-white rounded">
+                        {product.sale}% off
+                    </p>
                 </div>
             </CardBody>
 
