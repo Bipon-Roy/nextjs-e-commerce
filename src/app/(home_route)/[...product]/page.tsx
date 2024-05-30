@@ -7,7 +7,6 @@ import GridContainer from "@/components/GridContainer";
 import ProductCard from "@/components/ProductCard";
 import ProductReviews from "@/components/ProductReviews";
 import SingleProductDetails from "@/components/SingleProductDetails";
-
 import { ObjectId, isValidObjectId } from "mongoose";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -35,17 +34,17 @@ const fetchProductDetails = async (id: string) => {
     const productInfo = await ProductModel.findById(id);
     if (!productInfo) return redirect("404");
 
-    let isWishlist = false;
-    const session = await auth();
+    // let isWishlist = false;
+    // const session = await auth();
 
-    if (session?.user) {
-        const wishlist = await WishlistModel.findOne({
-            user: session.user.id,
-            products: productInfo._id,
-        });
+    // if (session?.user) {
+    //     const wishlist = await WishlistModel.findOne({
+    //         user: session.user.id,
+    //         products: productInfo._id,
+    //     });
 
-        isWishlist = wishlist ? true : false;
-    }
+    //     isWishlist = wishlist ? true : false;
+    // }
 
     return JSON.stringify({
         id: productInfo._id.toString(),
@@ -58,7 +57,7 @@ const fetchProductDetails = async (id: string) => {
         sale: productInfo.sale,
         rating: productInfo.rating,
         outOfStock: productInfo.quantity <= 0,
-        isWishlist,
+        // isWishlist,
     });
 };
 
@@ -89,6 +88,13 @@ const fetchProductReviews = async (productId: string) => {
 const fetchSimilarProducts = async () => {
     await startDb();
     const products = await ProductModel.find().sort({ rating: -1 }).limit(5);
+    const session = await auth();
+    const userId = session?.user?.id;
+
+    const wishlist = userId ? await WishlistModel.findOne({ user: userId }) : null;
+    const wishlistProductIds = wishlist
+        ? wishlist.products.map((product: string) => product.toString())
+        : [];
     const productList = products.map((prod) => {
         return {
             id: prod._id.toString(),
@@ -96,6 +102,7 @@ const fetchSimilarProducts = async () => {
             thumbnail: prod.thumbnail.url,
             price: prod.price,
             sale: prod.sale,
+            isInWishlist: wishlistProductIds.includes(prod._id.toString()),
         };
     });
 
