@@ -15,7 +15,7 @@ const AdminSidebar = ({ children }: Props) => {
     const pathname = usePathname();
     return (
         <div className="flex">
-            <div className="flex flex-col justify-between bg-amber-300/80 h-screen sticky top-0 w-64 p-10 font-medium">
+            <div className="flex flex-col justify-between bg-amber-300/80 h-screen sticky top-0 w-72 p-10 font-medium">
                 <ul className="space-y-5">
                     <li>
                         <Link

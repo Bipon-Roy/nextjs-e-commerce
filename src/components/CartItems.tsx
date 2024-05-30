@@ -62,9 +62,9 @@ const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProp
     return (
         <div className="mt-10">
             <table className="min-w-full">
-                <tbody className="bg-white">
+                <tbody className="bg-gray-50">
                     {products.map((product) => (
-                        <tr className="border-b" key={product.id}>
+                        <tr key={product.id}>
                             <td className="p-4">
                                 <Image
                                     src={product.thumbnail}
