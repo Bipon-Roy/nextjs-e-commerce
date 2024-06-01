@@ -126,7 +126,7 @@ const ProductCard = ({ product }: Props) => {
 
             <CardFooter
                 placeholder={undefined}
-                className="px-3 md:px-4 pt-1 md:grid md:grid-cols-2 md:gap-3"
+                className="px-3 md:px-4 pt-1 grid grid-cols-2 gap-3"
             >
                 <Button
                     size="sm"

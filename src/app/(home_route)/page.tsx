@@ -8,6 +8,7 @@ import ProductMenu from "@/components/ProductMenu";
 import SectionHeading from "@/components/SectionHeading";
 import { auth } from "@/auth";
 import WishlistModel from "../models/wishlistModel";
+import AboutUs from "@/components/AboutUs";
 
 interface ProductResponse {
     id: string;
@@ -69,6 +70,7 @@ export default async function Home() {
     return (
         <div className="space-y-6 pb-10">
             <HeroSlider products={featuredProducts} />
+            <AboutUs />
             <SectionHeading title="Featured" subTitle="Products" />
             <GridView>
                 {parseProduct.slice(0, 5).map((product) => {

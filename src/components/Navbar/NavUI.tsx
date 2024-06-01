@@ -54,8 +54,8 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Link className="flex items-center gap-1" href="/">
                         <HiShoppingBag className="w-10 h-10 text-orange-600" />
-                        <p className="text-xs font-semibold mt-[6px]">
-                            Next.js <span className="block">E-commerce</span>
+                        <p className="text-xs font-semibold mt-[6px] hidden lg:block">
+                            Next.js <span className="block">E-Shop</span>
                         </p>
                     </Link>
                     <div className="w-full md:w-96 mx-4 md:mx-0 ">
