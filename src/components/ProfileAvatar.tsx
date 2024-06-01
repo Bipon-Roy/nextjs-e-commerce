@@ -9,7 +9,7 @@ interface ProfileAvatarProps {
 
 const ProfileAvatar = ({ avatar, nameInitial, onChange }: ProfileAvatarProps) => {
     return (
-        <div className="flex justify-center items-center space-x-4">
+        <div className="flex justify-center items-center gap-4">
             <div className="relative inline-block">
                 {avatar ? (
                     <Avatar placeholder={undefined} src={avatar} className="w-28 h-28" />

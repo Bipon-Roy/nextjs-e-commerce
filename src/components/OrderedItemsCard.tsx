@@ -55,7 +55,7 @@ const formatAddress = ({ line1, line2, city, country, state, postal_code }: addr
                     Line 2: <span className="font-normal">{line2}</span>
                 </p>
             ) : null}
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center gap-2">
                 <p className="font-semibold">
                     State: <span className="font-normal">{state}</span>
                 </p>
@@ -76,7 +76,7 @@ const OrderedItemsCard = ({ order, disableUpdate = true }: Props) => {
     return (
         <div className="space-y-4 rounded border-orange-100 border-2 p-2">
             <div className="flex justify-between">
-                <div className="flex space-x-2">
+                <div className="flex gap-2">
                     <Avatar placeholder={undefined} src={order.customer.avatar || "/avatar.png"} />
                     <div>
                         <p className="font-semibold">{order.customer.name}</p>
@@ -140,7 +140,7 @@ const OrderedItemsCard = ({ order, disableUpdate = true }: Props) => {
                             }
                         >
                             <td className="py-2 px-4">
-                                <div className="flex space-x-2">
+                                <div className="flex gap-2">
                                     <Image
                                         src={product.thumbnail}
                                         width={50}

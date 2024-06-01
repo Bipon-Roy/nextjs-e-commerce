@@ -86,7 +86,7 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                         )}
                     </div>
 
-                    <div className="lg:hidden flex items-center space-x-2">
+                    <div className="lg:hidden flex items-center gap-2">
                         <CartIcon cartItems={cartItemsCount} />
 
                         <IconButton

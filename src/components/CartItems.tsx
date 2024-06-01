@@ -2,12 +2,12 @@
 import React, { useState } from "react";
 
 import Image from "next/image";
-import { FaRegCircleXmark } from "react-icons/fa6";
 import { Button } from "@material-tailwind/react";
 import { formatPrice } from "@/utils/helper";
 import CartItemCounter from "./CartItemCounter";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { MdDelete } from "react-icons/md";
 
 export interface Product {
     id: string;
@@ -60,46 +60,36 @@ const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProp
     };
 
     return (
-        <div className="mt-10">
-            <table className="min-w-full">
-                <tbody className="bg-gray-50">
-                    {products.map((product) => (
-                        <tr key={product.id}>
-                            <td className="p-4">
-                                <Image
-                                    src={product.thumbnail}
-                                    alt={product.title}
-                                    height={50}
-                                    width={50}
-                                />
-                            </td>
-                            <td className="p-4">{product.title}</td>
-                            <td className="p-4 font-semibold">{formatPrice(product.totalPrice)}</td>
-                            <td className="p-4">
-                                <CartItemCounter
-                                    onIncrement={() => updateCart(product.id, 1)}
-                                    onDecrement={() => updateCart(product.id, -1)}
-                                    value={product.qty}
-                                    disabled={loading}
-                                />
-                            </td>
-                            <td className="p-4 text-right">
-                                <button
-                                    onClick={() => updateCart(product.id, -product.qty)}
-                                    disabled={loading}
-                                    className="text-red-500"
-                                    style={{ opacity: loading ? "0.5" : "1" }}
-                                >
-                                    <FaRegCircleXmark className="w-5 h-5" />
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-            <div className="flex flex-col justify-end items-end space-y-4 mt-4">
-                <div className="flex justify-end space-x-4 text-blue-gray-800">
+        <div className="mt-5 md:mt-10">
+            <div className="space-y-4">
+                {products.map((product) => (
+                    <div
+                        key={product.id}
+                        className="grid grid-cols-4 gap-2 md:gap-4 items-center justify-between shadow-sm py-2 rounded px-4 border"
+                    >
+                        <Image src={product.thumbnail} alt={product.title} height={80} width={80} />
+                        <p className="font-semibold">{formatPrice(product.totalPrice)}</p>
+                        <CartItemCounter
+                            onIncrement={() => updateCart(product.id, 1)}
+                            onDecrement={() => updateCart(product.id, -1)}
+                            value={product.qty}
+                            disabled={loading}
+                        />
+                        <div className="text-end mr-2">
+                            <button
+                                onClick={() => updateCart(product.id, -product.qty)}
+                                disabled={loading}
+                                className="text-red-500 p-1 hover:bg-gray-200 transition-all"
+                                style={{ opacity: loading ? "0.5" : "1" }}
+                            >
+                                <MdDelete size={20} className="text-red-600" />
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div className="flex flex-col justify-end items-end space-y-4 mt-4 mr-1">
+                <div className="flex justify-end gap-4 text-blue-gray-900">
                     <p className="font-semibold text-2xl">Total</p>
                     <div>
                         <p className="font-semibold text-2xl">{formatPrice(cartTotal)}</p>
@@ -107,10 +97,11 @@ const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProp
                     </div>
                 </div>
                 <Button
+                    size="md"
                     onClick={handleCheckout}
                     placeholder={undefined}
                     className="shadow-none hover:shadow-none  focus:shadow-none focus:scale-105 active:scale-100"
-                    color="green"
+                    color="orange"
                     disabled={loading}
                 >
                     Checkout

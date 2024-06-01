@@ -36,8 +36,8 @@ const SearchFilterMenu = ({ children }: Props) => {
     }, [rating, priceFilter, applyRatingFilter, query, router]);
 
     return (
-        <div className="md:flex py-4 space-y-4">
-            <div className="md:border-b-0 border-b p-4 md:space-y-4 md:block flex space-x-8 md:space-x-0 lg:w-64 h-screen lg:sticky lg:top-0 z-10">
+        <div className="md:flex space-y-4">
+            <div className="md:border-b-0 border-b p-4 space-y-4 md:w-48 lg:w-64 lg:h-screen lg:sticky lg:top-0 z-10">
                 <div>
                     <p className="font-semibold">Price</p>
 
@@ -62,7 +62,7 @@ const SearchFilterMenu = ({ children }: Props) => {
                     />
                 </div>
 
-                <div className="flex-1">
+                <div>
                     <p className="font-semibold">
                         Rating {rating[0]}-{rating[1]}
                     </p>
@@ -107,7 +107,7 @@ const SearchFilterMenu = ({ children }: Props) => {
                 </div>
             </div>
 
-            <div className="p-4 flex-1">{children}</div>
+            <div className=" flex-1">{children}</div>
         </div>
     );
 };

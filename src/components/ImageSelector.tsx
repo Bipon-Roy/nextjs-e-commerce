@@ -24,7 +24,7 @@ const ImageSelector = ({ id, images, onChange, onRemove, multiple }: Props) => {
     );
 
     return (
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center gap-4">
             {images?.map((img, index) => {
                 return (
                     <div key={index} className="relative">

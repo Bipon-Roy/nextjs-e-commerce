@@ -203,7 +203,7 @@ const ProductForm = (props: Props) => {
                     ))}
                 </Select>
 
-                <div className="flex space-x-4">
+                <div className="flex gap-4">
                     <div className="space-y-4 flex-1">
                         <h3>Price</h3>
 

@@ -13,24 +13,32 @@ interface Props {
 
 const CartItemCounter = ({ onDecrement, onIncrement, disabled, value }: Props) => {
     return (
-        <div style={{ opacity: disabled ? "0.5" : "1" }} className="flex items-center space-x-2">
+        <div
+            className={`flex items-center gap-2 ${
+                disabled ? "opacity-50" : "opacity-100"
+            } border max-w-fit`}
+        >
             <IconButton
+                size="sm"
                 placeholder={undefined}
                 disabled={disabled}
                 onClick={onIncrement}
                 variant="text"
+                className="rounded-none border-r"
             >
-                <FaPlus className="w-4 h-4" />
+                <FaPlus className="w-3 h-3 md:w-4 md:h-4" />
             </IconButton>
 
-            <span className="text-lg font-medium">{value}</span>
+            <p className="text-lg font-medium px-[2px]">{value}</p>
             <IconButton
+                size="sm"
                 placeholder={undefined}
                 disabled={disabled}
                 onClick={onDecrement}
                 variant="text"
+                className="rounded-none border-l"
             >
-                <FaMinus className="w-4 h-4" />
+                <FaMinus className="w-3 h-3 md:w-4 md:h-4" />
             </IconButton>
         </div>
     );

@@ -59,7 +59,7 @@ const BuyProduct = () => {
     };
 
     return (
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center gap-4">
             <CartCounter
                 onDecrement={handleDecrement}
                 onIncrement={handleIncrement}
@@ -67,7 +67,8 @@ const BuyProduct = () => {
             />
 
             <Button
-                className="rounded-md bg-blue-500 "
+                size="sm"
+                className="rounded-md bg-blue-500"
                 onClick={() => startTransition(async () => await addToCart())}
                 placeholder={undefined}
                 disabled={isPending}
@@ -75,6 +76,7 @@ const BuyProduct = () => {
                 Add to Cart
             </Button>
             <Button
+                size="sm"
                 disabled={isPending}
                 onClick={() => {
                     startTransition(async () => await handleCheckout());

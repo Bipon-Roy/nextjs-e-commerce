@@ -96,14 +96,14 @@ const ProductCard = ({ product }: Props) => {
                         className="rounded hover:bg-red-500/10 text-red-500 p-1"
                     >
                         {product.isInWishlist ? (
-                            <FaHeart className="w-5 h-5 text-red-600" />
+                            <FaHeart className="h-4 w-4 md:w-5 md:h-5 text-red-600" />
                         ) : (
-                            <FaRegHeart className="w-5 h-5" />
+                            <FaRegHeart className="h-4 w-4 md:w-5 md:h-5" />
                         )}
                     </Button>
                 </div>
             </CardHeader>
-            <CardBody placeholder={undefined} className="flex-1 px-3 md:px-4 py-3 space-y-2">
+            <CardBody placeholder={undefined} className="flex-1 px-2 md:px-4 py-3 space-y-2">
                 <h3 className="font-semibold text-blue-gray-800 text-sm md:text-base ">
                     {truncate(product.title, 50)}
                 </h3>
@@ -111,14 +111,18 @@ const ProductCard = ({ product }: Props) => {
                 <div className="flex items-center gap-2 mb-2">
                     <Typography
                         placeholder={undefined}
-                        className="font-semibold line-through text-sm"
+                        className="font-semibold line-through text-xs md:text-sm"
                     >
                         {formatPrice(product.price.base)}
                     </Typography>
-                    <Typography placeholder={undefined} className="font-semibold">
+                    <Typography
+                        color="black"
+                        placeholder={undefined}
+                        className="font-semibold text-sm md:text-base"
+                    >
                         {formatPrice(product.price.discounted)}
                     </Typography>
-                    <p className="px-1 text-xs bg-red-500 text-white rounded">
+                    <p className="px-1 text-xs bg-red-500 text-white rounded ">
                         {product.sale}% off
                     </p>
                 </div>
@@ -126,7 +130,7 @@ const ProductCard = ({ product }: Props) => {
 
             <CardFooter
                 placeholder={undefined}
-                className="px-3 md:px-4 pt-1 grid grid-cols-2 gap-3"
+                className="px-2 md:px-4 pt-1 grid grid-cols-2 gap-2 md:gap-3"
             >
                 <Button
                     size="sm"
@@ -134,7 +138,7 @@ const ProductCard = ({ product }: Props) => {
                     onClick={() => startTransition(async () => await addToCart())}
                     fullWidth={true}
                     disabled={isPending}
-                    className="bg-blue-800/10 text-blue-700 shadow-none p-2 rounded font-semibold capitalize hover:shadow"
+                    className="bg-blue-800/10 text-blue-700 shadow-none px-1 py-1 md:p-2 rounded font-semibold capitalize hover:shadow"
                 >
                     Add to Cart
                 </Button>
@@ -143,7 +147,7 @@ const ProductCard = ({ product }: Props) => {
                         size="sm"
                         placeholder={undefined}
                         fullWidth={true}
-                        className="bg-orange-500/20 text-orange-700 shadow-none p-2 rounded font-semibold capitalize hover:shadow"
+                        className="bg-orange-500/20 text-orange-700 shadow-none px-1 py-1 md:p-2 rounded font-semibold capitalize hover:shadow"
                     >
                         See Details
                     </Button>

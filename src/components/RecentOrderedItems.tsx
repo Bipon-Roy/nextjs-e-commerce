@@ -39,11 +39,11 @@ const RecentOrderedItems = ({ orders }: { orders: Orders[] }) => {
 
                         {order.products.map((p) => {
                             return (
-                                <div key={p.id} className="flex space-x-2">
+                                <div key={p.id} className="flex gap-2">
                                     <Image src={p.thumbnail} width={50} height={50} alt={p.title} />
                                     <div>
                                         <p>{p.title}</p>
-                                        <div className="flex space-x-2 text-sm">
+                                        <div className="flex gap-2 text-sm">
                                             <p className="font-medium">Qty-{p.qty}</p>
                                             <p className="font-medium">
                                                 Price {formatPrice(p.price)}

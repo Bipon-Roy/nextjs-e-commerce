@@ -12,7 +12,7 @@ const ReviewRatings = ({ value }: Props) => {
     const halfStar = value - fullStarts >= 0.1;
     return (
         <div className="flex items-center gap-2">
-            <div className="flex items-center space-x-0.5">
+            <div className="flex items-center gap-1">
                 {data.map((_, index) => {
                     return index + 1 <= fullStarts ? (
                         <FaStar className="h-5 w-5 text-amber-500" key={index} />

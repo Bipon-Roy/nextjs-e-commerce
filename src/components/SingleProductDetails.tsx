@@ -45,7 +45,7 @@ const SingleProductDetails = ({
                     })}
                 </div>
 
-                <div className="flex items-center space-x-2 mb-2">
+                <div className="flex items-center gap-2 mb-2">
                     <p className="line-through text-xl">{formatPrice(price.base)}</p>
                     <p className="font-semibold text-xl">{formatPrice(price.discounted)}</p>
                     <p className="font-medium uppercase bg-red-500 text-white py-1.5 px-3 text-xs rounded-md">

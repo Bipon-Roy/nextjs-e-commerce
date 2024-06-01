@@ -10,7 +10,7 @@ const AboutUs = () => {
                 <SectionHeading title="About" subTitle="Us" />
 
                 <div className="grid lg:grid-cols-2 gap-8 py-5">
-                    <div className="relative h-96 md:h-full w-full">
+                    <div className="relative h-80 md:h-full w-full">
                         <Image
                             src="https://i.ibb.co/hMJG5k5/e-commerce-vn-546.jpg"
                             className="rounded-md"

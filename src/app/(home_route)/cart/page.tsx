@@ -61,6 +61,7 @@ const fetchCartProducts = async () => {
 };
 const Cart = async () => {
     const cart = await fetchCartProducts();
+
     if (!cart)
         return (
             <div className="h-[350px] flex justify-center items-center">
@@ -74,7 +75,7 @@ const Cart = async () => {
             cartId={cart.id}
             products={cart.products}
             cartTotal={cart.totalPrice}
-            totalQty={cart.quantity}
+            totalQty={cart.totalQty}
         />
     );
 };

@@ -41,7 +41,7 @@ const ProductImageSlider = (props: Props) => {
                     );
                 })}
             </Slider>
-            <div className="flex py-2 space-x-2">
+            <div className="flex py-2 gap-2">
                 {images.map((img, index) => {
                     return (
                         <Image
