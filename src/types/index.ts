@@ -124,7 +124,8 @@ export interface StripeCustomerInfo {
     metadata: {
         userId: string;
         cartId: string;
-        type: "checkout";
+        type: "checkout" | "instant-checkout";
+        product: string;
     };
 }
 

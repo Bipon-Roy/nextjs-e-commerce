@@ -42,6 +42,22 @@ const BuyProduct = () => {
         router.refresh();
     };
 
+    const handleCheckout = async () => {
+        const res = await fetch("/api/checkout/instant", {
+            method: "POST",
+            body: JSON.stringify({ productId: productId }),
+        });
+
+        const { error, url } = await res.json();
+
+        if (!res.ok) {
+            toast.error(error);
+        } else {
+            // open the checkout url
+            window.location.href = url;
+        }
+    };
+
     return (
         <div className="flex items-center space-x-4">
             <CartCounter
@@ -58,7 +74,14 @@ const BuyProduct = () => {
             >
                 Add to Cart
             </Button>
-            <Button placeholder={undefined} className=" bg-orange-500 rounded-3xl">
+            <Button
+                disabled={isPending}
+                onClick={() => {
+                    startTransition(async () => await handleCheckout());
+                }}
+                placeholder={undefined}
+                className=" bg-orange-500 rounded-3xl"
+            >
                 Buy Now
             </Button>
         </div>

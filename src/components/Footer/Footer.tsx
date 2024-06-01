@@ -24,7 +24,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
                     <Typography placeholder={undefined} variant="h5" className="font-semibold">
                         <HiShoppingBag className="w-12 h-12 text-orange-600 mb-2" />
-                        NextJs E-commerce
+                        NextJs E-Shop
                     </Typography>
                     <div className="grid grid-cols-3 justify-between gap-4">
                         {LINKS.map(({ title, items }) => (
@@ -120,7 +120,7 @@ const Footer = () => {
                         <Typography
                             placeholder={undefined}
                             as="a"
-                            href="#"
+                            href="https://github.com/Bipon-Roy"
                             className="opacity-80 transition-opacity hover:opacity-100"
                         >
                             <svg
