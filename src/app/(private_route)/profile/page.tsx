@@ -52,7 +52,7 @@ const UpdateUserInfo = async () => {
     return (
         <div>
             <EmailVerificationRequest id={profile.id} verified={profile.verified} />
-            <div className="flex py-4 space-y-4">
+            <div className="flex flex-col md:flex-row py-4 space-y-4">
                 <div className="p-4 space-y-4">
                     <ProfileForm
                         id={profile.id}
@@ -62,12 +62,14 @@ const UpdateUserInfo = async () => {
                     />
                 </div>
 
-                <div className="p-4 flex-1">
+                <div className="p-4 md:flex-1">
                     <div className="flex items-center justify-between">
-                        <h1 className="text-2xl font-semibold uppercase opacity-70 ">last order</h1>
+                        <h1 className="text-base md:text-xl lg:text-2xl font-semibold uppercase opacity-70 ">
+                            last order
+                        </h1>
                         <Link
                             href="/profile/orders"
-                            className="uppercase hover:underline bg-orange-400 text-white px-4 py-1 rounded"
+                            className="uppercase hover:underline bg-orange-400 text-white px-2 md:px-4 py-1 rounded text-sm md:text-base"
                         >
                             See all orders
                         </Link>

@@ -20,14 +20,14 @@ const ProductMenu = () => {
                             className="space-y-2 flex flex-col justify-center items-center"
                         >
                             {c === "Phone" && (
-                                <IoPhonePortraitOutline className="w-14 h-14 text-orange-400" />
+                                <IoPhonePortraitOutline className="w-12 h-12 text-orange-400" />
                             )}
                             {c === "Watch" && (
-                                <TbDeviceWatch className="w-14 h-14 text-orange-400" />
+                                <TbDeviceWatch className="w-12 h-12 text-orange-400" />
                             )}
-                            {c === "Laptop" && <FaLaptop className="w-14 h-14 text-orange-400" />}
+                            {c === "Laptop" && <FaLaptop className="w-12 h-12 text-orange-400" />}
                             {c === "Headphones" && (
-                                <FaHeadphones className="w-14 h-14 text-orange-400" />
+                                <FaHeadphones className="w-12 h-12 text-orange-400" />
                             )}
                             <Typography
                                 placeholder={undefined}
@@ -37,11 +37,8 @@ const ProductMenu = () => {
                             >
                                 {c}
                             </Typography>
-                            <Link
-                                className="bg-gray-200 px-4 py-1 rounded-md"
-                                href={`/browse-products/${c}`}
-                            >
-                                <div className="flex items-center gap-1 md:gap-2 text-blue-500 font-medium text-xs md:text-sm">
+                            <Link className="px-4 py-1 rounded-md" href={`/browse-products/${c}`}>
+                                <div className="flex items-center gap-1 md:gap-2 text-blue-400 font-semibold text-xs md:text-sm">
                                     View Products
                                     <FaLongArrowAltRight className="h-4 w-4 md:h-6 md:w-6 " />
                                 </div>

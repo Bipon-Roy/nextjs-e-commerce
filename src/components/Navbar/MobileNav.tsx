@@ -13,7 +13,7 @@ import Link from "next/link";
 import useAuth from "@hooks/useAuth";
 import { MenuItems } from "@/types/index";
 import SignOutBtn from "../SignOutBtn";
-import { FaRegCircleXmark } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
 import { MdDashboardCustomize } from "react-icons/md";
 interface Props {
     open: boolean;
@@ -28,7 +28,7 @@ const MobileNav = ({ open, onClose, menuItems }: Props) => {
             <Drawer open={open} onClose={onClose} placeholder={undefined}>
                 <div className="mb-2 flex items-center justify-between p-4 z-50">
                     <Typography variant="h5" color="blue-gray" placeholder={undefined}>
-                        Next Ecom
+                        Next.Js E-Shop
                     </Typography>
                     <IconButton
                         variant="text"
@@ -36,7 +36,7 @@ const MobileNav = ({ open, onClose, menuItems }: Props) => {
                         onClick={onClose}
                         placeholder={undefined}
                     >
-                        <FaRegCircleXmark className="h-5 w-5" />
+                        <IoClose className="h-5 w-5" />
                     </IconButton>
                 </div>
                 <List placeholder={undefined}>

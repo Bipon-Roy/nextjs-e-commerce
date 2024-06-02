@@ -29,11 +29,11 @@ const OrderList = ({ orders }: { orders: Orders[] }) => {
             {orders.map((order) => {
                 return (
                     <div key={order.id} className="py-4 space-y-4">
-                        <div className="flex justify-between items-center bg-brown-100 rounded px-3 md:px-5 py-2 font-medium">
+                        <div className="flex justify-between items-center bg-brown-100 rounded px-3 md:px-5 py-2 font-medium text-xs md:text-base">
                             <p>ORDERED ON {dateFormat(order.date, "ddd mmm dd yyyy")}</p>
-                            <p>TOTAL {formatPrice(order.total)}</p>
+                            <p className="font-semibold">TOTAL {formatPrice(order.total)}</p>
 
-                            <p className="capitalize px-4 py-1 bg-amber-300 rounded-md">
+                            <p className="capitalize px-4 py-1 bg-amber-300 rounded-md font-semibold">
                                 {order.paymentStatus}
                             </p>
                         </div>
@@ -58,7 +58,7 @@ const OrderList = ({ orders }: { orders: Orders[] }) => {
                                 </div>
                             );
                         })}
-                        <div className="text-right p-2 border-t border-b">
+                        <div className="text-right p-2 border-t border-b text-xs md:text-base">
                             <p>
                                 Order Status:{" "}
                                 <span className="font-semibold uppercase">

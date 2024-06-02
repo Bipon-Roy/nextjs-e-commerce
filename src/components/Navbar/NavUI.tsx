@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { HiShoppingBag } from "react-icons/hi2";
 import { Navbar, IconButton, Spinner } from "@material-tailwind/react";
-import { FaCircleXmark, FaRegHeart } from "react-icons/fa6";
+import { FaRegHeart } from "react-icons/fa6";
 import ProfileMenu from "./ProfileMenu";
 import MobileNav from "./MobileNav";
 import CartIcon from "./CartIcon";
@@ -11,6 +11,7 @@ import useAuth from "@hooks/useAuth";
 import { useEffect, useState } from "react";
 import { AiOutlineBars } from "react-icons/ai";
 import NavSearchForm from "../NavSearchForm";
+import { IoClose } from "react-icons/io5";
 
 interface Props {
     cartItemsCount: number;
@@ -97,7 +98,7 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                             onClick={() => setOpen(!open)}
                         >
                             {open ? (
-                                <FaCircleXmark className="h-6 w-6" />
+                                <IoClose className="h-6 w-6" />
                             ) : (
                                 <AiOutlineBars className="h-6 w-6" />
                             )}

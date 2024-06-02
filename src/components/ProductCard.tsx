@@ -138,7 +138,7 @@ const ProductCard = ({ product }: Props) => {
                     onClick={() => startTransition(async () => await addToCart())}
                     fullWidth={true}
                     disabled={isPending}
-                    className="bg-blue-800/10 text-blue-700 shadow-none px-1 py-1 md:p-2 rounded font-semibold capitalize hover:shadow"
+                    className="bg-blue-800/10 text-blue-700 shadow-none px-1 py-1 md:p-2 rounded font-semibold capitalize hover:shadow text-xs"
                 >
                     Add to Cart
                 </Button>
@@ -147,7 +147,7 @@ const ProductCard = ({ product }: Props) => {
                         size="sm"
                         placeholder={undefined}
                         fullWidth={true}
-                        className="bg-orange-500/20 text-orange-700 shadow-none px-1 py-1 md:p-2 rounded font-semibold capitalize hover:shadow"
+                        className="bg-orange-500/20 text-orange-700 shadow-none px-1 py-1 md:p-2 rounded font-semibold capitalize hover:shadow text-xs"
                     >
                         See Details
                     </Button>
