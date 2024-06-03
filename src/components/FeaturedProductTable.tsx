@@ -33,17 +33,14 @@ const FeaturedProductTable = ({ products }: Props) => {
             <CardBody placeholder={undefined} className="px-0">
                 <table className="w-full min-w-max table-auto text-left">
                     <thead>
-                        <tr>
+                        <tr className="bg-blue-500/10">
                             {TABLE_HEAD.map((head, index) => (
-                                <th
-                                    key={index}
-                                    className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
-                                >
+                                <th key={index} className=" p-4">
                                     <Typography
                                         placeholder={undefined}
                                         variant="small"
                                         color="blue-gray"
-                                        className="font-normal leading-none opacity-70"
+                                        className="font-medium leading-none "
                                     >
                                         {head}
                                     </Typography>

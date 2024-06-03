@@ -189,7 +189,7 @@ const FeaturedProductForm = ({ initialValue }: Props) => {
                 value={title}
                 onChange={handleChange}
             />
-            <div className="flex gap-4">
+            <div className="flex flex-col md:flex-row gap-4">
                 <Input
                     color="orange"
                     crossOrigin={undefined}

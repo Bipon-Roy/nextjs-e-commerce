@@ -31,7 +31,7 @@ export interface Product {
     quantity: number;
 }
 
-const TABLE_HEAD = ["Product", "MRP", "Sale Price", "Quantity", "Category", "Edit"];
+const TABLE_HEAD = ["Product", "MRP", "Sale Price", "Quantity", "Category", "Action"];
 
 interface Props {
     products: Product[];
@@ -75,7 +75,7 @@ const ProductTable = (props: Props) => {
                     <SearchForm onSearch={handleSearch} />
                     <Link
                         href="/products/create"
-                        className="select-none font-bold text-center uppercase transition-all text-xs py-2 px-4 rounded-lg bg-blue-500 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none flex items-center gap-3"
+                        className="flex items-center gap-1 min-w-fit px-2 md:px-4 bg-blue-500 text-white rounded-md font-semibold"
                     >
                         <FaPlus className="h-4 w-4" /> <span>Add New</span>
                     </Link>
@@ -85,20 +85,12 @@ const ProductTable = (props: Props) => {
                 {filteredProducts.length ? (
                     <table className="w-full min-w-max table-auto text-left">
                         <thead>
-                            <tr>
+                            <tr className="bg-blue-500/10">
                                 {TABLE_HEAD.map((head) => (
-                                    <th
-                                        key={head}
-                                        className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
-                                    >
-                                        <Typography
-                                            placeholder={undefined}
-                                            variant="small"
-                                            color="blue-gray"
-                                            className="font-normal leading-none opacity-70"
-                                        >
+                                    <th key={head} className="p-4">
+                                        <p className="font-semibold text-xs md:text-base text-blue-gray-900">
                                             {head}
-                                        </Typography>
+                                        </p>
                                     </th>
                                 ))}
                             </tr>
@@ -112,7 +104,7 @@ const ProductTable = (props: Props) => {
                                 return (
                                     <tr key={id}>
                                         <td className={classes}>
-                                            <div className="flex items-center gap-3">
+                                            <div className="flex items-center gap-2">
                                                 <Avatar
                                                     placeholder={undefined}
                                                     src={thumbnail}
@@ -124,8 +116,7 @@ const ProductTable = (props: Props) => {
                                                     <Typography
                                                         placeholder={undefined}
                                                         variant="small"
-                                                        color="blue-gray"
-                                                        className="font-bold"
+                                                        className="font-semibold text-blue-gray-800 hover:text-blue-500 transition-all"
                                                     >
                                                         {truncate(title, 30)}
                                                     </Typography>

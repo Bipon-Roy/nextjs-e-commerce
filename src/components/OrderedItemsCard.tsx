@@ -76,7 +76,7 @@ const OrderedItemsCard = ({ order, disableUpdate = true }: Props) => {
     return (
         <div className="space-y-4 rounded border-orange-100 border-2 p-2">
             <div className="flex justify-between">
-                <div className="flex gap-2">
+                <div className="flex gap-2 text-xs md:text-base">
                     <Avatar placeholder={undefined} src={order.customer.avatar || "/avatar.png"} />
                     <div>
                         <p className="font-semibold">{order.customer.name}</p>
@@ -84,13 +84,13 @@ const OrderedItemsCard = ({ order, disableUpdate = true }: Props) => {
                     </div>
                 </div>
 
-                <div className="mr-2 text-end">
+                <div className="mr-2 text-end text-xs md:text-base">
                     <p className="font-semibold">Sub Total</p>
                     <p className="text-sm font-semibold">{formatPrice(order.subTotal)}</p>
                 </div>
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex gap-4 md:gap-0 flex-col md:flex-row md:items-center md:justify-between text-xs md:text-base">
                 <div>
                     <p className="font-semibold">Address</p>
                     <div className="text-sm">{formatAddress(order.customer.address as any)}</div>
@@ -101,7 +101,7 @@ const OrderedItemsCard = ({ order, disableUpdate = true }: Props) => {
                         placeholder={undefined}
                         disabled={disableUpdate || isPending}
                         value={order.deliveryStatus}
-                        className="uppercase"
+                        className="uppercase "
                         label="Delivery Status"
                         onChange={(deliveryStatus) => {
                             startTransition(async () => {
@@ -123,7 +123,7 @@ const OrderedItemsCard = ({ order, disableUpdate = true }: Props) => {
             </div>
 
             <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-100">
+                <thead className="bg-gray-100 text-xs md:text-base">
                     <tr>
                         <th className="py-2 px-4 text-left">Product</th>
                         <th className="py-2 px-4 text-left">Total</th>
@@ -133,6 +133,7 @@ const OrderedItemsCard = ({ order, disableUpdate = true }: Props) => {
                     {order.products.map((product, index) => (
                         <tr
                             key={product.id}
+                            className="text-xs md:text-base"
                             style={
                                 index < order.products.length - 1
                                     ? { borderBottom: "1px solid #E0E0E0" }
