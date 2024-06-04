@@ -10,9 +10,9 @@ const AboutUs = () => {
                 <SectionHeading title="About" subTitle="Us" />
 
                 <div className="grid lg:grid-cols-2 gap-8 py-5">
-                    <div className="relative h-80 md:h-full w-full">
+                    <div className="relative h-80 md:h-full w-full rounded-md">
                         <Image
-                            src="https://i.ibb.co/hMJG5k5/e-commerce-vn-546.jpg"
+                            src="https://i.ibb.co/sC7TDt7/about.jpg"
                             className="rounded-md"
                             alt="About"
                             fill

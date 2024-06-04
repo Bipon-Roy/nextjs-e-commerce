@@ -81,7 +81,7 @@ const FeaturedProductTable = ({ products }: Props) => {
                                         </Link>
                                     </td>
                                     <td className={classes}>
-                                        <div className="flex items-center">
+                                        <div className="flex gap-2 items-center">
                                             <Link
                                                 className="font-semibold uppercase text-xs text-blue-400 hover:underline"
                                                 href={`/products/featured/update?id=${id}`}
@@ -99,6 +99,7 @@ const FeaturedProductTable = ({ products }: Props) => {
                                                 color="red"
                                                 ripple={false}
                                                 variant="text"
+                                                className="p-1 rounded-sm"
                                             >
                                                 {isPending ? "Deleting" : "Delete"}
                                             </Button>
