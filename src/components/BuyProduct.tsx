@@ -34,10 +34,11 @@ const BuyProduct = () => {
             body: JSON.stringify({ productId, quantity }),
         });
 
-        const { error } = await res.json();
-
+        const { error, message } = await res.json();
         if (!res.ok && error) {
             toast.error(error);
+        } else {
+            toast.success(message);
         }
         router.refresh();
     };
