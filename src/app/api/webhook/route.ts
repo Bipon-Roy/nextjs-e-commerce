@@ -1,7 +1,7 @@
 import { getCartItems } from "@/app/lib/cartHelper";
-import cartModel from "@/app/models/CartModel";
-import OrderModel from "@/app/models/orderModel";
-import ProductModel from "@/app/models/productModel";
+import cartModel from "@/app/models/cartModel";
+import OrderModel from "@models/orderModel";
+import ProductModel from "@models/productModel";
 import { CartItems, StripeCustomerInfo } from "@/types";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";

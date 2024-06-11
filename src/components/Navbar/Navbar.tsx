@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import NavUI from "./NavUI";
-import CartModel from "@/app/models/CartModel";
+import CartModel from "@/app/models/cartModel";
 import { Types } from "mongoose";
 import startDb from "@/app/lib/db";
 import UserModel from "@/app/models/userModel";
