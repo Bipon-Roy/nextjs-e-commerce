@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiPencil } from "react-icons/hi";
 import {
     Typography,
@@ -44,6 +44,10 @@ const ProductTable = (props: Props) => {
     const router = useRouter();
     const { products = [], currentPageNo, hasMore, showPageNavigator = true } = props;
     const [filteredProducts, setFilteredProducts] = useState(products);
+
+    useEffect(() => {
+        setFilteredProducts(products);
+    }, [products]);
 
     const handleOnPrevPress = () => {
         const prevPage = currentPageNo - 1;
