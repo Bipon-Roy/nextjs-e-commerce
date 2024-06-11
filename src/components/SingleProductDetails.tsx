@@ -57,7 +57,7 @@ const SingleProductDetails = ({
                     {outOfStock ? (
                         <p className="font-semibold text-red-500 md:text-lg">Out of stock</p>
                     ) : (
-                        <BuyProduct wishlist={isWishlist} />
+                        <BuyProduct />
                     )}
                 </div>
             </div>
