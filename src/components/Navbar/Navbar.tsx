@@ -1,9 +1,9 @@
 import { auth } from "@/auth";
 import NavUI from "./NavUI";
-import CartModel from "@/app/models/cartModel";
+import CartModel from "@models/cartModel";
 import { Types } from "mongoose";
-import startDb from "@/app/lib/db";
-import UserModel from "@/app/models/userModel";
+import startDb from "@lib/db";
+import UserModel from "@models/userModel";
 
 const fetchUserProfile = async () => {
     const session = await auth();

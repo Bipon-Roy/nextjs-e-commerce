@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { HiShoppingBag } from "react-icons/hi2";
 import { Navbar, IconButton, Spinner } from "@material-tailwind/react";
