@@ -23,11 +23,10 @@ const fetchUserProfile = async () => {
 
 const getCartItemsCount = async () => {
     try {
+        await startDb();
         const session = await auth();
         if (!session?.user) return 0;
-
         const userId = session.user.id;
-
         const cart = await CartModel.aggregate([
             { $match: { userId: new Types.ObjectId(userId) } },
             { $unwind: "$items" },

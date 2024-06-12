@@ -3,6 +3,8 @@ import startDb from "@lib/db";
 import ProductModel from "@models/productModel";
 import ProductCard from "@/components/ProductCard";
 import ProductMenu from "@/components/ProductMenu";
+import { auth } from "@/auth";
+import WishlistModel from "@models/wishlistModel";
 
 interface ProductResponse {
     id: string;
@@ -19,6 +21,12 @@ interface ProductResponse {
 
 const fetchProductsByCategory = async (category: string) => {
     await startDb();
+    const session = await auth();
+    const userId = session?.user?.id;
+    const wishlist = userId ? await WishlistModel.findOne({ user: userId }) : null;
+    const wishlistProductIds = wishlist
+        ? wishlist.products.map((product: string) => product.toString())
+        : [];
     const products = await ProductModel.find({ category }).sort("-createdAt");
     const productList = products.map((prod) => {
         return {
@@ -29,6 +37,7 @@ const fetchProductsByCategory = async (category: string) => {
             thumbnail: prod.thumbnail.url,
             price: prod.price,
             sale: prod.sale,
+            isInWishlist: wishlistProductIds.includes(prod._id.toString()),
         };
     });
 

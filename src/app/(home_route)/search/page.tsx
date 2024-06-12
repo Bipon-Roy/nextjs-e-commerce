@@ -4,6 +4,8 @@ import ProductModel, { ProductDocument } from "@models/productModel";
 import { FilterQuery } from "mongoose";
 import React from "react";
 import SearchFilterMenu from "@/components/SearchFilterMenu";
+import { auth } from "@/auth";
+import WishlistModel from "@models/wishlistModel";
 
 type options = {
     query: string;
@@ -31,6 +33,12 @@ const searchProducts = async (options: options) => {
     const { query, maxRating, minRating, priceSort } = options;
     await startDb();
 
+    const session = await auth();
+    const userId = session?.user?.id;
+    const wishlist = userId ? await WishlistModel.findOne({ user: userId }) : null;
+    const wishlistProductIds = wishlist
+        ? wishlist.products.map((product: string) => product.toString())
+        : [];
     const filter: FilterQuery<ProductDocument> = {
         title: { $regex: query, $options: "i" },
     };
@@ -56,6 +64,7 @@ const searchProducts = async (options: options) => {
             price: product.price,
             sale: product.sale,
             rating: product.rating,
+            isInWishlist: wishlistProductIds.includes(product._id.toString()),
         };
     });
 
