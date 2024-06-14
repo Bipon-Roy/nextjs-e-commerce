@@ -19,7 +19,7 @@ const LINKS = [
 const currentYear = new Date().getFullYear();
 const Footer = () => {
     return (
-        <footer className="pt-6 bg-blue-200/10 mt-10">
+        <footer className="pt-6 bg-gradient-to-r from-white to-gray-200 mt-10">
             <div className="mx-auto w-full max-w-7xl px-8">
                 <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
                     <Typography placeholder={undefined} variant="h5" className="font-semibold">
@@ -42,7 +42,6 @@ const Footer = () => {
                                             placeholder={undefined}
                                             as="a"
                                             href="#"
-                                            color="gray"
                                             className="py-1.5 font-normal transition-colors hover:text-blue-gray-900"
                                         >
                                             {link}

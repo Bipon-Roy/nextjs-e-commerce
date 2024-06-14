@@ -37,7 +37,7 @@ const HeroSlider = ({ products }: Props) => {
     if (!products.length) return null;
 
     return (
-        <div className="h-[320px] md:h-[450px] mt-4 rounded-md">
+        <div className="h-[320px] md:h-[450px] mt-4 rounded-md ">
             <Slider {...settings}>
                 {products.map(({ banner, title, link, linkTitle }, index) => {
                     return (
