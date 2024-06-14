@@ -147,7 +147,7 @@ const ProductDetails = async ({ params }: Props) => {
                 </div>
             </div>
             <ProductReviews reviews={JSON.parse(reviews)} />
-            <h1 className="text-2xl text-center font-semibold">Product you may like</h1>
+            <h1 className="text-2xl text-center font-semibold mb-6">Product you may like</h1>
             <GridContainer>
                 {parseProduct.map((product) => {
                     return <ProductCard key={product.id} product={product} />;
