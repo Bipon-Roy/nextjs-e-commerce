@@ -20,14 +20,16 @@ const ProductMenu = () => {
                             className="space-y-2 flex flex-col justify-center items-center"
                         >
                             {c === "Phone" && (
-                                <IoPhonePortraitOutline className="w-12 h-12 text-orange-400" />
+                                <IoPhonePortraitOutline className="w-10 h-10 md:w-12 md:h-12 text-orange-400" />
                             )}
                             {c === "Watch" && (
-                                <TbDeviceWatch className="w-12 h-12 text-orange-400" />
+                                <TbDeviceWatch className="w-10 h-10 md:w-12 md:h-12 text-orange-400" />
                             )}
-                            {c === "Laptop" && <FaLaptop className="w-12 h-12 text-orange-400" />}
+                            {c === "Laptop" && (
+                                <FaLaptop className="w-10 h-10 md:w-12 md:h-12 text-orange-400" />
+                            )}
                             {c === "Headphones" && (
-                                <FaHeadphones className="w-12 h-12 text-orange-400" />
+                                <FaHeadphones className="w-10 h-10 md:w-12 md:h-12 text-orange-400" />
                             )}
                             <Typography
                                 placeholder={undefined}
@@ -37,10 +39,13 @@ const ProductMenu = () => {
                             >
                                 {c}
                             </Typography>
-                            <Link className="px-4 py-1 rounded-md" href={`/browse-products/${c}`}>
-                                <div className="flex items-center gap-1 md:gap-2 text-blue-400 font-semibold text-xs md:text-sm">
-                                    View Products
-                                    <FaLongArrowAltRight className="h-4 w-4 md:h-6 md:w-6 " />
+                            <Link
+                                className="px-1 lg:px-4 py-1 rounded-md"
+                                href={`/browse-products/${c}`}
+                            >
+                                <div className="flex items-center gap-1 text-blue-400 font-semibold text-sm lg:text-base">
+                                    <span> View Products</span>
+                                    <FaLongArrowAltRight className="h-4 w-4 lg:h-6 md:w-6 " />
                                 </div>
                             </Link>
                         </CardBody>

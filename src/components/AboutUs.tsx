@@ -14,7 +14,7 @@ const AboutUs = () => {
                         <Image
                             src="https://i.ibb.co/sC7TDt7/about.jpg"
                             className="rounded-md"
-                            alt="About"
+                            alt="About E-Shop"
                             fill
                         />
                     </div>

@@ -50,7 +50,7 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
         <>
             <Navbar
                 placeholder={undefined}
-                className="mx-auto max-w-7xl p-4 xl:px-0 rounded"
+                className="mx-auto max-w-7xl p-4 lg:px-0 rounded"
                 shadow={false}
             >
                 <div className="flex items-center justify-between text-blue-gray-900">

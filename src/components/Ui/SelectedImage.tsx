@@ -9,7 +9,12 @@ const SelectedImageThumb = ({ src }: Props) => {
 
     return (
         <div className="w-20 h-20 relative">
-            <Image src={src} alt="product" fill className="object-fill rounded bg-blue-gray-200" />
+            <Image
+                src={src}
+                alt="Static Image"
+                fill
+                className="object-fill rounded bg-blue-gray-200"
+            />
         </div>
     );
 };

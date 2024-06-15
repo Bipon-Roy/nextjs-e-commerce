@@ -104,7 +104,7 @@ const ProductCard = ({ product }: Props) => {
                 </div>
             </CardHeader>
             <CardBody placeholder={undefined} className="flex-1 px-2 md:px-4 py-3 space-y-2">
-                <h3 className="font-semibold text-blue-gray-800 text-sm md:text-base ">
+                <h3 className="font-semibold text-blue-gray-800 text-sm md:text-base">
                     {truncate(product.title, 50)}
                 </h3>
 
@@ -130,24 +130,22 @@ const ProductCard = ({ product }: Props) => {
 
             <CardFooter
                 placeholder={undefined}
-                className="px-2 md:px-4 pt-1 grid grid-cols-2 gap-2 md:gap-3"
+                className="px-[6px] md:px-4 pt-1 grid grid-cols-2 gap-2 md:gap-3"
             >
                 <Button
-                    size="sm"
                     placeholder={undefined}
                     onClick={() => startTransition(async () => await addToCart())}
                     fullWidth={true}
                     disabled={isPending}
-                    className="bg-blue-800/10 text-blue-700 shadow-none px-1 py-1 md:p-2 rounded font-semibold capitalize hover:shadow text-xs"
+                    className="bg-blue-800/10 text-blue-700 shadow-none px-[2px] py-1 md:p-2 rounded font-semibold capitalize hover:shadow text-[11px] md:text-xs"
                 >
                     Add to Cart
                 </Button>
                 <Link href={`/${product.title}/${product.id}`}>
                     <Button
-                        size="sm"
                         placeholder={undefined}
                         fullWidth={true}
-                        className="bg-orange-500/20 text-orange-700 shadow-none px-1 py-1 md:p-2 rounded font-semibold capitalize hover:shadow text-xs"
+                        className="bg-orange-500/20 text-orange-700 shadow-none px-[2px] py-1 md:p-2 rounded font-semibold capitalize hover:shadow text-[11px] md:text-xs"
                     >
                         See Details
                     </Button>
