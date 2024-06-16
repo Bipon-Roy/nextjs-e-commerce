@@ -26,7 +26,7 @@ const Footer = () => {
                         <HiShoppingBag className="w-12 h-12 text-orange-600 mb-2" />
                         NextJs E-Shop
                     </Typography>
-                    <div className="grid grid-cols-3 justify-between gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 justify-between gap-4">
                         {LINKS.map(({ title, items }) => (
                             <ul key={title}>
                                 <Typography
