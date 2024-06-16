@@ -22,7 +22,7 @@ const ProfileMenu = ({ menuItems, avatar }: Props) => {
                     placeholder={undefined}
                     variant="text"
                     color="blue-gray"
-                    className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
+                    className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 2xl:ml-auto"
                 >
                     <Avatar
                         placeholder={undefined}

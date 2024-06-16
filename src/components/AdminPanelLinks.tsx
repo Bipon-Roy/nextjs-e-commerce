@@ -19,7 +19,7 @@ const AdminPanelLinks = ({ setOpen }: Props) => {
         <ul className="space-y-5">
             <li>
                 {setOpen && (
-                    <div className="flex items-center justify-between lg:absolute">
+                    <div className="flex items-center justify-between 2xl:absolute">
                         <Typography variant="h5" color="blue-gray" placeholder={undefined}>
                             Admin Panel
                         </Typography>

@@ -37,7 +37,7 @@ const SearchFilterMenu = ({ children }: Props) => {
 
     return (
         <div className="md:flex space-y-4">
-            <div className="md:border-b-0 border-b p-4 space-y-4 md:w-48 lg:w-64 lg:h-screen lg:sticky lg:top-0 z-10">
+            <div className="md:border-b-0 border-b p-4 space-y-4 md:w-48 2xl:w-64 2xl:h-screen 2xl:sticky 2xl:top-0 z-10">
                 <div>
                     <p className="font-semibold">Price</p>
 

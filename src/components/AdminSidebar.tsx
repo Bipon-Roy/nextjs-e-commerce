@@ -15,7 +15,7 @@ const AdminSidebar = ({ children }: Props) => {
 
     return (
         <div className="flex">
-            <div className="hidden lg:flex flex-col justify-between bg-amber-300/80 h-screen sticky top-0 w-72 p-10 font-medium">
+            <div className="hidden 2xl:flex flex-col justify-between bg-amber-300/80 h-screen sticky top-0 w-72 p-10 font-medium">
                 <AdminPanelLinks />
 
                 <SignOutBtn>
@@ -40,7 +40,7 @@ const AdminSidebar = ({ children }: Props) => {
                     placeholder={undefined}
                     variant="text"
                     color="blue-gray"
-                    className="lg:hidden"
+                    className="2xl:hidden"
                     onClick={() => setOpen(!open)}
                 >
                     <AiOutlineBars className="h-6 w-6" />

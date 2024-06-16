@@ -9,7 +9,7 @@ const AboutUs = () => {
             <div className="max-w-7xl mx-auto ">
                 <SectionHeading title="About" subTitle="Us" />
 
-                <div className="grid lg:grid-cols-2 gap-8 py-5">
+                <div className="grid 2xl:grid-cols-2 gap-8 py-5">
                     <div className="relative h-80 md:h-full w-full rounded-md">
                         <Image
                             src="https://i.ibb.co/sC7TDt7/about.jpg"
