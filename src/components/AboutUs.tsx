@@ -9,7 +9,7 @@ const AboutUs = () => {
             <div className="max-w-7xl mx-auto ">
                 <SectionHeading title="About" subTitle="Us" />
 
-                <div className="grid lg:grid-cols-2 gap-8 py-5">
+                <div className="grid md:grid-cols-2 gap-4 lg:gap-8 py-5">
                     <div className="relative h-80 md:h-full w-full rounded-md">
                         <Image
                             src="https://i.ibb.co/sC7TDt7/about.jpg"
@@ -35,37 +35,29 @@ const AboutUs = () => {
                         </p>
                         <div className="space-y-4">
                             <p>
-                                <span className="text-gray dark:text-primary font-extrabold mr-1">
-                                    Wide Product Selection:
-                                </span>
+                                <span className="font-semibold mr-1">Wide Product Selection:</span>
                                 Discover a wide range of electronic products, from cutting-edge
                                 smartphones to high-performance laptops and more, all under one
                                 roof.
                             </p>
                             <p>
-                                <span className="text-gray dark:text-primary font-extrabold mr-1">
-                                    Quality Assurance:
-                                </span>
+                                <span className="font-semibold mr-1">Quality Assurance:</span>
                                 Our commitment to quality means you can trust in the products we
                                 offer. We source from reputable brands and manufacturers.
                             </p>
                             <p>
-                                <span className="text-gray dark:text-primary font-extrabold mr-1">
-                                    Competitive Pricing:
-                                </span>
+                                <span className="font-semibold mr-1">Competitive Pricing:</span>
                                 Enjoy competitive prices, frequent discounts, and special offers
                                 that help you stay up-to-date with the latest tech without breaking
                                 the bank.
                             </p>
                             <p>
-                                <span className="text-gray dark:text-primary font-extrabold mr-1">
-                                    Expert Customer Support:
-                                </span>
+                                <span className="font-semibold mr-1">Expert Customer Support:</span>
                                 Our knowledgeable and friendly customer support team is here to
                                 assist you every step of the way.
                             </p>
                             <p>
-                                <span className="text-gray dark:text-primary font-extrabold mr-1">
+                                <span className="font-semibold mr-1">
                                     Fast and Secure Shipping:
                                 </span>
                                 Experience swift and secure delivery to your doorstep, ensuring you
