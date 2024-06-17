@@ -92,7 +92,7 @@ const SearchProduct = async ({ searchParams }: Props) => {
                         No product found
                     </h1>
                 ) : (
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pb-10">
+                    <div className="grid grid-cols-2  xl:grid-cols-4 gap-4 pb-10">
                         {results.map((product) => {
                             return <ProductCard key={product.id} product={product} />;
                         })}

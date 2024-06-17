@@ -25,11 +25,10 @@ const SingleProductDetails = ({
     sale,
     rating,
     outOfStock,
-    isWishlist,
 }: Props) => {
     return (
-        <div className="flex lg:flex-row flex-col md:gap-4 gap-2 mt-6">
-            <div className="flex-1 lg:self-start self-center">
+        <div className="flex md:flex-row flex-col md:gap-4 gap-2 mt-6">
+            <div className="flex-1  xl:self-start self-center">
                 <ProductImageSlider images={images} />
             </div>
 

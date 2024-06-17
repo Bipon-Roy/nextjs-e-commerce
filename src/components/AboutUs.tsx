@@ -9,8 +9,8 @@ const AboutUs = () => {
             <div className="max-w-7xl mx-auto ">
                 <SectionHeading title="About" subTitle="Us" />
 
-                <div className="grid lg:grid-cols-2 gap-4 lg:gap-8 py-5">
-                    <div className="relative h-80 md:h-[450px] lg:h-full w-full rounded-md">
+                <div className="grid md:grid-cols-2 gap-4  xl:gap-8 py-5">
+                    <div className="relative h-80 md:h-full w-full rounded-md">
                         <Image
                             src="https://i.ibb.co/sC7TDt7/about.jpg"
                             className="rounded-md"
@@ -18,8 +18,8 @@ const AboutUs = () => {
                             fill
                         />
                     </div>
-                    <div className="text-black space-y-3 dark:text-white">
-                        <h1 className="text-3xl font-bold  text-center">
+                    <div className="text-black space-y-3 dark:text-white text-sm lg:text-base">
+                        <h1 className="text-xl lg:text-3xl font-bold  text-center">
                             <span className="text-primary ">Welcome to eShop </span> - Your Trusted
                             Source for Premium Electronics!
                         </h1>
@@ -30,9 +30,7 @@ const AboutUs = () => {
                             go-to destination for tech enthusiasts, gadget lovers, and everyday
                             consumers.
                         </p>
-                        <p className="text-primary  text-2xl font-bold text-center">
-                            Why Choose Us?
-                        </p>
+                        <p className="text-xl lg:text-2xl font-bold text-center">Why Choose Us?</p>
                         <div className="space-y-4">
                             <p>
                                 <span className="font-semibold mr-1">Wide Product Selection:</span>

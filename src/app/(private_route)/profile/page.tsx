@@ -64,7 +64,7 @@ const UpdateUserInfo = async () => {
 
                 <div className="p-4 md:flex-1">
                     <div className="flex items-center justify-between">
-                        <h1 className="text-base md:text-xl lg:text-2xl font-semibold uppercase opacity-70 ">
+                        <h1 className="text-base md:text-xl  xl:text-2xl font-semibold uppercase opacity-70 ">
                             last order
                         </h1>
                         <Link

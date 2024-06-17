@@ -50,13 +50,13 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
         <>
             <Navbar
                 placeholder={undefined}
-                className="mx-auto max-w-7xl p-4 lg:px-0 rounded"
+                className="mx-auto max-w-7xl p-4  xl:px-0 rounded"
                 shadow={false}
             >
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Link className="flex items-center gap-1" href="/">
                         <HiShoppingBag className="w-10 h-10 text-orange-600" />
-                        <p className="text-xs font-semibold mt-[6px] hidden lg:block">
+                        <p className="text-xs font-semibold mt-[6px] hidden  xl:block">
                             Next.js <span className="block">E-Shop</span>
                         </p>
                     </Link>
@@ -64,7 +64,7 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                         <NavSearchForm submitTo="/search?query=" />
                     </div>
 
-                    <div className="hidden lg:flex gap-2 items-center">
+                    <div className="hidden  xl:flex gap-2 items-center">
                         <CartIcon cartItems={cartItemsCount} />
                         {loggedIn ? (
                             <ProfileMenu menuItems={menuItems} avatar={avatar} />
@@ -88,14 +88,14 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                         )}
                     </div>
 
-                    <div className="lg:hidden flex items-center gap-2">
+                    <div className=" xl:hidden flex items-center gap-2">
                         <CartIcon cartItems={cartItemsCount} />
 
                         <IconButton
                             placeholder={undefined}
                             variant="text"
                             color="blue-gray"
-                            className="lg:hidden"
+                            className=" xl:hidden"
                             onClick={() => setOpen(!open)}
                         >
                             {open ? (
@@ -107,7 +107,7 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                     </div>
                 </div>
             </Navbar>
-            <div className="lg:hidden">
+            <div className=" xl:hidden">
                 <MobileNav menuItems={menuItems} onClose={() => setOpen(false)} open={open} />
             </div>
         </>

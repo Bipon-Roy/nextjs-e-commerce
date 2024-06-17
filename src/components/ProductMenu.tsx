@@ -14,10 +14,10 @@ const ProductMenu = () => {
             <SectionHeading title="Product" subTitle="Categories" />
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {categories.map((c) => (
-                    <Card key={c} placeholder={undefined} className="border shadow-none">
+                    <Card key={c} placeholder={undefined} className="border shadow-none ">
                         <CardBody
                             placeholder={undefined}
-                            className="space-y-2 flex flex-col justify-center items-center"
+                            className="space-y-2 flex flex-col justify-center items-center px-1 py-4 md:py-6"
                         >
                             {c === "Phone" && (
                                 <IoPhonePortraitOutline className="w-10 h-10 md:w-12 md:h-12 text-orange-400" />
@@ -40,12 +40,12 @@ const ProductMenu = () => {
                                 {c}
                             </Typography>
                             <Link
-                                className="px-1 lg:px-4 py-1 rounded-md"
+                                className="px-1 xl:px-4 py-1 rounded-md"
                                 href={`/browse-products/${c}`}
                             >
-                                <div className="flex items-center gap-1 text-blue-400 font-semibold text-sm lg:text-base">
+                                <div className="flex items-center gap-1 text-blue-400 font-semibold text-sm  xl:text-base">
                                     <span> View Products</span>
-                                    <FaLongArrowAltRight className="h-4 w-4 lg:h-6 md:w-6 " />
+                                    <FaLongArrowAltRight className="h-4 w-4  xl:h-6 md:w-6 " />
                                 </div>
                             </Link>
                         </CardBody>
