@@ -130,7 +130,7 @@ const ProductCard = ({ product }: Props) => {
 
             <CardFooter
                 placeholder={undefined}
-                className="px-[6px] md:px-4 pt-1 grid grid-cols-2 gap-2 md:gap-3"
+                className="px-[5px] md:px-4 pt-1 grid grid-cols-2 gap-1 md:gap-3"
             >
                 <Button
                     placeholder={undefined}
