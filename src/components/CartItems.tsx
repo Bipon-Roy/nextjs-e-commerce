@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+
 import Image from "next/image";
 import { Button } from "@material-tailwind/react";
 import { formatPrice } from "@/utils/helper";
@@ -7,7 +8,6 @@ import CartItemCounter from "./CartItemCounter";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { MdDelete } from "react-icons/md";
-import { loadStripe } from "@stripe/stripe-js";
 
 export interface Product {
     id: string;
@@ -25,9 +25,6 @@ interface CartItemsProps {
     cartId: string;
 }
 
-const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
-const stripePromise = loadStripe(publishableKey);
-
 const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProps) => {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
@@ -40,9 +37,6 @@ const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProp
                 productId,
                 quantity,
             }),
-            headers: {
-                "Content-Type": "application/json",
-            },
         });
         setLoading(false);
         router.refresh();
@@ -50,26 +44,19 @@ const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProp
 
     const handleCheckout = async () => {
         setLoading(true);
-        const stripe = await stripePromise;
         const res = await fetch("/api/checkout", {
             method: "POST",
             body: JSON.stringify({ cartId }),
-            headers: {
-                "Content-Type": "application/json",
-            },
         });
 
         const { error, url } = await res.json();
-        if (error) {
-            toast.error(error);
-            setLoading(false);
-            return;
-        }
 
-        if (stripe && url) {
+        if (!res.ok) {
+            toast.error(error);
+        } else {
+            // redirect to checkout url
             window.location.href = url;
         }
-
         setLoading(false);
     };
 
@@ -114,7 +101,7 @@ const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProp
                     size="md"
                     onClick={handleCheckout}
                     placeholder={undefined}
-                    className="shadow-none hover:shadow-none focus:shadow-none focus:scale-105 active:scale-100"
+                    className="shadow-none hover:shadow-none  focus:shadow-none focus:scale-105 active:scale-100"
                     color="orange"
                     disabled={loading}
                 >
