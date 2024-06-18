@@ -12,6 +12,7 @@ export const POST = async (req: Request) => {
     try {
         const session = await auth();
         if (!session?.user) {
+            console.error("Unauthorized request: No session found");
             return NextResponse.json(
                 {
                     error: "Unauthorized request!",
@@ -19,10 +20,12 @@ export const POST = async (req: Request) => {
                 { status: 401 }
             );
         }
+
         const data = await req.json();
         const cartId = data.cartId as string;
 
         if (!isValidObjectId(cartId)) {
+            console.error("Invalid Cart ID:", cartId);
             return NextResponse.json(
                 {
                     error: "Invalid Cart ID!",
@@ -31,9 +34,10 @@ export const POST = async (req: Request) => {
             );
         }
 
-        //fetching cart details
+        // Fetching cart details
         const cartItems = await getCartItems(session.user.id, cartId);
         if (!cartItems) {
+            console.error("Cart not found for cartId:", cartId);
             return NextResponse.json(
                 {
                     error: "Cart not found!",
@@ -42,21 +46,21 @@ export const POST = async (req: Request) => {
             );
         }
 
-        const line_items = cartItems.products.map((product) => {
-            return {
-                price_data: {
-                    currency: "USD",
-                    unit_amount: product.price * 100,
-                    product_data: {
-                        name: product.title,
-                        images: [product.thumbnail],
-                    },
+        const line_items = cartItems.products.map((product) => ({
+            price_data: {
+                currency: "USD",
+                unit_amount: product.price * 100,
+                product_data: {
+                    name: product.title,
+                    images: [product.thumbnail],
                 },
-                quantity: product.qty,
-            };
-        });
+            },
+            quantity: product.qty,
+        }));
 
-        //create user
+        console.log("Line items:", line_items);
+
+        // Create Stripe customer
         const customer = await stripe.customers.create({
             metadata: {
                 userId: session.user.id,
@@ -64,7 +68,10 @@ export const POST = async (req: Request) => {
                 type: "checkout",
             },
         });
-        //generate payment link and send to frontend
+
+        console.log("Customer created:", customer.id);
+
+        // Generate Stripe Checkout session
         const params: Stripe.Checkout.SessionCreateParams = {
             mode: "payment",
             payment_method_types: ["card"],
@@ -77,12 +84,15 @@ export const POST = async (req: Request) => {
 
         const checkoutSession = await stripe.checkout.sessions.create(params);
 
+        console.log("Checkout session created:", checkoutSession.url);
+
         return NextResponse.json({
             url: checkoutSession.url,
         });
     } catch (error) {
+        console.error("Error creating Stripe checkout session:", error);
         return NextResponse.json(
-            { error: "Something wrong can not create order" },
+            { error: "Something went wrong. Cannot create order." },
             { status: 500 }
         );
     }
