@@ -4,7 +4,7 @@ import { isValidObjectId } from "mongoose";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.Stripe_Secret_Key!, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2024-04-10",
 });
 
@@ -76,8 +76,8 @@ export const POST = async (req: Request) => {
             mode: "payment",
             payment_method_types: ["card"],
             line_items,
-            success_url: process.env.Payment_Success_Url!,
-            cancel_url: process.env.Payment_Cancel_Url!,
+            success_url: process.env.PAYMENT_SUCCESS_URL!,
+            cancel_url: process.env.PAYMENT_CANCEL_URL!,
             shipping_address_collection: { allowed_countries: ["US"] },
             customer: customer.id,
         };
