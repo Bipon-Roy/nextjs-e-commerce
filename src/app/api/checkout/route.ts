@@ -12,7 +12,6 @@ export const POST = async (req: Request) => {
     try {
         const session = await auth();
         if (!session?.user) {
-            console.error("Unauthorized request: No session found");
             return NextResponse.json(
                 {
                     error: "Unauthorized request!",
@@ -25,7 +24,6 @@ export const POST = async (req: Request) => {
         const cartId = data.cartId as string;
 
         if (!isValidObjectId(cartId)) {
-            console.error("Invalid Cart ID:", cartId);
             return NextResponse.json(
                 {
                     error: "Invalid Cart ID!",
@@ -37,7 +35,6 @@ export const POST = async (req: Request) => {
         // Fetching cart details
         const cartItems = await getCartItems(session.user.id, cartId);
         if (!cartItems) {
-            console.error("Cart not found for cartId:", cartId);
             return NextResponse.json(
                 {
                     error: "Cart not found!",
@@ -58,8 +55,6 @@ export const POST = async (req: Request) => {
             quantity: product.qty,
         }));
 
-        console.log("Line items:", line_items);
-
         // Create Stripe customer
         const customer = await stripe.customers.create({
             metadata: {
@@ -68,8 +63,6 @@ export const POST = async (req: Request) => {
                 type: "checkout",
             },
         });
-
-        console.log("Customer created:", customer.id);
 
         // Generate Stripe Checkout session
         const params: Stripe.Checkout.SessionCreateParams = {
@@ -83,8 +76,6 @@ export const POST = async (req: Request) => {
         };
 
         const checkoutSession = await stripe.checkout.sessions.create(params);
-
-        console.log("Checkout session created:", checkoutSession.url);
 
         return NextResponse.json({
             url: checkoutSession.url,
