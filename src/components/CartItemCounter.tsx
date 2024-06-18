@@ -29,11 +29,12 @@ const CartItemCounter = ({ onDecrement, onIncrement, disabled, value }: Props) =
                 <FaPlus className="w-3 h-3 md:w-4 md:h-4" />
             </IconButton>
 
-            <p className="text-lg font-medium px-[2px]">{value}</p>
+            <p>{value}</p>
+
             <IconButton
                 size="sm"
                 placeholder={undefined}
-                disabled={disabled}
+                disabled={disabled || value === 1}
                 onClick={onDecrement}
                 variant="text"
                 className="rounded-none border-l"

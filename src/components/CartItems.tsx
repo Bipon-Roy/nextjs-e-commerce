@@ -50,6 +50,9 @@ const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProp
         });
 
         const { error, url } = await res.json();
+        console.log("error", error);
+        console.log("URL", url);
+
         if (!res.ok) {
             toast.error(error);
         } else {
