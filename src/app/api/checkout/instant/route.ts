@@ -1,4 +1,5 @@
-import ProductModel from "@/app/models/productModel";
+import startDb from "@lib/db";
+import ProductModel from "@models/productModel";
 import { auth } from "@/auth";
 import { isValidObjectId } from "mongoose";
 import { NextResponse } from "next/server";
@@ -31,7 +32,7 @@ export const POST = async (req: Request) => {
                 },
                 { status: 401 }
             );
-
+        await startDb();
         // fetching product details
         const product = await ProductModel.findById(productId);
         if (!product)
