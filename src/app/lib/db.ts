@@ -1,17 +1,19 @@
 import mongoose from "mongoose";
 
-let connection: typeof mongoose;
+let cachedConnection: typeof mongoose | null;
 
 const uri = `mongodb+srv://${process.env.DB_User}:${process.env.DB_Pass}@nextjs.uarhekm.mongodb.net/ecomDb`;
 
 const startDb = async () => {
-    try {
-        if (!connection) {
-            connection = await mongoose.connect(uri);
-        }
+    if (cachedConnection) {
+        return cachedConnection;
+    }
 
-        return connection;
+    try {
+        cachedConnection = await mongoose.connect(uri);
+        return cachedConnection;
     } catch (error) {
+        cachedConnection = null;
         throw new Error((error as any).message);
     }
 };

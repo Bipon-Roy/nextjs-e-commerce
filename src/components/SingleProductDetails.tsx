@@ -28,7 +28,7 @@ const SingleProductDetails = ({
 }: Props) => {
     return (
         <div className="flex md:flex-row flex-col md:gap-4 gap-2 mt-6">
-            <div className="flex-1  xl:self-start self-center">
+            <div className="flex-1">
                 <ProductImageSlider images={images} />
             </div>
 

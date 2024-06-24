@@ -34,7 +34,7 @@ const CartItemCounter = ({ onDecrement, onIncrement, disabled, value }: Props) =
             <IconButton
                 size="sm"
                 placeholder={undefined}
-                disabled={disabled || value === 1}
+                disabled={disabled}
                 onClick={onDecrement}
                 variant="text"
                 className="rounded-none border-l"
