@@ -1,4 +1,3 @@
-import React from "react";
 import BuyProduct from "./BuyProduct";
 import { formatPrice } from "@/utils/helper";
 import ProductImageSlider from "./ProductImageSlider";
