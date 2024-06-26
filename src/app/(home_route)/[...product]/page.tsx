@@ -34,18 +34,6 @@ const fetchProductDetails = async (id: string) => {
     const productInfo = await ProductModel.findById(id);
     if (!productInfo) return redirect("404");
 
-    // let isWishlist = false;
-    // const session = await auth();
-
-    // if (session?.user) {
-    //     const wishlist = await WishlistModel.findOne({
-    //         user: session.user.id,
-    //         products: productInfo._id,
-    //     });
-
-    //     isWishlist = wishlist ? true : false;
-    // }
-
     return JSON.stringify({
         id: productInfo._id.toString(),
         title: productInfo.title,
@@ -57,7 +45,6 @@ const fetchProductDetails = async (id: string) => {
         sale: productInfo.sale,
         rating: productInfo.rating,
         outOfStock: productInfo.quantity <= 0,
-        // isWishlist,
     });
 };
 

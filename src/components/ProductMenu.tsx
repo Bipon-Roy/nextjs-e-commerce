@@ -40,10 +40,10 @@ const ProductMenu = () => {
                                 {c}
                             </Typography>
                             <Link
-                                className="px-1 xl:px-4 py-1 rounded-md"
+                                className="px-1 xl:px-4 py-1 rounded-md transition-all hover:bg-blue-500/10 text-blue-400 hover:shadow"
                                 href={`/browse-products/${c}`}
                             >
-                                <div className="flex items-center gap-1 text-blue-400 font-semibold text-sm  xl:text-base">
+                                <div className="flex items-center gap-1  font-semibold text-sm  xl:text-base">
                                     <span> View Products</span>
                                     <FaLongArrowAltRight className="h-4 w-4  xl:h-6 md:w-6 " />
                                 </div>

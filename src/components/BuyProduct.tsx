@@ -27,7 +27,15 @@ const BuyProduct = () => {
     const addToCart = async () => {
         if (!productId) return;
 
-        if (!loggedIn) return router.push("/auth/signin");
+        if (!loggedIn) {
+            router.push("/auth/signin");
+            return;
+        }
+
+        if (quantity === 0) {
+            toast.error("Quantity cannot be zero");
+            return;
+        }
 
         const res = await fetch("/api/product/cart", {
             method: "POST",

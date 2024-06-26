@@ -2,7 +2,6 @@ import BuyProduct from "./BuyProduct";
 import { formatPrice } from "@/utils/helper";
 import ProductImageSlider from "./ProductImageSlider";
 import ReviewRatings from "./ReviewRatings";
-
 interface Props {
     title: string;
     images: string[];
