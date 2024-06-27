@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar } from "@material-tailwind/react";
 import { HiPencil } from "react-icons/hi";
 

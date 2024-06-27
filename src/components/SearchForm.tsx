@@ -1,3 +1,5 @@
+"use client";
+
 import { Input } from "@material-tailwind/react";
 import { FormEvent, useState } from "react";
 import { IoMdSearch } from "react-icons/io";

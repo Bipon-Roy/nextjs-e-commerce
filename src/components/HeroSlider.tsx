@@ -29,6 +29,7 @@ const settings: Settings = {
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
+    autoplaySpeed: 3000,
 };
 
 const HeroSlider = ({ products }: Props) => {
