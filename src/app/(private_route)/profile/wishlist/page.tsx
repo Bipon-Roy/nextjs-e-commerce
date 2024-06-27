@@ -1,9 +1,12 @@
-import WishlistModel from "@/app/models/wishlistModel";
+import WishlistModel from "@models/wishlistModel";
 import { auth } from "@/auth";
-import WishlistProductCard from "@/components/WishlistProductCard";
 import { ObjectId } from "mongoose";
 import { redirect } from "next/navigation";
-import React from "react";
+import dynamic from "next/dynamic";
+
+const WishlistProductCard = dynamic(() => import("@components/WishlistProductCard"), {
+    ssr: false,
+});
 
 const fetchWishlistProducts = async () => {
     const session = await auth();
@@ -47,9 +50,11 @@ const Wishlist = async () => {
                     })}
                 </div>
             ) : (
-                <h1 className="text-2xl text-red-500 text-center p-6 font-medium">
-                    There is no products inside your wishlist.
-                </h1>
+                <div className="h-[350px] flex justify-center items-center">
+                    <h1 className="text-2xl text-red-500 text-center p-6 font-medium">
+                        There is no products inside your wishlist.
+                    </h1>
+                </div>
             )}
         </div>
     );

@@ -1,8 +1,12 @@
 import startDb from "@lib/db";
-import cartModel from "@/app/models/cartModel";
+import cartModel from "@models/cartModel";
 import { auth } from "@/auth";
-import CartItems from "@/components/CartItems";
 import { Types } from "mongoose";
+import dynamic from "next/dynamic";
+
+const CartItems = dynamic(() => import("@components/CartItems"), {
+    ssr: false,
+});
 const fetchCartProducts = async () => {
     const session = await auth();
     if (!session?.user) return null;

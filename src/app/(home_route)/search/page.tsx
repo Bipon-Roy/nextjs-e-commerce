@@ -1,11 +1,15 @@
-import ProductCard from "@components/ProductCard";
 import startDb from "@lib/db";
 import ProductModel, { ProductDocument } from "@models/productModel";
 import { FilterQuery } from "mongoose";
 import React from "react";
-import SearchFilterMenu from "@/components/SearchFilterMenu";
+import SearchFilterMenu from "@components/SearchFilterMenu";
 import { auth } from "@/auth";
 import WishlistModel from "@models/wishlistModel";
+import dynamic from "next/dynamic";
+
+const ProductCard = dynamic(() => import("@components/ProductCard"), {
+    ssr: false,
+});
 
 type options = {
     query: string;

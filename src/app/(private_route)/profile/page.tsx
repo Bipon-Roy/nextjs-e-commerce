@@ -1,13 +1,20 @@
-import startDb from "@/app/lib/db";
-import OrderModel from "@/app/models/orderModel";
-import UserModel from "@/app/models/userModel";
-import { auth } from "@/auth";
-import EmailVerificationRequest from "@/components/EmailVerificationRequest";
-import ProfileForm from "@/components/ProfileForm";
-import RecentOrderedItems from "@/components/RecentOrderedItems";
-
-import Link from "next/link";
 import { redirect } from "next/navigation";
+import dynamic from "next/dynamic";
+import startDb from "@lib/db";
+import OrderModel from "@models/orderModel";
+import UserModel from "@models/userModel";
+import { auth } from "@/auth";
+import Link from "next/link";
+const EmailVerificationRequest = dynamic(() => import("@components/EmailVerificationRequest"), {
+    ssr: false,
+});
+
+const RecentOrderedItems = dynamic(() => import("@components/RecentOrderedItems"), {
+    ssr: false,
+});
+const ProfileForm = dynamic(() => import("@components/ProfileForm"), {
+    ssr: false,
+});
 
 const fetchUserProfile = async () => {
     const session = await auth();

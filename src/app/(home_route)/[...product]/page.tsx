@@ -6,12 +6,15 @@ import { auth } from "@/auth";
 import GridContainer from "@components/GridContainer";
 import ProductCard from "@components/ProductCard";
 import ProductReviews from "@components/ProductReviews";
-import SingleProductDetails from "@components/SingleProductDetails";
 import { ObjectId, isValidObjectId } from "mongoose";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { FaArrowCircleRight } from "react-icons/fa";
+import dynamic from "next/dynamic";
 
+const SingleProductDetails = dynamic(() => import("@components/SingleProductDetails"), {
+    ssr: false,
+});
 interface Props {
     params: {
         product: string[];

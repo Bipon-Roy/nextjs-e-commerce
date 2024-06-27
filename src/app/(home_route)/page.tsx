@@ -1,15 +1,19 @@
-import GridView from "@/components/GridContainer";
+import GridView from "@components/GridContainer";
 import startDb from "@lib/db";
 import ProductModel from "@models/productModel";
-import ProductCard from "@/components/ProductCard";
 import FeaturedProductModel from "@models/featuredProduct";
-import HeroSlider from "@/components/HeroSlider";
-import ProductMenu from "@/components/ProductMenu";
-import SectionHeading from "@/components/SectionHeading";
+import HeroSlider from "@components/HeroSlider";
+import SectionHeading from "@components/SectionHeading";
 import { auth } from "@/auth";
-import WishlistModel from "../models/wishlistModel";
-import AboutUs from "@/components/AboutUs";
-
+import WishlistModel from "@models/wishlistModel";
+import AboutUs from "@components/AboutUs";
+import dynamic from "next/dynamic";
+const ProductMenu = dynamic(() => import("@components/ProductMenu"), {
+    ssr: false,
+});
+const ProductCard = dynamic(() => import("@components/ProductCard"), {
+    ssr: false,
+});
 interface ProductResponse {
     id: string;
     title: string;
