@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useTransition } from "react";
+import { memo, useTransition } from "react";
 import { Button } from "@material-tailwind/react";
 import { MdDelete } from "react-icons/md";
 import Link from "next/link";
@@ -18,7 +18,7 @@ interface Props {
     };
 }
 
-const WishlistProductCard = ({ product }: Props) => {
+const WishlistProductCard = memo(({ product }: Props) => {
     const [isPending, startTransition] = useTransition();
     const router = useRouter();
 
@@ -62,6 +62,7 @@ const WishlistProductCard = ({ product }: Props) => {
             </Button>
         </div>
     );
-};
+});
 
+WishlistProductCard.displayName = "WishlistProductCard";
 export default WishlistProductCard;

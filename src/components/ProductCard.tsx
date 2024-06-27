@@ -14,7 +14,7 @@ import { formatPrice } from "@/utils/helper";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { useTransition } from "react";
+import { memo, useTransition } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
 
 interface Props {
@@ -31,7 +31,7 @@ interface Props {
     };
 }
 
-const ProductCard = ({ product }: Props) => {
+const ProductCard = memo(({ product }: Props) => {
     const [isPending, startTransition] = useTransition();
     const { loggedIn } = useAuth();
     const router = useRouter();
@@ -153,5 +153,7 @@ const ProductCard = ({ product }: Props) => {
             </CardFooter>
         </Card>
     );
-};
+});
+
+ProductCard.displayName = "ProductCard";
 export default ProductCard;
