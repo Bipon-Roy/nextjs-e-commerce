@@ -1,4 +1,5 @@
 "use client";
+
 import FormContainer from "@components/AuthFormContainer";
 import { Button, Input } from "@material-tailwind/react";
 import { useFormik } from "formik";

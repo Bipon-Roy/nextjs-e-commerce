@@ -7,13 +7,9 @@ import SectionHeading from "@components/SectionHeading";
 import { auth } from "@/auth";
 import WishlistModel from "@models/wishlistModel";
 import AboutUs from "@components/AboutUs";
-import dynamic from "next/dynamic";
-const ProductMenu = dynamic(() => import("@components/ProductMenu"), {
-    ssr: false,
-});
-const ProductCard = dynamic(() => import("@components/ProductCard"), {
-    ssr: false,
-});
+import ProductCard from "@components/ProductCard";
+import ProductMenu from "@components/ProductMenu";
+
 interface ProductResponse {
     id: string;
     title: string;

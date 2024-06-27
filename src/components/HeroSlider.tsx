@@ -3,7 +3,6 @@ import { Button } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import React from "react";
-
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

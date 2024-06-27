@@ -5,11 +5,7 @@ import React from "react";
 import SearchFilterMenu from "@components/SearchFilterMenu";
 import { auth } from "@/auth";
 import WishlistModel from "@models/wishlistModel";
-import dynamic from "next/dynamic";
-
-const ProductCard = dynamic(() => import("@components/ProductCard"), {
-    ssr: false,
-});
+import ProductCard from "@components/ProductCard";
 
 type options = {
     query: string;

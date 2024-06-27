@@ -1,4 +1,3 @@
-"use client";
 import React, { ChangeEventHandler } from "react";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import { BiSolidTrashAlt } from "react-icons/bi";

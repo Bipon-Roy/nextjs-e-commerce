@@ -2,11 +2,7 @@ import WishlistModel from "@models/wishlistModel";
 import { auth } from "@/auth";
 import { ObjectId } from "mongoose";
 import { redirect } from "next/navigation";
-import dynamic from "next/dynamic";
-
-const WishlistProductCard = dynamic(() => import("@components/WishlistProductCard"), {
-    ssr: false,
-});
+import WishlistProductCard from "@components/WishlistProductCard";
 
 const fetchWishlistProducts = async () => {
     const session = await auth();

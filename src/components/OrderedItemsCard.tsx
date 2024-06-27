@@ -1,5 +1,4 @@
 "use client";
-
 import { formatPrice } from "@/utils/helper";
 import { Avatar, Option, Select } from "@material-tailwind/react";
 import Image from "next/image";

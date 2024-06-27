@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import dateFormat from "dateformat";
 import ReviewRatings from "./ReviewRatings";

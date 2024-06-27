@@ -10,11 +10,8 @@ import { ObjectId, isValidObjectId } from "mongoose";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { FaArrowCircleRight } from "react-icons/fa";
-import dynamic from "next/dynamic";
+import SingleProductDetails from "@components/SingleProductDetails";
 
-const SingleProductDetails = dynamic(() => import("@components/SingleProductDetails"), {
-    ssr: false,
-});
 interface Props {
     params: {
         product: string[];

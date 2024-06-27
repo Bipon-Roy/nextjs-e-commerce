@@ -1,4 +1,3 @@
-"use client";
 import { FormEventHandler, ReactNode } from "react";
 
 interface Props {

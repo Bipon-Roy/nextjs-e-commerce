@@ -1,5 +1,3 @@
-"use client";
-
 import { IconButton } from "@material-tailwind/react";
 import { FaMinus } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";

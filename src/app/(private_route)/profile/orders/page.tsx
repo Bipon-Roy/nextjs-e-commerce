@@ -2,11 +2,7 @@ import startDb from "@lib/db";
 import OrderModel from "@models/orderModel";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import dynamic from "next/dynamic";
-
-const OrderList = dynamic(() => import("@components/OrderList"), {
-    ssr: false,
-});
+import OrderList from "@components/OrderList";
 
 const fetchOrdersInfo = async () => {
     const session = await auth();

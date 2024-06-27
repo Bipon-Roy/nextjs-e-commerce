@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import { useTransition } from "react";
 import { Button } from "@material-tailwind/react";
