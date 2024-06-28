@@ -1,3 +1,4 @@
+"use client";
 import BuyProduct from "./BuyProduct";
 import { formatPrice } from "@/utils/helper";
 import ProductImageSlider from "./ProductImageSlider";
@@ -10,7 +11,7 @@ interface Props {
     price: { base: number; discounted: number };
     points?: string[];
     sale: number;
-    rating: number;
+    rating?: number;
     outOfStock: boolean;
     isWishlist: boolean;
 }

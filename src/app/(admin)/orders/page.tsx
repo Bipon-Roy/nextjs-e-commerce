@@ -1,20 +1,17 @@
-import startDb from "@/app/lib/db";
-import OrderModel from "@/app/models/orderModel";
-import OrderedItemsCard, { Order } from "@/components/OrderedItemsCard";
+import startDb from "@lib/db";
+import OrderModel from "@models/orderModel";
+import OrderedItemsCard, { Order } from "@components/OrderedItemsCard";
 
 import { ObjectId } from "mongoose";
 
 const fetchOrdersInfo = async () => {
     await startDb();
-    const orders = await OrderModel.find()
-        .sort("-createdAt")
-        .limit(5)
-        .populate<{
-            userId: { _id: ObjectId; name: string; email: string; avatar?: { url: string } };
-        }>({
-            path: "userId",
-            select: "name email",
-        });
+    const orders = await OrderModel.find().sort("-createdAt").limit(5).populate<{
+        userId: { _id: ObjectId; name: string; email: string; avatar?: { url: string } };
+    }>({
+        path: "userId",
+        select: "name email",
+    });
 
     const result = orders.map((order) => {
         return {

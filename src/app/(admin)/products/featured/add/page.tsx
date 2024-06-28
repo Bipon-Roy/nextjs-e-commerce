@@ -1,7 +1,7 @@
-import startDb from "@/app/lib/db";
-import FeaturedProductModel from "@/app/models/featuredProduct";
-import FeaturedProductForm from "@/components/FeaturedProductForm";
-import FeaturedProductTable from "@/components/FeaturedProductTable";
+import startDb from "@lib/db";
+import FeaturedProductModel from "@models/featuredProduct";
+import FeaturedProductForm from "@components/FeaturedProductForm";
+import FeaturedProductTable from "@components/FeaturedProductTable";
 
 const fetchFeaturedProducts = async () => {
     await startDb();

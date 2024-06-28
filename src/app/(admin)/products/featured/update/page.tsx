@@ -1,6 +1,6 @@
-import startDb from "@/app/lib/db";
-import FeaturedProductModel from "@/app/models/featuredProduct";
-import FeaturedProductForm from "@/components/FeaturedProductForm";
+import startDb from "@lib/db";
+import FeaturedProductModel from "@models/featuredProduct";
+import FeaturedProductForm from "@components/FeaturedProductForm";
 import { isValidObjectId } from "mongoose";
 import { redirect } from "next/navigation";
 

@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import Navbar from "@/components/Navbar/Navbar";
+import Navbar from "@components/Navbar/Navbar";
 
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";

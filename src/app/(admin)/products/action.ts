@@ -1,6 +1,6 @@
 "use server";
 
-import startDb from "@/app/lib/db";
+import startDb from "@lib/db";
 import { ProductToUpdate } from "@/types";
 import ProductModel, { NewProduct } from "@models/productModel";
 import { v2 as cloudinary } from "cloudinary";

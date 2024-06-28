@@ -1,6 +1,6 @@
-import startDb from "@/app/lib/db";
-import OrderModel from "@/app/models/orderModel";
-import SalesReport from "@/components/SalesReport";
+import startDb from "@lib/db";
+import OrderModel from "@models/orderModel";
+import SalesReport from "@components/SalesReport";
 import { formatPrice } from "@/utils/helper";
 import dateFormat from "dateformat";
 
