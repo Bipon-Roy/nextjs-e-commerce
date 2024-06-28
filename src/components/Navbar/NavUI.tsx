@@ -48,11 +48,7 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
     }, []);
     return (
         <>
-            <Navbar
-                placeholder={undefined}
-                className="mx-auto max-w-7xl px-4 xl:px-0 rounded"
-                shadow={false}
-            >
+            <Navbar placeholder={undefined} className="mx-auto max-w-7xl rounded" shadow={false}>
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Link className="flex items-center gap-1" href="/">
                         <HiShoppingBag className="w-10 h-10 text-orange-600" />

@@ -123,7 +123,11 @@ const ProductCard = memo(({ product }: Props) => {
                         {formatPrice(product.price.discounted)}
                     </Typography>
                     <p className="px-1 text-xs bg-red-500 text-white rounded ">
-                        {product.sale}% off
+                        {Math.round(
+                            ((product.price.base - product.price.discounted) / product.price.base) *
+                                100
+                        )}
+                        % off
                     </p>
                 </div>
             </CardBody>
