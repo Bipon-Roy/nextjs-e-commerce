@@ -41,7 +41,7 @@ const fetchProducts = async (): Promise<ProductResponse[]> => {
         ? wishlist.products.map((product: string) => product.toString())
         : [];
 
-    const products = await ProductModel.find().sort("-createdAt").limit(20).lean();
+    const products = await ProductModel.find().sort("-createdAt").limit(10).lean();
 
     return products.map((prod) => ({
         id: prod._id.toString(),
@@ -55,7 +55,6 @@ const fetchProducts = async (): Promise<ProductResponse[]> => {
 
 const fetchFeaturedProducts = async (): Promise<FeaturedProductResponse[]> => {
     await startDb();
-
     const products = await FeaturedProductModel.find().sort("-createdAt").lean();
 
     return products.map((prod) => ({

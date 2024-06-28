@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -28,7 +29,7 @@ const settings: Settings = {
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2500,
 };
 
 const HeroSlider = memo(({ products }: Props) => {
@@ -43,7 +44,13 @@ const HeroSlider = memo(({ products }: Props) => {
                     return (
                         <div className="select-none relative" key={index}>
                             <div className="w-full h-[320px] md:h-[450px]">
-                                <Image className="rounded-md" fill src={banner} alt={title} />
+                                <Image
+                                    className="rounded-md"
+                                    fill
+                                    src={banner}
+                                    alt={title}
+                                    priority
+                                />
                             </div>
                             <div className="absolute inset-0 p-5">
                                 <div className="w-[65%] md:w-1/2 h-full flex flex-col items-start justify-center space-y-2">

@@ -84,7 +84,7 @@ const ProductCard = memo(({ product }: Props) => {
                 color="transparent"
                 className=" m-0 rounded-none"
             >
-                <div className="relative h-36 w-36 md:w-52 md:h-48 bg-transparent mx-auto mt-2">
+                <div className="relative h-28 w-28 md:w-52 md:h-48 bg-transparent mx-auto mt-2">
                     <Image src={product.thumbnail} alt={product.title} fill />
                 </div>
                 <div className="absolute top-0 right-0">
