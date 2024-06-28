@@ -48,15 +48,19 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
     }, []);
     return (
         <>
-            <Navbar placeholder={undefined} className="mx-auto max-w-7xl rounded" shadow={false}>
+            <Navbar
+                placeholder={undefined}
+                className="mx-auto max-w-7xl rounded px-4"
+                shadow={false}
+            >
                 <div className="flex items-center justify-between text-blue-gray-900">
-                    <Link className="flex items-center gap-1" href="/">
+                    <Link className="flex items-center md:gap-1" href="/">
                         <HiShoppingBag className="w-10 h-10 text-orange-600" />
-                        <p className="text-xs font-semibold mt-[6px] hidden  xl:block">
+                        <p className="text-xs font-semibold mt-[6px] hidden xl:block">
                             Next.js <span className="block">E-Shop</span>
                         </p>
                     </Link>
-                    <div className="w-full md:w-96">
+                    <div className="w-full md:w-96 mx-2 md:mx-0 ">
                         <NavSearchForm submitTo="/search?query=" />
                     </div>
 
