@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { Button } from "@material-tailwind/react";
 
 const SkeletonCartItems = () => {
     const skeletonProducts = Array.from({ length: 2 }, (_, index) => index);
