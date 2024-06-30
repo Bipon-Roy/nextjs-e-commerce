@@ -1,9 +1,10 @@
 "use client";
+
 import Image from "next/image";
 import dateFormat from "dateformat";
 import ReviewRatings from "./ReviewRatings";
 
-interface Review {
+export interface Review {
     id: string;
     rating: number;
     comment: string;
@@ -35,7 +36,7 @@ const ProductReviews = ({ reviews }: Props) => {
                             />
                             <div>
                                 <p className="font-semibold">{review.userInfo.name}</p>
-                                <p className="text-xs">{dateFormat(review.date, "dd mmm  yyyy")}</p>
+                                <p className="text-xs">{dateFormat(review.date, "dd mmm yyyy")}</p>
                             </div>
                         </div>
                         <div>

@@ -51,12 +51,7 @@ const productSchema = new Schema<ProductDocument>(
     { timestamps: true, versionKey: false }
 );
 
-// Step 3: Define the virtual property for "sale"
-productSchema.virtual("sale").get(function (this: ProductDocument) {
-    return Math.round(((this.price.base - this.price.discounted) / this.price.base) * 100);
-});
-
-// Step 4: Check if the model already exists before exporting
+// Step 3: Check if the model already exists before exporting
 const ProductModel = models.Product || model<ProductDocument>("Product", productSchema);
 
 export default ProductModel as Model<ProductDocument>;

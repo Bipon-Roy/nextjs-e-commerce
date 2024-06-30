@@ -22,7 +22,6 @@ interface Props {
         id: string;
         title: string;
         thumbnail: string;
-        sale: number;
         price: {
             base: number;
             discounted: number;

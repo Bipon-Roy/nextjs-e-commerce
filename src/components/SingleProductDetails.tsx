@@ -5,20 +5,19 @@ import { formatPrice } from "@/utils/helper";
 import ProductImageSlider from "./ProductImageSlider";
 import ReviewRatings from "./ReviewRatings";
 import { memo } from "react";
+
 interface Props {
     title: string;
     images: string[];
     description: string;
     price: { base: number; discounted: number };
     points?: string[];
-    sale: number;
     rating?: number;
     outOfStock: boolean;
-    isWishlist: boolean;
 }
 
 const SingleProductDetails = memo(
-    ({ description, images, title, points, price, sale, rating, outOfStock }: Props) => {
+    ({ description, images, title, points, price, rating, outOfStock }: Props) => {
         return (
             <div className="flex md:flex-row flex-col md:gap-4 gap-2 mt-6">
                 <div className="flex-1">
@@ -40,8 +39,8 @@ const SingleProductDetails = memo(
                     <div className="flex items-center gap-2 mb-2">
                         <p className="line-through text-xl">{formatPrice(price.base)}</p>
                         <p className="font-semibold text-xl">{formatPrice(price.discounted)}</p>
-                        <p className="font-medium uppercase bg-red-500 text-white py-1.5 px-3 text-xs rounded-md">
-                            {`${sale}% off`}
+                        <p className="font-medium uppercase bg-red-500 text-white py-1 px-2 text-xs rounded-md">
+                            {Math.round(((price.base - price.discounted) / price.base) * 100)}% off
                         </p>
                     </div>
 
