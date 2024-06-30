@@ -1,12 +1,5 @@
 "use client";
-import {
-    Card,
-    CardHeader,
-    CardBody,
-    Typography,
-    Button,
-    CardFooter,
-} from "@material-tailwind/react";
+import { Card, CardHeader, CardBody, Typography } from "@material-tailwind/react";
 
 const SkeletonCard = () => {
     return (
@@ -74,24 +67,6 @@ const SkeletonCard = () => {
                     &nbsp;
                 </Typography>
             </CardBody>
-            <CardFooter placeholder={undefined} className="pt-0 flex justify-between items-center">
-                <Button
-                    placeholder={undefined}
-                    disabled
-                    tabIndex={-1}
-                    className="h-8 w-20 bg-gray-300 shadow-none hover:shadow-none"
-                >
-                    &nbsp;
-                </Button>
-                <Button
-                    placeholder={undefined}
-                    disabled
-                    tabIndex={-1}
-                    className="h-8 w-20 bg-gray-300 shadow-none hover:shadow-none"
-                >
-                    &nbsp;
-                </Button>
-            </CardFooter>
         </Card>
     );
 };
