@@ -16,7 +16,7 @@ const LoadingCategories = memo(() => {
                 {Array.from({ length: 4 }, (_, index) => (
                     <div
                         key={index}
-                        className="bg-gray-200 w-[180px] h-[150px] md:w-[240px] md:h-[180px] xl:w-[300px] xl:h-[170px] animate-pulse rounded-lg"
+                        className="bg-gray-200 w-[170px] h-[140px] md:w-[240px] md:h-[180px] xl:w-[300px] xl:h-[170px] animate-pulse rounded-lg"
                     />
                 ))}
             </div>

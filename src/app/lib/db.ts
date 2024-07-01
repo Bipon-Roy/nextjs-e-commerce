@@ -33,9 +33,16 @@ const startDb = async (): Promise<Mongoose> => {
 
     if (!globalWithMongoose.mongoose.promise) {
         // Create a new connection if no promise exists
-        globalWithMongoose.mongoose.promise = mongoose.connect(uri).then((mongoose) => {
-            return mongoose;
-        });
+        globalWithMongoose.mongoose.promise = mongoose
+            .connect(uri)
+            .then((mongoose) => {
+                return mongoose;
+            })
+            .catch((err) => {
+                globalWithMongoose.mongoose.promise = null;
+                console.error("Failed to connect to MongoDB", err);
+                throw err;
+            });
     }
 
     // Wait for the promise to resolve if connection is being established
