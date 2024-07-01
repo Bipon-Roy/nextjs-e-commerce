@@ -7,6 +7,7 @@ import React, { memo } from "react";
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import SkeletonHeroSlider from "./SkeletonHeroSlider";
 
 export interface FeaturedProduct {
     id: string;
@@ -18,6 +19,7 @@ export interface FeaturedProduct {
 
 interface Props {
     products: FeaturedProduct[];
+    loading: boolean;
 }
 
 const settings: Settings = {
@@ -32,10 +34,10 @@ const settings: Settings = {
     autoplaySpeed: 2500,
 };
 
-const HeroSlider = memo(({ products }: Props) => {
+const HeroSlider = memo(({ products, loading }: Props) => {
     const router = useRouter();
 
-    if (!products.length) return null;
+    if (loading) return <SkeletonHeroSlider />;
 
     return (
         <div className="h-[320px] md:h-[450px] mt-4 rounded-md ">

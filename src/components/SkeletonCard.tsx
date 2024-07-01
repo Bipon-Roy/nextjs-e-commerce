@@ -3,7 +3,7 @@ import { Card, CardHeader, CardBody, Typography } from "@material-tailwind/react
 
 const SkeletonCard = () => {
     return (
-        <Card placeholder={undefined} className="w-full rounded-md shadow">
+        <Card placeholder={undefined} className="w-full">
             <CardHeader
                 placeholder={undefined}
                 shadow={false}
@@ -30,42 +30,21 @@ const SkeletonCard = () => {
                     placeholder={undefined}
                     as="div"
                     variant="h1"
-                    className="mb-4 h-3 rounded-full bg-gray-700/10"
+                    className="mb-4 h-4 bg-gray-700/10"
                 >
                     &nbsp;
                 </Typography>
-                <Typography
-                    placeholder={undefined}
-                    as="div"
-                    variant="paragraph"
-                    className="mb-2 h-2 w-full rounded-full bg-gray-700/10"
-                >
-                    &nbsp;
-                </Typography>
-                <Typography
-                    placeholder={undefined}
-                    as="div"
-                    variant="paragraph"
-                    className="mb-2 h-2 w-full rounded-full bg-gray-700/10"
-                >
-                    &nbsp;
-                </Typography>
-                <Typography
-                    placeholder={undefined}
-                    as="div"
-                    variant="paragraph"
-                    className="mb-2 h-2 w-full rounded-full bg-gray-700/10"
-                >
-                    &nbsp;
-                </Typography>
-                <Typography
-                    placeholder={undefined}
-                    as="div"
-                    variant="paragraph"
-                    className="mb-2 h-2 w-full rounded-full bg-gray-700/10"
-                >
-                    &nbsp;
-                </Typography>
+                {Array.from({ length: 3 }, (_, index) => (
+                    <Typography
+                        key={index}
+                        placeholder={undefined}
+                        as="div"
+                        variant="paragraph"
+                        className="mb-2 h-3 w-full bg-gray-700/10"
+                    >
+                        &nbsp;
+                    </Typography>
+                ))}
             </CardBody>
         </Card>
     );

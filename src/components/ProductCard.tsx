@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { memo, useTransition } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
+import SkeletonCard from "./SkeletonCard";
 
 interface Props {
     product: {
@@ -28,12 +29,15 @@ interface Props {
         };
         isInWishlist?: boolean;
     };
+    loading?: boolean;
 }
 
-const ProductCard = memo(({ product }: Props) => {
+const ProductCard = memo(({ product, loading }: Props) => {
     const [isPending, startTransition] = useTransition();
     const { loggedIn } = useAuth();
     const router = useRouter();
+
+    if (loading) return <SkeletonCard />;
 
     const productId = product.id;
 

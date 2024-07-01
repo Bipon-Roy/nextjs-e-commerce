@@ -1,14 +1,9 @@
-import GridView from "@components/GridContainer";
 import startDb from "@lib/db";
 import ProductModel from "@models/productModel";
 import FeaturedProductModel from "@models/featuredProduct";
-import HeroSlider from "@components/HeroSlider";
-import SectionHeading from "@components/SectionHeading";
-import { auth } from "@/auth";
 import WishlistModel from "@models/wishlistModel";
-import AboutUs from "@components/AboutUs";
-import ProductCard from "@components/ProductCard";
-import ProductMenu from "@components/ProductMenu";
+import HomeClient from "@/components/HomeClient";
+import { auth } from "@/auth";
 
 interface ProductResponse {
     id: string;
@@ -70,23 +65,5 @@ export default async function Home() {
     const products = await fetchProducts();
     const featuredProducts = await fetchFeaturedProducts();
 
-    return (
-        <div className="space-y-6 pb-10">
-            <HeroSlider products={featuredProducts} />
-            <AboutUs />
-            <SectionHeading title="Featured" subTitle="Products" />
-            <GridView>
-                {products.slice(0, 5).map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                ))}
-            </GridView>
-            <ProductMenu />
-            <SectionHeading title="Trending" subTitle="Now" />
-            <GridView>
-                {products.slice(5, 10).map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                ))}
-            </GridView>
-        </div>
-    );
+    return <HomeClient initialProducts={products} initialFeaturedProducts={featuredProducts} />;
 }
