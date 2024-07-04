@@ -37,7 +37,14 @@ const ProductImageSlider = (props: Props) => {
             >
                 {images.map((img, index) => {
                     return (
-                        <Image key={index} src={img} alt="Banner Image" width={500} height={500} />
+                        <Image
+                            key={index}
+                            src={img}
+                            alt="Banner Image"
+                            width={500}
+                            height={500}
+                            priority
+                        />
                     );
                 })}
             </Slider>
@@ -52,6 +59,7 @@ const ProductImageSlider = (props: Props) => {
                             alt="testing"
                             width={80}
                             height={80}
+                            priority
                         />
                     );
                 })}
