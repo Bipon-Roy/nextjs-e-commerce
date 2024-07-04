@@ -146,6 +146,7 @@ const OrderedItemsCard = ({ order, disableUpdate = true }: Props) => {
                                         width={50}
                                         height={50}
                                         alt={product.title}
+                                        priority
                                     />
                                     <div>
                                         <p className="font-semibold">{product.title}</p>

@@ -68,7 +68,13 @@ const CartItems = ({ products = [], totalQty, cartTotal, cartId }: CartItemsProp
                         key={product.id}
                         className="grid grid-cols-4 gap-2 md:gap-4 items-center justify-between shadow-sm py-2 rounded px-4 border"
                     >
-                        <Image src={product.thumbnail} alt={product.title} height={80} width={80} />
+                        <Image
+                            src={product.thumbnail}
+                            alt={product.title}
+                            height={80}
+                            width={80}
+                            priority
+                        />
                         <p className="font-semibold">{formatPrice(product.totalPrice)}</p>
                         <CartItemCounter
                             onIncrement={() => updateCart(product.id, 1)}

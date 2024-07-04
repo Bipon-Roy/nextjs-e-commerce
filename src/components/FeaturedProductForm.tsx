@@ -173,7 +173,7 @@ const FeaturedProductForm = ({ initialValue }: Props) => {
                 />
                 <div className="h-[380px] w-full flex flex-col items-center justify-center border-2 border-dashed border-orange-400 rounded cursor-pointer relative">
                     {poster ? (
-                        <Image alt="banner" src={poster || initialValue?.banner} fill />
+                        <Image alt="banner" src={poster || initialValue?.banner} fill priority />
                     ) : (
                         <>
                             <span>Select Hero Image</span>

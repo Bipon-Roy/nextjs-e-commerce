@@ -33,6 +33,7 @@ const ProductReviews = ({ reviews }: Props) => {
                                 className="rounded-full object-fill"
                                 src={review.userInfo.avatar || "/avatar.png"}
                                 alt={review.userInfo.name}
+                                priority
                             />
                             <div>
                                 <p className="font-semibold">{review.userInfo.name}</p>

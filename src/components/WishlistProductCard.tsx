@@ -44,7 +44,7 @@ const WishlistProductCard = memo(({ product }: Props) => {
 
     return (
         <div className="flex gap-4 items-center shadow bg-gray-50">
-            <Image src={thumbnail} width={80} height={80} alt={title} />
+            <Image src={thumbnail} width={80} height={80} alt={title} priority />
             <Link className="flex-1 cursor-pointer h-full" href={`/${title}/${id}`}>
                 <h1 className="font-semibold">{title}</h1>
                 <p>{formatPrice(price)}</p>

@@ -39,7 +39,13 @@ const OrderList = ({ orders }: { orders: Orders[] }) => {
                         {order.products.map((p) => {
                             return (
                                 <div key={p.id} className="flex gap-2">
-                                    <Image src={p.thumbnail} width={50} height={50} alt={p.title} />
+                                    <Image
+                                        src={p.thumbnail}
+                                        width={50}
+                                        height={50}
+                                        alt={p.title}
+                                        priority
+                                    />
                                     <div>
                                         <p>{p.title}</p>
                                         <div className="flex gap-2 text-sm">

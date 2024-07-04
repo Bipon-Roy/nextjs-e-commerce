@@ -14,6 +14,7 @@ const AboutUs = () => {
                             className="rounded-md"
                             alt="About E-Shop"
                             fill
+                            priority
                         />
                     </div>
                     <div className="text-black space-y-3 dark:text-white text-sm lg:text-base">

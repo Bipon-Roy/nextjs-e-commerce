@@ -73,6 +73,7 @@ const Review = async ({ params }: Props) => {
                     width={120}
                     height={120}
                     className="rounded"
+                    priority
                 />
                 <h3 className="font-semibold md:text-lg text-blue-500">{product.title}</h3>
             </div>
