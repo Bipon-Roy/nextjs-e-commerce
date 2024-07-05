@@ -15,6 +15,7 @@ const Navbar = async () => {
     const session = await auth();
 
     let cartItemsCount = 0;
+
     let profile: Profile | null = null;
 
     if (session && session.user) {

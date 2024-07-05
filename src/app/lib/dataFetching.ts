@@ -27,6 +27,7 @@ export const fetchUserProfile = async (userId: string): Promise<Profile | null> 
 
 export const getCartItemsCount = async (userId: string): Promise<number> => {
     try {
+        await startDb();
         const cart = await CartModel.aggregate([
             { $match: { userId: new Types.ObjectId(userId) } },
             { $unwind: "$items" },

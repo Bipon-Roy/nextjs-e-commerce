@@ -9,7 +9,7 @@ import MobileNav from "./MobileNav";
 import CartIcon from "./CartIcon";
 import { FaRegUserCircle, FaShoppingBag } from "react-icons/fa";
 import useAuth from "@hooks/useAuth";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { AiOutlineBars } from "react-icons/ai";
 import NavSearchForm from "../NavSearchForm";
 import { IoClose } from "react-icons/io5";
@@ -41,11 +41,15 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
     const [open, setOpen] = useState(false);
     const { loading, loggedIn } = useAuth();
 
-    useEffect(() => {
-        const onResize = () => window.innerWidth >= 960 && setOpen(false);
-        window.addEventListener("resize", onResize);
-        return () => window.removeEventListener("resize", onResize);
+    const handleResize = useCallback(() => {
+        if (window.innerWidth >= 960) setOpen(false);
     }, []);
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, [handleResize]);
+
     return (
         <>
             <Navbar
@@ -64,7 +68,7 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                         <NavSearchForm submitTo="/search?query=" />
                     </div>
 
-                    <div className="hidden  xl:flex gap-2 items-center">
+                    <div className="hidden lg:flex gap-2 items-center">
                         <CartIcon cartItems={cartItemsCount} />
                         {loggedIn ? (
                             <ProfileMenu menuItems={menuItems} avatar={avatar} />
@@ -88,16 +92,15 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                         )}
                     </div>
 
-                    <div className=" xl:hidden flex items-center gap-2">
+                    <div className="lg:hidden flex items-center gap-2">
                         <CartIcon cartItems={cartItemsCount} />
-
                         <IconButton
-                            size="sm"
                             placeholder={undefined}
+                            size="sm"
                             variant="text"
                             color="blue-gray"
-                            className=" xl:hidden"
-                            onClick={() => setOpen(!open)}
+                            className="xl:hidden"
+                            onClick={() => setOpen((prevOpen) => !prevOpen)}
                         >
                             {open ? (
                                 <IoClose className="h-6 w-6" />
@@ -108,7 +111,7 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                     </div>
                 </div>
             </Navbar>
-            <div className="xl:hidden">
+            <div className="lg:hidden">
                 <MobileNav menuItems={menuItems} onClose={() => setOpen(false)} open={open} />
             </div>
         </>
