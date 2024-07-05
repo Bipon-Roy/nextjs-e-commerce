@@ -30,7 +30,7 @@ const NavSearchForm = ({ submitTo }: Props) => {
             <input
                 type="text"
                 placeholder="Search Product"
-                className="flex-grow p-2 pl-4 focus:outline-none rounded w-full"
+                className="flex-grow p-1 md:p-2 pl-4 focus:outline-none rounded w-full text-sm md:text-base"
                 value={query}
                 onChange={({ target }) => setQuery(target.value)}
             />
