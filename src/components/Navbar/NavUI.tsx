@@ -108,7 +108,7 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                     </div>
                 </div>
             </Navbar>
-            <div className=" xl:hidden">
+            <div className="xl:hidden">
                 <MobileNav menuItems={menuItems} onClose={() => setOpen(false)} open={open} />
             </div>
         </>

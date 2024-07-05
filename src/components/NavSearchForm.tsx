@@ -1,6 +1,5 @@
 "use client";
 
-import { Input } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -15,7 +14,6 @@ const NavSearchForm = ({ submitTo }: Props) => {
     const params = useSearchParams();
     const searchQuery = params.get("query") || "";
 
-    //keeping the query in search form
     useEffect(() => {
         setQuery(searchQuery);
     }, [searchQuery]);
@@ -27,20 +25,18 @@ const NavSearchForm = ({ submitTo }: Props) => {
                 if (!query) return;
                 router.push(`${submitTo}${query}`);
             }}
-            className="w-full"
+            className="w-full flex items-center bg-white border rounded border-gray-300"
         >
-            <Input
-                crossOrigin={undefined}
-                color="orange"
-                label="Search Product"
-                icon={
-                    <button>
-                        <IoMdSearch className="h-5 w-5" />
-                    </button>
-                }
+            <input
+                type="text"
+                placeholder="Search Product"
+                className="flex-grow p-2 pl-4 focus:outline-none rounded w-full"
                 value={query}
                 onChange={({ target }) => setQuery(target.value)}
             />
+            <button type="submit" className="p-2">
+                <IoMdSearch className="h-5 w-5" />
+            </button>
         </form>
     );
 };

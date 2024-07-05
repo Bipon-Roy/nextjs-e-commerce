@@ -30,8 +30,6 @@ const settings: Settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true,
-    autoplaySpeed: 2500,
 };
 
 const HeroSlider = memo(({ products, loading }: Props) => {
