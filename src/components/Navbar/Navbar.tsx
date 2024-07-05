@@ -11,11 +11,6 @@ interface Profile {
     verified: boolean;
 }
 
-interface NavbarProps {
-    cartItemsCount: number;
-    profile: Profile | null;
-}
-
 const Navbar = async () => {
     const session = await auth();
 

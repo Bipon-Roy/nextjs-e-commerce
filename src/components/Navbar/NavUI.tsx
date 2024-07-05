@@ -60,7 +60,7 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                             Next.js <span className="block">E-Shop</span>
                         </p>
                     </Link>
-                    <div className="w-full md:w-96 mx-2 md:mx-0 ">
+                    <div className="md:w-96 mx-0 ">
                         <NavSearchForm submitTo="/search?query=" />
                     </div>
 
@@ -92,6 +92,7 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                         <CartIcon cartItems={cartItemsCount} />
 
                         <IconButton
+                            size="sm"
                             placeholder={undefined}
                             variant="text"
                             color="blue-gray"
