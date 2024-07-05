@@ -35,8 +35,10 @@ const startDb = async (): Promise<Mongoose> => {
         // Create a new connection if no promise exists
         globalWithMongoose.mongoose.promise = mongoose
             .connect(uri, {
-                serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
-                socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+                serverSelectionTimeoutMS: 5000,
+                socketTimeoutMS: 45000,
+                bufferCommands: false,
+                autoIndex: false,
             })
             .then((mongoose) => {
                 return mongoose;

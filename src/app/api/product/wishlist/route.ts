@@ -9,7 +9,7 @@ export const POST = async (req: Request) => {
         const session = await auth();
         if (!session?.user) {
             return NextResponse.json(
-                { error: "unauthorized request!!", message: "No user found!!" },
+                { error: "unauthorized request", message: "No user found" },
                 { status: 403 }
             );
         }
@@ -18,7 +18,7 @@ export const POST = async (req: Request) => {
 
         if (!isValidObjectId(productId)) {
             return NextResponse.json(
-                { error: "invalid product id!!", message: "No product found!!" },
+                { error: "invalid product id", message: "No product found" },
                 { status: 404 }
             );
         }
@@ -34,25 +34,21 @@ export const POST = async (req: Request) => {
             });
             return NextResponse.json(
                 { success: true, message: "Product removed from wishlist" },
-                { status: 201 }
+                { status: 200 }
             );
         } else {
             await WishlistModel.findOneAndUpdate(
-                {
-                    user: session.user.id,
-                },
-                {
-                    user: session.user.id,
-                    $push: { products: productId },
-                },
+                { user: session.user.id },
+                { $push: { products: productId } },
                 { upsert: true }
             );
+            return NextResponse.json(
+                { success: true, message: "Product added to wishlist" },
+                { status: 201 }
+            );
         }
-        return NextResponse.json(
-            { success: true, message: "Product added to wishlist" },
-            { status: 201 }
-        );
     } catch (error) {
-        return NextResponse.json({ error: "Something went wrong!!" }, { status: 500 });
+        console.error("Error handling wishlist:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 };
