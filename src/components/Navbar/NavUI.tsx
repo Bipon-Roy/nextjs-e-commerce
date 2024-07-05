@@ -60,7 +60,7 @@ const NavUI = ({ cartItemsCount, avatar }: Props) => {
                             Next.js <span className="block">E-Shop</span>
                         </p>
                     </Link>
-                    <div className="w-1/2 md:w-96 ">
+                    <div className="w-full mx-2 md:w-96 md:mx-0">
                         <NavSearchForm submitTo="/search?query=" />
                     </div>
 
