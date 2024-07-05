@@ -7,8 +7,8 @@ const AboutUs = () => {
             <div className="max-w-7xl mx-auto ">
                 <SectionHeading title="About" subTitle="Us" />
 
-                <div className="grid md:grid-cols-2 gap-4  xl:gap-8 py-5">
-                    <div className="relative h-80 md:h-full w-full rounded-md">
+                <div className="grid md:grid-cols-2 md:gap-4 xl:gap-8 py-5">
+                    <div className="relative h-80 w-80 mx-auto md:h-full md:w-full rounded-md">
                         <Image
                             src="https://i.ibb.co/sC7TDt7/about.jpg"
                             className="rounded-md"
