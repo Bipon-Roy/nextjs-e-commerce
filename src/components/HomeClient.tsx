@@ -45,7 +45,7 @@ const HomeClient: React.FC<HomeClientProps> = ({ initialProducts, initialFeature
     }, [initialProducts, initialFeaturedProducts]);
 
     return (
-        <div className="space-y-6 pb-10">
+        <div className="space-y-6 pb-10 overflow-hidden">
             <HeroSlider products={initialFeaturedProducts} loading={loading} />
             <AboutUs />
             <SectionHeading title="Featured" subTitle="Products" />
