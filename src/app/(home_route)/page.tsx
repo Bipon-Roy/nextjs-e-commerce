@@ -62,6 +62,7 @@ const fetchFeaturedProducts = async (): Promise<FeaturedProductResponse[]> => {
 };
 
 export default async function Home() {
+    await startDb();
     const products = await fetchProducts();
     const featuredProducts = await fetchFeaturedProducts();
 

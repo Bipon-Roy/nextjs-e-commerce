@@ -10,6 +10,7 @@ declare global {
             mongoose: {
                 conn: Mongoose | null;
                 promise: Promise<Mongoose> | null;
+                lastConnectionTime: number | null;
             };
         }
     }
@@ -17,17 +18,32 @@ declare global {
 
 // Initialize the mongoose global object if it doesn't already exist
 const globalWithMongoose = global as typeof globalThis & {
-    mongoose: { conn: Mongoose | null; promise: Promise<Mongoose> | null };
+    mongoose: {
+        conn: Mongoose | null;
+        promise: Promise<Mongoose> | null;
+        lastConnectionTime: number | null;
+    };
 };
 
 if (!globalWithMongoose.mongoose) {
-    globalWithMongoose.mongoose = { conn: null, promise: null };
+    globalWithMongoose.mongoose = {
+        conn: null,
+        promise: null,
+        lastConnectionTime: null,
+    };
 }
 
 // Function to start the database connection
 const startDb = async (): Promise<Mongoose> => {
-    if (globalWithMongoose.mongoose.conn) {
-        // Reuse existing connection if available
+    const currentTime = new Date().getTime();
+    const CONNECTION_TIMEOUT = 5 * 60 * 1000; // 3 minutes
+
+    if (
+        globalWithMongoose.mongoose.conn &&
+        globalWithMongoose.mongoose.lastConnectionTime &&
+        currentTime - globalWithMongoose.mongoose.lastConnectionTime < CONNECTION_TIMEOUT
+    ) {
+        // Reuse existing connection if within the timeout period
         return globalWithMongoose.mongoose.conn;
     }
 
@@ -52,6 +68,7 @@ const startDb = async (): Promise<Mongoose> => {
 
     // Wait for the promise to resolve if connection is being established
     globalWithMongoose.mongoose.conn = await globalWithMongoose.mongoose.promise;
+    globalWithMongoose.mongoose.lastConnectionTime = currentTime;
     return globalWithMongoose.mongoose.conn;
 };
 

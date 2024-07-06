@@ -30,6 +30,8 @@ const settings: Settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
+    autoplay: true,
+    autoplaySpeed: 2500,
 };
 
 const HeroSlider = memo(({ products, loading }: Props) => {
@@ -38,12 +40,12 @@ const HeroSlider = memo(({ products, loading }: Props) => {
     if (loading) return <SkeletonHeroSlider />;
 
     return (
-        <div className="h-[320px] md:h-[450px] mt-4 rounded-md ">
+        <div className="h-[320px] md:h-[500px] mt-4 rounded-md ">
             <Slider {...settings}>
                 {products.map(({ banner, title, link, linkTitle }, index) => {
                     return (
                         <div className="select-none relative" key={index}>
-                            <div className="w-full h-[320px] md:h-[450px]">
+                            <div className="w-full h-[320px] md:h-[500px]">
                                 <Image
                                     className="rounded-md"
                                     fill
