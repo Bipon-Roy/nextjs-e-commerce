@@ -14,7 +14,7 @@ import { formatPrice } from "@/utils/helper";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { memo, useTransition } from "react";
+import { memo, useState, useTransition } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
 import SkeletonCard from "./SkeletonCard";
 
@@ -36,6 +36,7 @@ const ProductCard = memo(({ product, loading }: Props) => {
     const [isPending, startTransition] = useTransition();
     const { loggedIn } = useAuth();
     const router = useRouter();
+    const [isShow, setIsShow] = useState(false);
 
     if (loading) return <SkeletonCard />;
 
@@ -79,7 +80,12 @@ const ProductCard = memo(({ product, loading }: Props) => {
     };
 
     return (
-        <Card placeholder={undefined} className="w-full rounded-md shadow">
+        <Card
+            placeholder={undefined}
+            className="w-full rounded-md shadow relative"
+            onMouseEnter={() => setIsShow(true)}
+            onMouseLeave={() => setIsShow(false)}
+        >
             <CardHeader
                 placeholder={undefined}
                 shadow={false}
@@ -90,7 +96,11 @@ const ProductCard = memo(({ product, loading }: Props) => {
                 <div className="relative h-28 w-28 md:w-52 md:h-48 bg-transparent mx-auto mt-2">
                     <Image src={product.thumbnail} alt={product.title} fill priority />
                 </div>
-                <div className="absolute top-0 right-0">
+                <div
+                    className={`absolute top-0 right-0 transition-opacity duration-300 ${
+                        isShow ? "opacity-100" : "opacity-0"
+                    }`}
+                >
                     <Button
                         onClick={() => startTransition(async () => await handleWishlist())}
                         variant="text"
