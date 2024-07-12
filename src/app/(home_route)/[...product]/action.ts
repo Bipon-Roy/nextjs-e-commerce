@@ -108,3 +108,9 @@ export const fetchSimilarProducts = async (): Promise<SimilarProductResponse[]> 
         isInWishlist: wishlistProductIds.includes(prod._id.toString()),
     }));
 };
+
+export async function fetchAllProductIds() {
+    await startDb();
+    const products = await ProductModel.find().select("_id").lean();
+    return products.map((product) => product._id.toString());
+}
