@@ -1,5 +1,5 @@
 "use client";
-import { Button, Input } from "@material-tailwind/react";
+import { Button, Checkbox, Input } from "@material-tailwind/react";
 import AuthFormContainer from "@components/AuthFormContainer";
 import { useFormik } from "formik";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const validationSchema = yup.object().shape({
     email: yup.string().email("Invalid email").required("Email is required"),
@@ -18,26 +19,34 @@ const validationSchema = yup.object().shape({
 
 const SignIn = () => {
     const router = useRouter();
-    const { values, isSubmitting, touched, errors, handleSubmit, handleBlur, handleChange } =
-        useFormik({
-            initialValues: { email: "", password: "" },
-            validationSchema,
-            onSubmit: async (values) => {
-                const res = await signIn("credentials", {
-                    ...values,
-                    redirect: false,
-                });
 
-                console.log(res);
-                if (res?.error === "CredentialsSignin") {
-                    toast.error("Email/Password mismatch");
-                }
+    const {
+        values,
+        isSubmitting,
+        touched,
+        errors,
+        handleSubmit,
+        handleBlur,
+        handleChange,
+        setFieldValue,
+    } = useFormik({
+        initialValues: { email: "", password: "" },
+        validationSchema,
+        onSubmit: async (values) => {
+            const res = await signIn("credentials", {
+                ...values,
+                redirect: false,
+            });
 
-                if (!res?.error) {
-                    router.refresh();
-                }
-            },
-        });
+            if (res?.error === "CredentialsSignin") {
+                toast.error("Email/Password mismatch");
+            }
+
+            if (!res?.error) {
+                router.refresh();
+            }
+        },
+    });
 
     type valueKeys = keyof typeof values;
 
@@ -47,6 +56,17 @@ const SignIn = () => {
     };
     return (
         <AuthFormContainer title="SIGN IN" onSubmit={handleSubmit}>
+            <div className="flex items-center">
+                <Checkbox
+                    crossOrigin={undefined}
+                    color="indigo"
+                    onChange={() => {
+                        setFieldValue("email", "biponroy5050@gmail.com");
+                        setFieldValue("password", "12345678");
+                    }}
+                />
+                <p className="text-sm">Sign in as Admin</p>
+            </div>
             <Input
                 crossOrigin={undefined}
                 name="email"
