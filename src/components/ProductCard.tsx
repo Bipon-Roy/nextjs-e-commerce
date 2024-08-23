@@ -117,7 +117,7 @@ const ProductCard = memo(({ product, loading }: Props) => {
                 </div>
             </CardHeader>
             <CardBody placeholder={undefined} className="flex-1 px-2 md:px-4 py-3 space-y-2">
-                <h3 className="font-semibold text-blue-gray-800 text-sm md:text-base">
+                <h3 className="font-semibold text-black text-sm md:text-base">
                     {truncate(product.title, 50)}
                 </h3>
 
