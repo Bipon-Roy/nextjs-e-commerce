@@ -5,16 +5,20 @@ interface Props {
     title: string;
     subTitle: string;
 }
+
 const SectionHeading = ({ title, subTitle }: Props) => {
     return (
-        <Typography
-            placeholder={undefined}
-            variant="h3"
-            color="blue-gray"
-            className="text-center font-semibold py-1"
-        >
-            {title} <span className="text-orange-400">{subTitle}</span>
-        </Typography>
+        <div className="text-center">
+            <Typography
+                placeholder={undefined}
+                variant="h3"
+                color="black"
+                className="font-semibold py-1"
+            >
+                {title} <span>{subTitle}</span>
+            </Typography>
+            <div className="w-16 h-1 bg-orange-600 mx-auto mt-1"></div>
+        </div>
     );
 };
 

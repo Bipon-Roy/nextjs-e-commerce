@@ -18,10 +18,10 @@ const AboutUs = () => {
                         />
                     </div>
                     <div className="text-black space-y-3 dark:text-white text-sm lg:text-base">
-                        <h1 className="text-xl lg:text-3xl font-bold  text-center">
+                        <h4 className="text-xl lg:text-2xl font-bold  text-center">
                             <span className="text-primary ">Welcome to eShop </span> - Your Trusted
                             Source for Premium Electronics!
-                        </h1>
+                        </h4>
                         <p className="font-medium">
                             At eShop, we are passionate about technology and committed to providing
                             you with the latest and greatest electronics products. With a dedication

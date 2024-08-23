@@ -1,75 +1,39 @@
 import mongoose, { Mongoose } from "mongoose";
 
-// Define the URI for the database connection
 const uri = `mongodb+srv://${process.env.DB_User}:${process.env.DB_Pass}@nextjs.uarhekm.mongodb.net/ecomDb`;
 
-// Extend the NodeJS global object to include mongoose
+// Declare global type extension for TypeScript
 declare global {
-    namespace NodeJS {
-        interface Global {
-            mongoose: {
-                conn: Mongoose | null;
-                promise: Promise<Mongoose> | null;
-                lastConnectionTime: number | null;
-            };
-        }
-    }
-}
-
-// Initialize the mongoose global object if it doesn't already exist
-const globalWithMongoose = global as typeof globalThis & {
-    mongoose: {
+    var mongoose: {
         conn: Mongoose | null;
         promise: Promise<Mongoose> | null;
-        lastConnectionTime: number | null;
-    };
-};
-
-if (!globalWithMongoose.mongoose) {
-    globalWithMongoose.mongoose = {
-        conn: null,
-        promise: null,
-        lastConnectionTime: null,
     };
 }
 
-// Function to start the database connection
-const startDb = async (): Promise<Mongoose> => {
-    const currentTime = new Date().getTime();
-    const CONNECTION_TIMEOUT = 5 * 60 * 1000; // 3 minutes
+// Initialize global.mongoose if it doesn't exist
+global.mongoose = global.mongoose || { conn: null, promise: null };
 
-    if (
-        globalWithMongoose.mongoose.conn &&
-        globalWithMongoose.mongoose.lastConnectionTime &&
-        currentTime - globalWithMongoose.mongoose.lastConnectionTime < CONNECTION_TIMEOUT
-    ) {
-        // Reuse existing connection if within the timeout period
-        return globalWithMongoose.mongoose.conn;
+const startDb = async (): Promise<Mongoose> => {
+    if (global.mongoose.conn) {
+        // Return existing connection
+        return global.mongoose.conn;
     }
 
-    if (!globalWithMongoose.mongoose.promise) {
-        // Create a new connection if no promise exists
-        globalWithMongoose.mongoose.promise = mongoose
+    if (!global.mongoose.promise) {
+        // Create a new connection promise if it doesn't exist
+        global.mongoose.promise = mongoose
             .connect(uri, {
                 serverSelectionTimeoutMS: 5000,
                 socketTimeoutMS: 45000,
                 bufferCommands: false,
                 autoIndex: false,
             })
-            .then((mongoose) => {
-                return mongoose;
-            })
-            .catch((err) => {
-                globalWithMongoose.mongoose.promise = null;
-                console.error("Failed to connect to MongoDB", err);
-                throw err;
-            });
+            .then((mongoose) => mongoose);
     }
 
-    // Wait for the promise to resolve if connection is being established
-    globalWithMongoose.mongoose.conn = await globalWithMongoose.mongoose.promise;
-    globalWithMongoose.mongoose.lastConnectionTime = currentTime;
-    return globalWithMongoose.mongoose.conn;
+    // Wait for the promise to resolve and set the connection
+    global.mongoose.conn = await global.mongoose.promise;
+    return global.mongoose.conn;
 };
 
 export default startDb;
