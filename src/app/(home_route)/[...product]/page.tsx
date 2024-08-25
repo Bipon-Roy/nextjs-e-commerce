@@ -1,37 +1,24 @@
-import {
-    fetchProductDetails,
-    fetchProductReviews,
-    fetchSimilarProducts,
-    fetchAllProductIds,
-} from "./action";
 import GridContainer from "@components/GridContainer";
 import ProductCard from "@components/ProductCard";
 import ProductReviews from "@components/ProductReviews";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { FaArrowCircleRight } from "react-icons/fa";
 import SingleProductDetails from "@components/SingleProductDetails";
 import { isValidObjectId } from "mongoose";
+import { fetchProductDetails, fetchProductReviews, fetchSimilarProducts } from "./action";
 
 interface Props {
     params: {
         product: string[];
     };
 }
-
-export async function generateStaticParams() {
-    const productIds = await fetchAllProductIds();
-
-    return productIds.map((productId: string) => ({
-        product: ["product", productId],
-    }));
-}
-
 const ProductDetails = async ({ params }: Props) => {
     const { product } = params;
     const productId = product[1];
 
     if (!isValidObjectId(productId)) {
-        return <div>Invalid Product ID</div>;
+        return redirect("404");
     }
 
     const [productInfo, similarProducts, reviews] = await Promise.all([
@@ -41,7 +28,7 @@ const ProductDetails = async ({ params }: Props) => {
     ]);
 
     if (!productInfo) {
-        return <div>Product not found</div>;
+        return redirect("404");
     }
 
     const productImages = [productInfo.thumbnail, ...(productInfo.images || [])];
