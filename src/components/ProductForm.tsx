@@ -120,10 +120,7 @@ const ProductForm = (props: Props) => {
             const newImages = Array.from(files).map((item) => item);
             const oldImages = productImagesSource || [];
             setImages([...images, ...newImages]);
-            setProductImagesSource([
-                ...oldImages,
-                ...newImages.map((file) => URL.createObjectURL(file)),
-            ]);
+            setProductImagesSource([...oldImages, ...newImages.map((file) => URL.createObjectURL(file))]);
         }
     };
 
@@ -138,9 +135,7 @@ const ProductForm = (props: Props) => {
 
     return (
         <div className="p-4 max-w-6xl mx-auto">
-            <h1 className="mb-4 text-xl font-medium">
-                {isForUpdate ? "Update Product" : "Add new product"}
-            </h1>
+            <h1 className="mb-4 text-xl font-medium">{isForUpdate ? "Update Product" : "Add new product"}</h1>
 
             <form
                 action={() =>
@@ -155,9 +150,7 @@ const ProductForm = (props: Props) => {
                     crossOrigin={undefined}
                     label="Title"
                     value={productInfo.title}
-                    onChange={({ target }) =>
-                        setProductInfo({ ...productInfo, title: target.value })
-                    }
+                    onChange={({ target }) => setProductInfo({ ...productInfo, title: target.value })}
                 />
 
                 <Textarea
@@ -165,17 +158,11 @@ const ProductForm = (props: Props) => {
                     className="h-52"
                     label="Description"
                     value={productInfo.description}
-                    onChange={({ target }) =>
-                        setProductInfo({ ...productInfo, description: target.value })
-                    }
+                    onChange={({ target }) => setProductInfo({ ...productInfo, description: target.value })}
                 />
                 <div className="space-y-4">
                     <h3>Poster</h3>
-                    <ImageSelector
-                        id="thumb"
-                        images={thumbnailSource}
-                        onChange={onThumbnailChange}
-                    />
+                    <ImageSelector id="thumb" images={thumbnailSource} onChange={onThumbnailChange} />
 
                     <h3>Images</h3>
                     <ImageSelector
@@ -258,17 +245,11 @@ const ProductForm = (props: Props) => {
                                 type="text"
                                 value={field}
                                 label={`Bullet point ${index + 1}`}
-                                onChange={({ target }) =>
-                                    updateBulletPointValue(target.value, index)
-                                }
+                                onChange={({ target }) => updateBulletPointValue(target.value, index)}
                                 className="mb-4"
                             />
                             {fields.length > 1 ? (
-                                <button
-                                    onClick={() => removeBulletPoint(index)}
-                                    type="button"
-                                    className="ml-2"
-                                >
+                                <button onClick={() => removeBulletPoint(index)} type="button" className="ml-2">
                                     <BiSolidTrashAlt className="w-5 h-5 text-red-600" />
                                 </button>
                             ) : null}
@@ -276,8 +257,12 @@ const ProductForm = (props: Props) => {
                     ))}
 
                     <button
+                        type="button"
                         disabled={isPending}
-                        onClick={addMoreBulletPoints}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            addMoreBulletPoints();
+                        }}
                         className="flex items-center gap-1 ml-auto px-4 py-1 bg-orange-500/10 text-orange-500 font-semibold"
                     >
                         <FaPlus className="w-4 h-4" />
@@ -285,13 +270,7 @@ const ProductForm = (props: Props) => {
                     </button>
                 </div>
 
-                <Button
-                    placeholder={undefined}
-                    color="blue"
-                    className="w-full"
-                    disabled={isPending}
-                    type="submit"
-                >
+                <Button placeholder={undefined} color="blue" className="w-full" disabled={isPending} type="submit">
                     {dynamicBtnTitle()}
                 </Button>
             </form>
