@@ -7,12 +7,19 @@ import { FaArrowCircleRight } from "react-icons/fa";
 import SingleProductDetails from "@components/SingleProductDetails";
 import { isValidObjectId } from "mongoose";
 import { fetchProductDetails, fetchProductReviews, fetchSimilarProducts } from "./action";
+import fetchAllProductIds from "@lib/fetchAllProductIds";
 
 interface Props {
     params: {
         product: string[];
     };
 }
+
+export async function generateStaticParams() {
+    const Ids = await fetchAllProductIds();
+    return Ids;
+}
+
 const ProductDetails = async ({ params }: Props) => {
     const { product } = params;
     const productId = product[1];

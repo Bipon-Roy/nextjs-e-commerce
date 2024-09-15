@@ -96,8 +96,7 @@ export const fetchSimilarProducts = async (): Promise<SimilarProductResponse[]> 
 
     const wishlist = userId ? await WishlistModel.findOne({ user: userId }).lean<Wishlist>() : null;
 
-    const wishlistProductIds: string[] =
-        wishlist?.products?.map((product) => product._id.toString()) ?? [];
+    const wishlistProductIds: string[] = wishlist?.products?.map((product) => product._id.toString()) ?? [];
 
     return products.map((prod) => ({
         id: prod._id.toString(),
@@ -108,9 +107,3 @@ export const fetchSimilarProducts = async (): Promise<SimilarProductResponse[]> 
         isInWishlist: wishlistProductIds.includes(prod._id.toString()),
     }));
 };
-
-export async function fetchAllProductIds() {
-    await startDb();
-    const products = await ProductModel.find().select("_id").lean();
-    return products.map((product) => product._id.toString());
-}

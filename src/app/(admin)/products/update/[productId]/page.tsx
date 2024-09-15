@@ -4,11 +4,17 @@ import { isValidObjectId } from "mongoose";
 import { redirect } from "next/navigation";
 import UpdateProduct from "@/components/UpdateProduct";
 import { SingleProductResponse } from "@/types";
+import fetchAllProductIds from "@lib/fetchAllProductIds";
 
 interface Props {
     params: {
         productId: string;
     };
+}
+
+export async function generateStaticParams() {
+    const Ids = await fetchAllProductIds();
+    return Ids;
 }
 
 const fetchProductInfo = async (productId: string): Promise<string> => {

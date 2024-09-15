@@ -6,6 +6,7 @@ import ProductMenu from "@components/ProductMenu";
 import { auth } from "@/auth";
 import WishlistModel from "@models/wishlistModel";
 import { Document } from "mongoose";
+import fetchAllCategory from "@lib/fetchAllCategory";
 
 interface ProductResponse {
     id: string;
@@ -29,12 +30,8 @@ const fetchProductsByCategory = async (category: string): Promise<ProductRespons
     await startDb();
     const session = await auth();
     const userId = session?.user?.id;
-    const wishlist: Wishlist | null = userId
-        ? await WishlistModel.findOne({ user: userId }).lean()
-        : null;
-    const wishlistProductIds = wishlist
-        ? wishlist.products.map((product) => product.toString())
-        : [];
+    const wishlist: Wishlist | null = userId ? await WishlistModel.findOne({ user: userId }).lean() : null;
+    const wishlistProductIds = wishlist ? wishlist.products.map((product) => product.toString()) : [];
 
     const products = await ProductModel.find({ category }).sort("-createdAt").lean();
 
@@ -54,6 +51,12 @@ interface Props {
     params: {
         category: string;
     };
+}
+export async function generateStaticParams() {
+    const category = await fetchAllCategory();
+    console.log("category", category);
+
+    return category;
 }
 
 const ProductByCategories = async ({ params }: Props) => {
