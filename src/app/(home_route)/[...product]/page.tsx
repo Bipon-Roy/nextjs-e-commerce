@@ -16,8 +16,8 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-    const Ids = await fetchAllProductIds();
-    return Ids;
+    const productIds = await fetchAllProductIds();
+    return productIds.map((id) => ({ product: [id] }));
 }
 
 const ProductDetails = async ({ params }: Props) => {

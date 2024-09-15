@@ -52,11 +52,10 @@ interface Props {
         category: string;
     };
 }
-export async function generateStaticParams() {
-    const category = await fetchAllCategory();
-    console.log("category", category);
 
-    return category;
+export async function generateStaticParams() {
+    const categories = await fetchAllCategory();
+    return categories.map((category) => ({ category }));
 }
 
 const ProductByCategories = async ({ params }: Props) => {
