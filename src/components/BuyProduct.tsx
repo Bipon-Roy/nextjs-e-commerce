@@ -6,8 +6,11 @@ import CartCounter from "./CartItemCounter";
 import { useParams, useRouter } from "next/navigation";
 import useAuth from "@/hooks/useAuth";
 import { toast } from "react-toastify";
-
-const BuyProduct = () => {
+import { FaHeart, FaRegHeart } from "react-icons/fa6";
+interface Props {
+    isWishlisted: boolean;
+}
+const BuyProduct = ({ isWishlisted }: Props) => {
     const [quantity, setQuantity] = useState(1);
     const [isPending, startTransition] = useTransition();
     const { product } = useParams();
@@ -67,13 +70,29 @@ const BuyProduct = () => {
         }
     };
 
+    const handleWishlist = async () => {
+        if (!productId) return;
+
+        if (!loggedIn) return router.push("/auth/signin");
+
+        const res = await fetch("/api/product/wishlist", {
+            method: "POST",
+            body: JSON.stringify({ productId }),
+        });
+
+        const { error, message } = await res.json();
+
+        if (!res.ok && error) {
+            toast.error(error);
+        } else {
+            toast.success(message);
+        }
+        router.refresh();
+    };
+
     return (
         <div className="flex items-center gap-4">
-            <CartCounter
-                onDecrement={handleDecrement}
-                onIncrement={handleIncrement}
-                value={quantity}
-            />
+            <CartCounter onDecrement={handleDecrement} onIncrement={handleIncrement} value={quantity} />
 
             <Button
                 size="sm"
@@ -94,6 +113,20 @@ const BuyProduct = () => {
                 className=" bg-orange-500 rounded-3xl"
             >
                 Buy Now
+            </Button>
+
+            <Button
+                onClick={() => startTransition(async () => await handleWishlist())}
+                variant="text"
+                placeholder={undefined}
+                disabled={isPending}
+                className="rounded-full hover:bg-red-500/10 text-red-500 p-2 bg-gray-100"
+            >
+                {isWishlisted ? (
+                    <FaHeart className="h-4 w-4 md:w-5 md:h-5 text-red-600" />
+                ) : (
+                    <FaRegHeart className="h-4 w-4 md:w-5 md:h-5" />
+                )}
             </Button>
         </div>
     );

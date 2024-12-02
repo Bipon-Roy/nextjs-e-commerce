@@ -14,10 +14,11 @@ interface Props {
     points?: string[];
     rating?: number;
     outOfStock: boolean;
+    isWishlist: boolean;
 }
 
 const SingleProductDetails = memo(
-    ({ description, images, title, points, price, rating, outOfStock }: Props) => {
+    ({ description, images, title, points, price, rating, outOfStock, isWishlist }: Props) => {
         return (
             <div className="flex md:flex-row flex-col md:gap-4 gap-2 mt-6">
                 <div className="flex-1">
@@ -48,7 +49,7 @@ const SingleProductDetails = memo(
                         {outOfStock ? (
                             <p className="font-semibold text-red-500 md:text-lg">Out of stock</p>
                         ) : (
-                            <BuyProduct />
+                            <BuyProduct isWishlisted={isWishlist} />
                         )}
                     </div>
                 </div>

@@ -1,21 +1,10 @@
-"use server";
 import startDb from "@lib/db";
 import ProductModel from "@models/productModel";
 import ReviewModel from "@models/reviewModel";
 import WishlistModel from "@models/wishlistModel";
 import { auth } from "@/auth";
 import { ObjectId, isValidObjectId } from "mongoose";
-import { Types } from "mongoose";
 import { Review } from "@/components/ProductReviews";
-
-interface WishlistProduct {
-    _id: Types.ObjectId;
-}
-
-interface Wishlist {
-    _id: Types.ObjectId;
-    products: WishlistProduct[];
-}
 
 interface ProductResponse {
     id: string;
@@ -31,6 +20,7 @@ interface ProductResponse {
     sale: number;
     rating?: number;
     outOfStock: boolean;
+    isWishlist: boolean;
 }
 
 interface SimilarProductResponse {
@@ -42,7 +32,6 @@ interface SimilarProductResponse {
         discounted: number;
     };
     sale: number;
-    isInWishlist: boolean;
 }
 
 export const fetchProductDetails = async (id: string): Promise<ProductResponse | null> => {
@@ -52,6 +41,17 @@ export const fetchProductDetails = async (id: string): Promise<ProductResponse |
     const productInfo = await ProductModel.findById(id).lean();
     if (!productInfo) return null;
 
+    let isWishlist = false;
+    const session = await auth();
+
+    if (session?.user) {
+        const wishlist = await WishlistModel.findOne({
+            user: session.user.id,
+            products: productInfo._id,
+        });
+
+        isWishlist = wishlist ? true : false;
+    }
     return {
         id: productInfo._id.toString(),
         title: productInfo.title,
@@ -63,6 +63,7 @@ export const fetchProductDetails = async (id: string): Promise<ProductResponse |
         sale: productInfo.sale,
         rating: productInfo.rating,
         outOfStock: productInfo.quantity <= 0,
+        isWishlist,
     };
 };
 
@@ -91,12 +92,6 @@ export const fetchProductReviews = async (productId: string): Promise<Review[]> 
 export const fetchSimilarProducts = async (): Promise<SimilarProductResponse[]> => {
     await startDb();
     const products = await ProductModel.find().sort({ rating: -1 }).limit(5).lean();
-    const session = await auth();
-    const userId = session?.user?.id;
-
-    const wishlist = userId ? await WishlistModel.findOne({ user: userId }).lean<Wishlist>() : null;
-
-    const wishlistProductIds: string[] = wishlist?.products?.map((product) => product._id.toString()) ?? [];
 
     return products.map((prod) => ({
         id: prod._id.toString(),
@@ -104,6 +99,5 @@ export const fetchSimilarProducts = async (): Promise<SimilarProductResponse[]> 
         thumbnail: prod.thumbnail.url,
         price: prod.price,
         sale: prod.sale,
-        isInWishlist: wishlistProductIds.includes(prod._id.toString()),
     }));
 };

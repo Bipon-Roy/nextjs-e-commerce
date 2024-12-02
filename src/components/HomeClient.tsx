@@ -17,7 +17,6 @@ interface ProductResponse {
         discounted: number;
     };
     sale: number;
-    isInWishlist: boolean;
 }
 
 interface FeaturedProductResponse {

@@ -133,6 +133,8 @@ const ProductForm = (props: Props) => {
         }
     };
 
+    console.log(productInfo);
+
     return (
         <div className="p-4 max-w-6xl mx-auto">
             <h1 className="mb-4 text-xl font-medium">{isForUpdate ? "Update Product" : "Add new product"}</h1>

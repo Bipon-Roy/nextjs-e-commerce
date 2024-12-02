@@ -28,11 +28,9 @@ const ProductDetails = async ({ params }: Props) => {
         return redirect("404");
     }
 
-    const [productInfo, similarProducts, reviews] = await Promise.all([
-        fetchProductDetails(productId),
-        fetchSimilarProducts(),
-        fetchProductReviews(productId),
-    ]);
+    const productInfo = await fetchProductDetails(productId);
+    const similarProducts = await fetchSimilarProducts();
+    const reviews = await fetchProductReviews(productId);
 
     if (!productInfo) {
         return redirect("404");
@@ -50,6 +48,7 @@ const ProductDetails = async ({ params }: Props) => {
                 images={productImages}
                 rating={productInfo.rating}
                 outOfStock={productInfo.outOfStock}
+                isWishlist={productInfo.isWishlist}
             />
 
             <div className="py-4 space-y-4 mt-3">

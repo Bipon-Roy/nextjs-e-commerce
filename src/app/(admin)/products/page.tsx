@@ -1,12 +1,9 @@
-import startDb from "@/app/lib/db";
-import ProductModel from "@/app/models/productModel";
+import startDb from "@lib/db";
+import ProductModel from "@models/productModel";
 import ProductTable, { Product } from "@/components/ProductTable";
 import { redirect } from "next/navigation";
 
-const fetchProducts = async (
-    pageNo: number,
-    perPage: number
-): Promise<{ products: Product[]; totalCount: number }> => {
+const fetchProducts = async (pageNo: number, perPage: number): Promise<{ products: Product[]; totalCount: number }> => {
     const skipCount = (pageNo - 1) * perPage;
 
     await startDb();

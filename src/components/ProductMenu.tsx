@@ -28,41 +28,44 @@ const ProductMenu = () => {
             <SectionHeading title="Product" subTitle="Categories" />
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {categories.map((c) => (
-                    <Card placeholder={undefined} key={c} onClick={() => handleCategoryClick(c)}>
+                    <Card
+                        placeholder={undefined}
+                        key={c}
+                        onClick={() => handleCategoryClick(c)}
+                        className="shadow-none hover:shadow transition-all cursor-pointer"
+                    >
                         <CardBody
                             placeholder={undefined}
-                            className="space-y-2 flex flex-col justify-center items-center px-1 py-4 md:py-6"
+                            className="space-y-2 flex flex-col justify-center items-center px-1 py-4 md:py-6 "
                         >
                             {c === "Phone" && (
-                                <IoPhonePortraitOutline className="w-10 h-10 md:w-12 md:h-12 text-orange-400" />
+                                <div className="p-5 bg-gray-200 rounded-full">
+                                    <IoPhonePortraitOutline className="w-10 h-10 md:w-12 md:h-12 text-deep-orange-400" />
+                                </div>
                             )}
                             {c === "Watch" && (
-                                <TbDeviceWatch className="w-10 h-10 md:w-12 md:h-12 text-orange-400" />
+                                <div className="p-5 bg-gray-200 rounded-full">
+                                    <TbDeviceWatch className="w-10 h-10 md:w-12 md:h-12 text-deep-orange-400" />
+                                </div>
                             )}
                             {c === "Laptop" && (
-                                <FaLaptop className="w-10 h-10 md:w-12 md:h-12 text-orange-400" />
+                                <div className="p-5 bg-gray-200 rounded-full">
+                                    <FaLaptop className="w-10 h-10 md:w-12 md:h-12 text-deep-orange-400" />
+                                </div>
                             )}
                             {c === "Headphones" && (
-                                <FaHeadphones className="w-10 h-10 md:w-12 md:h-12 text-orange-400" />
+                                <div className="p-5 bg-gray-200 rounded-full">
+                                    <FaHeadphones className="w-10 h-10 md:w-12 md:h-12 text-deep-orange-400" />
+                                </div>
                             )}
                             <Typography
                                 placeholder={undefined}
                                 variant="h5"
-                                color="blue-gray"
+                                color="black"
                                 className="text-center text-base md:text-lg"
                             >
                                 {c}
                             </Typography>
-                            <div
-                                className={`px-1 xl:px-3 py-1 rounded transition-all text-blue-400 hover:bg-blue-500/10 hover:shadow cursor-pointer ${
-                                    activeCategory === c ? "bg-blue-500/10" : ""
-                                }`}
-                            >
-                                <div className="flex items-center gap-1  font-semibold text-sm  xl:text-base">
-                                    <span> View Products</span>
-                                    <FaLongArrowAltRight className="h-4 w-4  xl:h-6 md:w-6 " />
-                                </div>
-                            </div>
                         </CardBody>
                     </Card>
                 ))}

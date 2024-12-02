@@ -7,8 +7,8 @@ import { formatPrice } from "@/utils/helper";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { memo, useState, useTransition } from "react";
-import { FaHeart, FaRegHeart } from "react-icons/fa6";
+import { memo, useTransition } from "react";
+
 import SkeletonCard from "./SkeletonCard";
 
 interface Props {
@@ -32,8 +32,6 @@ const ProductCard = memo(({ product, loading }: Props) => {
 
     if (loading) return <SkeletonCard />;
 
-    const productId = product.id;
-
     const addToCart = async () => {
         if (!loggedIn) return router.push("/auth/signin");
 
@@ -51,28 +49,11 @@ const ProductCard = memo(({ product, loading }: Props) => {
         router.refresh();
     };
 
-    const handleWishlist = async () => {
-        if (!productId) return;
-
-        if (!loggedIn) return router.push("/auth/signin");
-
-        const res = await fetch("/api/product/wishlist", {
-            method: "POST",
-            body: JSON.stringify({ productId }),
-        });
-
-        const { error, message } = await res.json();
-
-        if (!res.ok && error) {
-            toast.error(error);
-        } else {
-            toast.success(message);
-        }
-        router.refresh();
-    };
-
     return (
-        <Card placeholder={undefined} className="w-full rounded-md shadow-none border relative">
+        <Card
+            placeholder={undefined}
+            className="w-full rounded-md shadow-none hover:shadow hover:scale-105 relative transition-all"
+        >
             <CardHeader
                 placeholder={undefined}
                 shadow={false}
@@ -83,21 +64,7 @@ const ProductCard = memo(({ product, loading }: Props) => {
                 <div className="relative h-28 w-28 md:w-52 md:h-48 bg-transparent mx-auto mt-2">
                     <Image src={product.thumbnail} alt={product.title} fill priority />
                 </div>
-                <div className="absolute top-0 right-0">
-                    <Button
-                        onClick={() => startTransition(async () => await handleWishlist())}
-                        variant="text"
-                        placeholder={undefined}
-                        disabled={isPending}
-                        className="rounded-full hover:bg-red-500/10 text-red-500 p-2 bg-gray-100"
-                    >
-                        {product.isInWishlist ? (
-                            <FaHeart className="h-4 w-4 md:w-5 md:h-5 text-red-600" />
-                        ) : (
-                            <FaRegHeart className="h-4 w-4 md:w-5 md:h-5" />
-                        )}
-                    </Button>
-                </div>
+                <div className="absolute top-0 right-0">{/*  */}</div>
             </CardHeader>
             <CardBody placeholder={undefined} className="flex-1 px-2 md:px-4 py-3 space-y-2">
                 <h3 className="font-semibold text-black text-sm md:text-base">{truncate(product.title, 50)}</h3>
